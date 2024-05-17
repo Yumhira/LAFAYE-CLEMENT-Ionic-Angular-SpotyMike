@@ -1,0 +1,14 @@
+ion-content {
+    --background: rgb(9, 9, 121);
+    --background: linear-gradient(186deg, rgba(9, 9, 121, 1) 0%, rgb(135, 23, 173) 59%, rgb(177, 0, 255, 1) 100%);
+}
+
+.container {
+    margin: 10px;
+    .logo{
+        padding: 50% 0;
+    }
+    ion-input {
+        font-size: x-large;
+    }
+}
