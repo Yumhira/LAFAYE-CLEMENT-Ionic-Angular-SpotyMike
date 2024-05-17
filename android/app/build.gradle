@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "io.esiea.spotifydubled"
+    namespace "io.esiea.spotyMike4Real"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.esiea.spotifydubled"
+        applicationId "io.esiea.spotyMike4Real"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

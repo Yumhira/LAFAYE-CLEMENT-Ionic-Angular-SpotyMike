@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.esiea.spotifydubled',
+  appId: 'io.esiea.spotyMike4Real',
   appName: 'SpotyMike',
   webDir: 'www'
 };
