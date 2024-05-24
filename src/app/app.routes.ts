@@ -3,11 +3,14 @@ import { TabsPage } from './tabs/tabs.page';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  
   {
     path: '',
     component: TabsPage,
@@ -31,10 +34,5 @@ export const routes: Routes = [
           import('./account/account.page').then((m) => m.AccountPage),
       },
     ],
-  },
-
-  {
-    path: 'login',
-    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
-  },
+  }
 ];
