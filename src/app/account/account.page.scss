@@ -1,0 +1,72 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#header{
+  background-color: #15AB90;
+  height: 181px;
+  position: relative;
+}
+
+#btnArt{
+  display: flex;
+  justify-content: flex-end;
+}
+
+#btnArt {
+    #beArtist {
+    border-radius: 30px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    font-family: 'Plus Jakarta Sans',sans-serif;;
+    font-size: 10;
+    font-weight: bold;
+    }
+}
+
+#infoUser{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  margin-left: 50px;
+  #firstname{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 36px;
+    font-weight:bolder;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #lastname{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight:lighter;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #memberSince{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+#wave{
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  top: 19%;
+  position: absolute;
+  img{
+    width: 100vw;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+  }
+}
