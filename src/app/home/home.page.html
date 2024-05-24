@@ -13,8 +13,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  @for(user of users; track user){
+  <p [innerHTML]="user.id"> </p>
+  <p> {{ user.username }} </p>
+  <p> {{ user.phone | phoneNumber }} </p>
+  }
+
+  <div id="container"><ion-icon name="albums-outline"></ion-icon>
+    <strong>Ready to create an app? <ion-icon name="airplane-outline"></ion-icon></strong>
+    <ion-icon name="airplane-outline"></ion-icon>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>
