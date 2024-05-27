@@ -6,10 +6,10 @@ import {
   IonContent,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { UserService } from '../core/services/user.service';
-import { IUserTest } from '../core/interfaces/userTest';
-import { PhoneNumberPipe } from '../core/pipe/phone-number.pipe';
-import { LocalStorageService } from '../core/services/local-storage.service';
+import { IUserTest } from 'src/app/core/interfaces/userTest';
+import { PhoneNumberPipe } from 'src/app/core/pipe/phone-number.pipe';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-home',
