@@ -4,7 +4,7 @@ import { TabsPage } from './tabs/tabs.page';
 export const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage),
   },
   {
     path: '',
@@ -17,21 +17,21 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+        loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
       },
       {
         path: 'like',
-        loadComponent: () => import('./like/like.page').then((m) => m.LikePage),
+        loadComponent: () => import('./pages/like/like.page').then((m) => m.LikePage),
       },
       {
         path: 'playlist',
         loadComponent: () =>
-          import('./playlist/playlist.page').then((m) => m.PlaylistPage),
+          import('./pages/playlist/playlist.page').then((m) => m.PlaylistPage),
       },
       {
         path: 'account',
         loadComponent: () =>
-          import('./account/account.page').then((m) => m.AccountPage),
+          import('./pages/account/account.page').then((m) => m.AccountPage),
       },
     ],
   }
