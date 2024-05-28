@@ -25,17 +25,43 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-.center {
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+
+/**
+ * Class Global
+ * -----------------------------------------------------
+ */
+img{
+  width: 100%;
+}
+.center{
   text-align: center;
 }
-
-.tabs-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.pad-25{
+  padding-top: 25%;
+  padding-bottom: 25%;
 }
-
-.error {
+.pad-35{
+  padding-top: 35%;
+  padding-bottom: 35%;
+}
+.pad-50{
+  padding-top: 50%;
+  padding-bottom: 50%;
+}
+.error{
   color: red;
+  ion-icon {
+    color: red;
+  }
 }
