@@ -20,9 +20,9 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'home',
-    loadComponent: () =>
-      import('./shared/tabs/tabs.page').then((m) => m.TabsPage),
+    path: '',
+    loadChildren: () =>
+      import('./shared/tabs/tabs.routes').then((m) => m.routes),
   },
   {
     path: '',

@@ -8,16 +8,20 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadComponent: () => import('../../pages/home/home.page').then((m) => m.HomePage),
+        loadComponent: () =>
+          import('../../pages/home/home.page').then((m) => m.HomePage),
       },
       {
         path: 'like',
-        loadComponent: () => import('../../pages/like/like.page').then((m) => m.LikePage),
+        loadComponent: () =>
+          import('../../pages/like/like.page').then((m) => m.LikePage),
       },
       {
         path: 'playlist',
         loadComponent: () =>
-          import('../../pages/playlist/playlist.page').then((m) => m.PlaylistPage),
+          import('../../pages/playlist/playlist.page').then(
+            (m) => m.PlaylistPage
+          ),
       },
       {
         path: 'account',
@@ -26,14 +30,14 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/tabs/home',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/tabs/home',
     pathMatch: 'full',
   },
 ];
