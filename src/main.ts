@@ -10,6 +10,8 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { provideHttpClient } from '@angular/common/http';
+import { i18nProviders } from './app/core/providers/i18n.providers';
+import { IonicModule } from '@ionic/angular';
 
 if (environment.production) {
   enableProdMode();
@@ -17,9 +19,11 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    i18nProviders,
     provideHttpClient(),
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
+    //IonicModule.forRoot(),
     provideRouter(routes),
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
 });

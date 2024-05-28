@@ -1,38 +1,32 @@
 import { Routes } from '@angular/router';
-import { TabsPage } from './tabs/tabs.page';
 
 export const routes: Routes = [
   {
-    path: 'login',
-    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
-    component: TabsPage,
+    // Delete
+    path: 'auth',
+    loadComponent: () =>
+      import('./layouts/auth/auth.page').then((m) => m.AuthPage),
     children: [
       {
-        path: 'home',
-        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-      },
-      {
-        path: 'like',
-        loadComponent: () => import('./like/like.page').then((m) => m.LikePage),
-      },
-      {
-        path: 'playlist',
+        path: 'login',
         loadComponent: () =>
-          import('./playlist/playlist.page').then((m) => m.PlaylistPage),
+          import('./pages/login/login.page').then((m) => m.LoginPage),
       },
       {
-        path: 'account',
+        path: 'register',
         loadComponent: () =>
-          import('./account/account.page').then((m) => m.AccountPage),
+          import('./pages/register/register.page').then((m) => m.RegisterPage),
       },
     ],
-  }
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./shared/tabs/tabs.page').then((m) => m.TabsPage),
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'auth/login',
+  },
 ];
