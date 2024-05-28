@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { addIcons } from 'ionicons';
-import { home } from 'ionicons/icons';
-import { heart } from 'ionicons/icons';
 
 import {
   IonContent,
@@ -39,10 +36,7 @@ import {
 })
 export class TabsPage implements OnInit {
   selectedTab: string = 'home';
-  constructor() {
-    addIcons({ home });
-    addIcons({ heart });
-  }
+  constructor() {}
 
   ngOnInit() {}
 

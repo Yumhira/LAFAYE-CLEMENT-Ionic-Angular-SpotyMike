@@ -1,0 +1,9 @@
+{
+    "auth": {
+        "email_required": "Email requis",
+        "email_format": "Format email invalide",
+        "password_required": "Mot de passe requis",
+        "password_format": "Format mot de passe invalide",
+        "password_minSize": "Taille mot de passe invalide"
+    }
+}
