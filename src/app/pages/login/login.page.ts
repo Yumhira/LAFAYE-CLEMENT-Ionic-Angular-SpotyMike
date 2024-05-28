@@ -24,8 +24,6 @@ import { LoginRequestError } from 'src/app/core/interfaces/login';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { PasswordLostComponent } from 'src/app/shared/modal/password-lost/password-lost.component';
-import { addIcons } from 'ionicons';
-import { alertOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-login',
@@ -53,7 +51,7 @@ export class LoginPage implements OnInit {
   submitForm = false;
 
   private router = inject(Router);
-  //private modalCtl = inject(ModalController);
+  private modalCtl = inject(ModalController);
   private serviceAuth = inject(AuthentificationService);
 
   form: FormGroup = new FormGroup({
@@ -66,9 +64,7 @@ export class LoginPage implements OnInit {
       Validators.minLength(8),
     ]),
   });
-  constructor() {
-    addIcons({ alertOutline })
-  }
+  constructor() {}
 
   ngOnInit() {}
 
@@ -90,10 +86,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // async onPasswordLostModal() {
-  //   const modal = await this.modalCtl.create({
-  //     component: PasswordLostComponent,
-  //   });
-  //   modal.present();
-  // }
+  async onPasswordLostModal() {
+    const modal = await this.modalCtl.create({
+      component: PasswordLostComponent,
+    });
+    modal.present();
+  }
 }
