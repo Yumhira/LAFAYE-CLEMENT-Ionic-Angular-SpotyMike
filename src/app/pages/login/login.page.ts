@@ -20,12 +20,11 @@ import {
 } from '@ionic/angular/standalone';
 import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { LoginRequestError } from 'src/app/core/interfaces/login';
+import { ILoginRequestError, ILoginRequestSuccess } from 'src/app/core/interfaces/login';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { PasswordLostComponent } from 'src/app/shared/modal/password-lost/password-lost.component';
-import { addIcons } from 'ionicons';
-import { alertOutline } from 'ionicons/icons';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -52,8 +51,9 @@ export class LoginPage implements OnInit {
   error = '';
   submitForm = false;
 
+  private localStore = inject (LocalStorageService);
   private router = inject(Router);
-  //private modalCtl = inject(ModalController);
+  private modalCtl = inject(ModalController);
   private serviceAuth = inject(AuthentificationService);
 
   form: FormGroup = new FormGroup({
@@ -66,9 +66,7 @@ export class LoginPage implements OnInit {
       Validators.minLength(8),
     ]),
   });
-  constructor() {
-    addIcons({ alertOutline })
-  }
+  constructor() {}
 
   ngOnInit() {}
 
@@ -78,11 +76,12 @@ export class LoginPage implements OnInit {
       this.submitForm = true;
       this.serviceAuth
         .login(this.form.value.email, this.form.value.password)
-        .subscribe((data: any | LoginRequestError) => {
-          if (data.error) {
-            this.error = data.message;
+        .subscribe((data: any) => {
+          if (data?.error) {
+            // this.error = data?.message;
           } else {
-            // Add LocalStorage User
+            this.localStore.setItem('user', data.user);
+            this.localStore.setItem('token', data.token);
             this.router.navigateByUrl('/home');
           }
           console.log(data);
@@ -90,10 +89,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // async onPasswordLostModal() {
-  //   const modal = await this.modalCtl.create({
-  //     component: PasswordLostComponent,
-  //   });
-  //   modal.present();
-  // }
+  async onPasswordLostModal() {
+    const modal = await this.modalCtl.create({
+      component: PasswordLostComponent,
+    });
+    modal.present();
+  }
 }

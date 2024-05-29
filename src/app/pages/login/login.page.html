@@ -38,5 +38,5 @@
   }
   <br>
   <ion-button type="submit" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
-  <a href="">Pas encore inscrit ?</a>
+  <a (click)="onPasswordLostModal()">Pas encore inscrit ?</a>
 </form>

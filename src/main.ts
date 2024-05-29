@@ -1,4 +1,4 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import {
@@ -12,6 +12,7 @@ import { environment } from './environments/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { i18nProviders } from './app/core/providers/i18n.providers';
 import { IonicModule } from '@ionic/angular';
+import { LocalStorageService } from './app/core/services/local-storage.service';
 
 if (environment.production) {
   enableProdMode();
@@ -19,10 +20,11 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    LocalStorageService,
     i18nProviders,
     provideHttpClient(),
     provideIonicAngular(),
-    //IonicModule.forRoot(),
+    importProvidersFrom(IonicModule.forRoot()),
     provideRouter(routes),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

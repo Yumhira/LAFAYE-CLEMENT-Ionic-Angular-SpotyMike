@@ -29,7 +29,7 @@ import {
   ],
 })
 export class PasswordLostComponent {
-  //private modalCtl = inject(ModalController);
+  private modalCtl = inject(ModalController);
   form: FormGroup = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -38,7 +38,7 @@ export class PasswordLostComponent {
   });
 
   constructor() {}
-  // async cancel() {
-  //   await this.modalCtl.dismiss();
-  // }
+  async cancel() {
+    await this.modalCtl.dismiss();
+  }
 }

@@ -22,6 +22,151 @@
   margin: 0;
 }
 
+.new-album {
+  font-size: 110%;
+  margin: 0;
+  padding-bottom: 8%;
+}
+
+.discover-text {
+  font-size: 100%;
+  margin: 0;
+  padding-bottom: 5%;
+}
+
+.hits {
+  font-size: 140%;
+  margin: 0;
+  padding-bottom: 8%;
+}
+
+.search {
+  position: relative;
+  font-size: 200%;
+  padding-left: 82%;
+}
+
+.header-container {
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
+.top-container {
+  position: relative;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  z-index: 3;
+  padding-left: 10%;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.genres {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 92.5%;
+  padding-left: 7%;
+  .bt1 {
+    background-color:#15AB90;
+    border-radius: 30%;
+    width: 18%;
+  }
+  .bt2 {
+    color: black;
+    border-radius: 30%;
+    border: 1px solid #D3D7DE;
+  }
+  .bt3 {
+    color: black;
+    border-radius: 30%;
+    border: 1px solid #D3D7DE;
+  }
+  .bt4 {
+    color: black;
+    border-radius: 30%;
+    border: 1px solid #D3D7DE;
+  }
+}
+
+.songs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 93%;
+  padding-left: 6.5%;
+  padding-top: 2%;
+}
+
+.pad-top {
+  padding-top: 3%;
+}
+
+.pad-text {
+  padding-top: 6%;
+  margin: 0;
+}
+
+.pad-container {
+  padding-top: 2%;
+  padding-left: 10%;
+}
+
+.pad-text-container {
+  padding-left: 4%;
+}
+
+.time-song {
+  padding-left: 26%;
+}
+
+.info-icon {
+  padding-left: 3%;
+  padding-top: 6%;
+}
+
+.pad-row {
+  padding-bottom: 8%;
+}
+
+.resize-cover {
+  width: 15%;
+}
+
+.see-all-button{
+  text-decoration: none;
+  color: #15AB90;
+  font-size: 105%;
+  position: absolute;
+  padding-top: 5%;
+  padding-left: 65%;
+  padding-bottom: 20%;
+}
+
 #container a {
   text-decoration: none;
+}
+
+.modif-container {
+  position: absolute;
+  z-index: 1;
+  color: white;
+  padding-left: 15%;
+  padding-top: 2%;
+}
+
+.arrow-size {
+  font-size: 180%;
+}
+
+.rec-album-home-width {
+  z-index: 5;
+  width: 90%;
+}
+
+.pad {
+  padding-left: 9%;
 }
