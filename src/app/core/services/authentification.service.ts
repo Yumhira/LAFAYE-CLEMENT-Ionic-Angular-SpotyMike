@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginRequestError } from '../interfaces/login';
+import { ILoginRequestError, ILoginRequestSuccess } from '../interfaces/login';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class AuthentificationService {
   }
   register() {}
 
-  errorRequest(httpError: HttpErrorResponse): Observable<LoginRequestError> {
+  errorRequest(httpError: HttpErrorResponse): Observable<ILoginRequestError> {
     return of({ ...httpError.error, error: true });
   }
 }
