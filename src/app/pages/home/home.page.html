@@ -1,28 +1,113 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <div class="header-container">
+        <ion-icon class="search" name="search-outline"></ion-icon>
+      </div>
     </ion-toolbar>
   </ion-header>
+  
+  <div>
+    <div class="modif-container">
+      <ion-col>
+        <p class="light new-album">New Album</p>
+        <p class="bold hits">R & B Hits</p>
+        <p class="light discover-text">Discover 87 songs!</p>
+        <ion-icon class="arrow-size" name="arrow-forward-outline"></ion-icon>
+      </ion-col>
+    </div>
+    <img class="rec-album-home-width pad" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
+  </div>
 
-  @for(user of users; track user){
+  <div>
+    <div class="top-container">
+      <ion-row>
+        <h3>Music Genres</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="genres">
+      <ion-button class="bt1" color="#15AB90">All</ion-button>
+      <ion-button class="bt2" color="white">R&B</ion-button>
+      <ion-button class="bt3" color="white">Pop</ion-button>
+      <ion-button class="bt4" color="white">Rock</ion-button>
+    </div>
+  </div>
+
+  <div>
+    <div class="top-container">
+      <ion-row>
+        <h3>Top Songs</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="songs">
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Song Cover 1">
+        <div class="pad-top">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Song Cover 2">
+        <div class="pad-top">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Song Cover 3">
+        <div class="pad-top">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="top-container">
+      <ion-row>
+        <h3>Last Played</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="pad-container">
+      <ion-row class="pad-row">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 1">
+        <div class="pad-text-container">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+      </ion-row>
+      <ion-row class="pad-row">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 2">
+        <div class="pad-text-container">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+      </ion-row>
+      <ion-row class="pad-row">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 3">
+        <div class="pad-text-container">
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+      </ion-row>
+    </div>
+  </div>
+
+  <!-- @for(user of users; track user){
   <p [innerHTML]="user.id"> </p>
   <p> {{ user.username }} </p>
   <p> {{ user.phone | phoneNumber }} </p>
-  }
+  } -->
 
-  <div id="container"><ion-icon name="albums-outline"></ion-icon>
-    <strong>Ready to create an app? <ion-icon name="airplane-outline"></ion-icon></strong>
-    <ion-icon name="airplane-outline"></ion-icon>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>

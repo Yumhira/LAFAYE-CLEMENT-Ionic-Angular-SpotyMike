@@ -5,7 +5,14 @@ import {
   IonTitle,
   IonContent,
   IonIcon,
+  IonButton,
+  IonButtons,
+  IonRow,
+  IonCol,
+  IonCard
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { arrowForwardOutline, searchOutline, ellipsisHorizontal } from 'ionicons/icons';
 import { IUserTest } from 'src/app/core/interfaces/userTest';
 import { PhoneNumberPipe } from 'src/app/core/pipe/phone-number.pipe';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -23,6 +30,11 @@ import { UserService } from 'src/app/core/services/user.service';
     IonTitle,
     IonContent,
     PhoneNumberPipe,
+    IonButton,
+    IonButtons,
+    IonRow,
+    IonCol,
+    IonCard
   ],
 })
 export class HomePage {
@@ -31,12 +43,17 @@ export class HomePage {
   private local = inject(LocalStorageService);
 
   ngOnInit() {
-    const users: IUserTest[] = this.local.getElement('users');
-    if (!users)
-      this.userService.requestTest().subscribe((response: IUserTest[]) => {
-        this.users = response;
-        this.local.setElement('users', JSON.stringify(this.users));
-      });
-    else this.users = users;
+    // GET ALL USERS
+    // const users: IUserTest[] = this.local.getElement('users');
+    // if (!users)
+    //   this.userService.requestTest().subscribe((response: IUserTest[]) => {
+    //     this.users = response;
+    //     this.local.setElement('users', JSON.stringify(this.users));
+    //   });
+    // else this.users = users;
+  }
+
+  constructor(){
+    addIcons({arrowForwardOutline, searchOutline, ellipsisHorizontal});
   }
 }
