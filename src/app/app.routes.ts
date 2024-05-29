@@ -28,5 +28,9 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'auth/login',
+  },  {
+    path: 'header-atd',
+    loadComponent: () => import('./layouts/header-atd/header-atd.page').then( m => m.HeaderATDPage)
   },
+
 ];
