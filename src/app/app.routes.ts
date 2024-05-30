@@ -31,9 +31,4 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./shared/tabs/tabs.routes').then((m) => m.routes),
   },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'auth/login',
-  },
 ];
