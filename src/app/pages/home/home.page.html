@@ -10,7 +10,7 @@
         <p class="light new-album">New Album</p>
         <p class="bold hits">R & B Hits</p>
         <p class="light discover-text">Discover 87 songs!</p>
-        <ion-icon class="arrow-size" name="arrow-forward-outline"></ion-icon>
+        <ion-icon (click)="goToPlayer()" class="arrow-size" name="arrow-forward-outline"></ion-icon>
       </ion-col>
     </div>
     <img class="rec-album-home-width pad" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
@@ -20,7 +20,7 @@
     <div class="top-container">
       <ion-row>
         <h3>Music Genres</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="genres">
@@ -35,7 +35,7 @@
     <div class="top-container">
       <ion-row>
         <h3>Top Songs</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="songs">
@@ -67,7 +67,7 @@
     <div class="top-container">
       <ion-row>
         <h3>Last Played</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="pad-container">
