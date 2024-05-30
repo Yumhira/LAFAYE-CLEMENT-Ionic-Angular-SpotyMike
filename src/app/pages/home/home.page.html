@@ -1,13 +1,10 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <div class="header-container">
-        <ion-icon class="search" name="search-outline"></ion-icon>
-      </div>
-    </ion-toolbar>
-  </ion-header>
+  <div class="header-container">
+    <img class="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe">
+    <ion-icon class="search" name="search-outline"></ion-icon>
+  </div>
   
-  <div>
+  <div class="first-container">
     <div class="modif-container">
       <ion-col>
         <p class="light new-album">New Album</p>
@@ -27,7 +24,7 @@
       </ion-row>
     </div>
     <div class="genres">
-      <ion-button class="bt1" color="#15AB90">All</ion-button>
+      <ion-button class="bt1" color="transparent">All</ion-button>
       <ion-button class="bt2" color="white">R&B</ion-button>
       <ion-button class="bt3" color="white">Pop</ion-button>
       <ion-button class="bt4" color="white">Rock</ion-button>
@@ -74,7 +71,7 @@
       </ion-row>
     </div>
     <div class="pad-container">
-      <ion-row class="pad-row">
+      <ion-row class="pad-row1">
         <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 1">
         <div class="pad-text-container">
           <p class="bold pad-text">Song Name</p>
@@ -83,7 +80,7 @@
         <p class="light pad-text time-song">5:33</p>
         <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
-      <ion-row class="pad-row">
+      <ion-row class="pad-row2">
         <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 2">
         <div class="pad-text-container">
           <p class="bold pad-text">Song Name</p>
@@ -92,7 +89,7 @@
         <p class="light pad-text time-song">5:33</p>
         <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
-      <ion-row class="pad-row">
+      <ion-row>
         <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 3">
         <div class="pad-text-container">
           <p class="bold pad-text">Song Name</p>
@@ -101,6 +98,99 @@
         <p class="light pad-text time-song">5:33</p>
         <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
+    </div>
+  </div>
+
+  <div>
+    <div class="top-container">
+      <ion-row>
+        <h3>Top Albums</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="songs">
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Album Cover 1">
+        <div class="pad-top">
+          <p class="bold pad-text">Album Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Album Cover 2">
+        <div class="pad-top">
+          <p class="bold pad-text">Album Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Album Cover 3">
+        <div class="pad-top">
+          <p class="bold pad-text">Album Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="top-container">
+      <ion-row>
+        <h3>Top Artists</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="songs">
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 1">
+        <div class="pad-top">
+          <p class="bold pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 2">
+        <div class="pad-top">
+          <p class="bold pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 3">
+        <div class="pad-top">
+          <p class="bold pad-text">Artist Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pad-cont">
+    <div class="top-container">
+      <ion-row>
+        <h3>Playlists</h3>
+        <a class="see-all-button" href="">See All</a>  
+      </ion-row>
+    </div>
+    <div class="songs">
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Playlist Cover 1">
+        <div class="pad-top">
+          <p class="bold pad-text">Playlist Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Playlist Cover 2">
+        <div class="pad-top">
+          <p class="bold pad-text">Playlist Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
+      <div>
+        <img src="assets/formes/default_cover.png" alt="Playlist Cover 3">
+        <div class="pad-top">
+          <p class="bold pad-text">Playlist Name</p>
+          <p class="light pad-text">Artist Name</p>
+        </div>
+      </div>
     </div>
   </div>
 
