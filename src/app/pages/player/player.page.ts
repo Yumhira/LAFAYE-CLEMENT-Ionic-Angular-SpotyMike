@@ -51,6 +51,7 @@ export class PlayerPage implements OnInit {
   public duration = '0:00';
   sound: Howl;
   isPlaying: boolean = false;
+  isRepeating: boolean = false;
 
   constructor(private _location: Location) {
     addIcons({ chevronBack });
@@ -63,9 +64,13 @@ export class PlayerPage implements OnInit {
         this.duration = this.formatTime(this.sound.duration());
       },
       onend: () => {
-        this.isPlaying = false;
-        this.progress = 0;
-        this.currentTime = '0:00';
+        if (this.isRepeating) {
+          this.sound.play();
+        } else {
+          this.isPlaying = false;
+          this.progress = 0;
+          this.currentTime = '0:00';
+        }
       },
     });
   }
@@ -83,6 +88,10 @@ export class PlayerPage implements OnInit {
       this.sound.play();
     }
     this.isPlaying = !this.isPlaying;
+  }
+
+  toggleRepeat() {
+    this.isRepeating = !this.isRepeating;
   }
 
   updateProgress() {

@@ -28,8 +28,13 @@
     </div>
 
     <ion-row class="btnMusic">
-      <ion-button color="transparent" >
+      <ion-button color="transparent" (click)="toggleRepeat()">
+        @if(!isRepeating){
         <img src="assets/icon/music/repeat.svg" alt="repeat">
+        }
+        @else(){
+        <img src="assets/icon/music/clickedRepeat.svg" alt="clickedRepeat">
+        }
       </ion-button>
       <ion-button color="transparent">
         <img src="assets/icon/music/previous.svg" alt="previous">
