@@ -41,14 +41,25 @@
 }
 
 .search {
-  position: relative;
   font-size: 200%;
-  padding-left: 82%;
+  padding-left: 900%;
+  padding-top: 20%;
 }
 
 .header-container {
-  padding-top: 10%;
-  padding-bottom: 5%;
+  position: absolute;
+  padding-top: 8%;
+  padding-left: 8%;
+}
+
+.profile-picture {
+  position: absolute;
+  width: 75%;
+  border-radius: 50%;
+}
+
+.first-container {
+  padding-top: 30%;
 }
 
 .top-container {
@@ -64,6 +75,10 @@ h3 {
   font-size: 120%;
 }
 
+.pad-cont {
+  padding-bottom: 8%;
+}
+
 .genres {
   display: flex;
   justify-content: space-evenly;
@@ -71,7 +86,7 @@ h3 {
   width: 92.5%;
   padding-left: 7%;
   .bt1 {
-    background-color:#15AB90;
+    background-color: #15AB90;
     border-radius: 30%;
     width: 18%;
   }
@@ -128,7 +143,11 @@ h3 {
   padding-top: 6%;
 }
 
-.pad-row {
+.pad-row1 {
+  padding-bottom: 8%;
+}
+
+.pad-row2 {
   padding-bottom: 8%;
 }
 
