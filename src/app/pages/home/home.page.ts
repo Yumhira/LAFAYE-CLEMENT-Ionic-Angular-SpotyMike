@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -53,7 +54,11 @@ export class HomePage {
     // else this.users = users;
   }
 
-  constructor(){
+  constructor(private router: Router) {
     addIcons({arrowForwardOutline, searchOutline, ellipsisHorizontal});
+  }
+
+  goToPlayer(){
+    this.router.navigate(['/player']);
   }
 }
