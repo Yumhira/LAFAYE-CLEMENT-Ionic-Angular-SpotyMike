@@ -19,6 +19,13 @@ export const routes: Routes = [
       },
     ],
   },
+
+  {
+    path: 'player',
+    loadComponent: () =>
+      import('./pages/player/player.page').then((m) => m.PlayerPage),
+  },
+
   {
     path: '',
     loadChildren: () =>
@@ -28,9 +35,5 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'auth/login',
-  },  {
-    path: 'header-atd',
-    loadComponent: () => import('./layouts/header-atd/header-atd.page').then( m => m.HeaderATDPage)
   },
-
 ];
