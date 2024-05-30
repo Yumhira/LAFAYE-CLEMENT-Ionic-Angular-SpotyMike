@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import {
   IonIcon,
   IonImg,
 } from '@ionic/angular/standalone';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
 
 @Component({
   selector: 'app-tabs',
@@ -36,7 +37,10 @@ import {
 })
 export class TabsPage implements OnInit {
   selectedTab: string = 'home';
-  constructor() {}
+  private albumService = inject(FirestoreService);
+  constructor() {
+    //this.albumService.getAlbums2();
+  }
 
   ngOnInit() {}
 
