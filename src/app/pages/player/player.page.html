@@ -20,11 +20,11 @@
       </ion-col>
     </ion-row>
 
-    <ion-range min="0" max="1380" [value]="progress">
+    <ion-range (ionChange)="seekTo($event)" [value]="progress">
     </ion-range>
     <div class="timerLabel">
-      <ion-label>0:00</ion-label>
-      <ion-label>23:00</ion-label>
+      <ion-label>{{ currentTime }}</ion-label>
+      <ion-label>{{ duration }}</ion-label>
     </div>
 
     <ion-row class="btnMusic">
@@ -34,9 +34,17 @@
       <ion-button color="transparent">
         <img src="assets/icon/music/previous.svg" alt="previous">
       </ion-button>
-      <ion-button color="transparent">
-        <img src="assets/icon/music/pause.svg" alt="pause">
+
+      <ion-button (click)="togglePlayPause()" color="transparent">
+
+        @if(isPlaying){
+          <img src="assets/icon/music/pause.svg" alt="pause">
+        }
+        @else(){
+          <img src="assets/icon/music/play.svg" alt="play">
+        }
       </ion-button>
+
       <ion-button color="transparent">
         <img src="assets/icon/music/next.svg" alt="next">
       </ion-button>
