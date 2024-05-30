@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="containerHeaderATD">
+      <ion-icon (click)="backClicked()" class="iconHeaderATD" name="chevron-back"></ion-icon>
+      <p id="title">Nom musique</p>
+      <ion-icon class="iconHeaderATD" name="ellipsis-horizontal"></ion-icon>
+    </ion-row>
+    <div class="picMusic">
+      <img src="https://fastly.picsum.photos/id/273/200/300.jpg?hmac=C0IK2DPqr03oiShSklDGIHBzHorcmVrky7A_uvBEzIM"
+        alt="Music">
+    </div>
+    <ion-row class="infoLike">
+      <ion-col class="infoSong">
+        <p class="nameSong">NameSong</p>
+        <p class="nameArtist">NameArtist</p>
+      </ion-col>
+      <ion-col class="likeShare">
+        <img class="iconLike" src="assets/icon/like.svg" alt="like">
+        <img class="iconShare" src="assets/icon/share.svg" alt="share">
+      </ion-col>
+    </ion-row>
+
+    <ion-range min="0" max="1380" [value]="progress">
+    </ion-range>
+    <div class="timerLabel">
+      <ion-label>0:00</ion-label>
+      <ion-label>23:00</ion-label>
+    </div>
+
+    <ion-row class="btnMusic">
+      <ion-button color="transparent" >
+        <img src="assets/icon/music/repeat.svg" alt="repeat">
+      </ion-button>
+      <ion-button color="transparent">
+        <img src="assets/icon/music/previous.svg" alt="previous">
+      </ion-button>
+      <ion-button color="transparent">
+        <img src="assets/icon/music/pause.svg" alt="pause">
+      </ion-button>
+      <ion-button color="transparent">
+        <img src="assets/icon/music/next.svg" alt="next">
+      </ion-button>
+      <ion-button color="transparent">
+        <img src="assets/icon/music/shuffle.svg" alt="shuffle">
+      </ion-button>
+    </ion-row>
+
+    <div class="sectionLyrics">
+      <ion-row class="headerLyrics">
+        <p class="titleLyrics">Lyrics</p>
+        <ion-button color="transparent">
+          <img src="assets/icon/music/showLyrics.svg" alt="open">
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="lyrics">
+        <p class="contentLyrics">
+          Beneath the palm trees, we found our way, On this island, where the sun shines every day. The ocean breeze whispers
+          secrets in the air, In this paradise, we'll forget all our cares.
+
+          Island getaway, where the waves gently sway, Underneath the golden sun's warm embrace. With sandy shores, and clear blue
+          skies, In this haven, we'll watch our worries subside.
+
+          Crystal waters, inviting and so clear, As we explore, the island's treasures appear. Adventure calls us, with each
+          rising tide, In this magical place, our spirits come alive.
+        </p>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

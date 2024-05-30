@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeaderATDPage } from './header-atd.page';
+import { PlayerPage } from './player.page';
 
-describe('HeaderATDPage', () => {
-  let component: HeaderATDPage;
-  let fixture: ComponentFixture<HeaderATDPage>;
+describe('PlayerPage', () => {
+  let component: PlayerPage;
+  let fixture: ComponentFixture<PlayerPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderATDPage);
+    fixture = TestBed.createComponent(PlayerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
