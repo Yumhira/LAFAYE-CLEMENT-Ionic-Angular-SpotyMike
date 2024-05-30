@@ -14,20 +14,20 @@ export class UserService {
    * Method de tests permettant de pouvoir récupérer un ensemble d'utilisateurs.
    * @returns Un observable contenant un tableau d'utilisateur.
    */
-  requestTest(): Observable<IUserTest[]> {
-    return this.http
-      .get<IUserTest[]>('https://jsonplaceholder.typicode.com/users')
-      .pipe(
-        map((users: IUserTest[]) => {
-          return users.map((user: IUserTest) => {
-            user.id = user.id.toString();
-            user.artist = { year: 2024, nbLike: 0 };
-            return user;
-          });
-        }),
-        catchError(this.errorRequest)
-      );
-  }
+  // requestTest(): Observable<IUserTest[]> {
+  //   return this.http
+  //     .get<IUserTest[]>('https://jsonplaceholder.typicode.com/users')
+  //     .pipe(
+  //       map((users: IUserTest[]) => {
+  //         return users.map((user: IUserTest) => {
+  //           user.id = user.id.toString();
+  //           user.artist = { year: 2024, nbLike: 0 };
+  //           return user;
+  //         });
+  //       }),
+  //       catchError(this.errorRequest)
+  //     );
+  // }
 
   private errorRequest(error: any): Observable<IUserTest[]> {
     console.error('An error occurred:', error);
