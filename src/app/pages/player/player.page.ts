@@ -52,13 +52,21 @@ export class PlayerPage implements OnInit {
   sound: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;
+  isShuffling: boolean = false;
+  currentTrackIndex: number = 0;
+
+  playlist: string[] = [
+    'assets/audio/testSong.mp3',
+    'assets/audio/testSong2.mp3',
+    'assets/audio/testSong3.mp3',
+  ];
 
   constructor(private _location: Location) {
     addIcons({ chevronBack });
     addIcons({ ellipsisHorizontal });
 
     this.sound = new Howl({
-      src: ['assets/audio/testSong.mp3'],
+      src: [this.playlist[this.currentTrackIndex]],
       onplay: () => {
         this.updateProgress();
         this.duration = this.formatTime(this.sound.duration());
@@ -67,9 +75,7 @@ export class PlayerPage implements OnInit {
         if (this.isRepeating) {
           this.sound.play();
         } else {
-          this.isPlaying = false;
-          this.progress = 0;
-          this.currentTime = '0:00';
+          this.nextTrack();
         }
       },
     });
@@ -79,6 +85,44 @@ export class PlayerPage implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+
+  nextTrack() {
+    this.currentTrackIndex =
+      (this.currentTrackIndex + 1) % this.playlist.length;
+    this.loadCurrentTrack();
+  }
+
+  previousTrack() {
+    this.currentTrackIndex =
+      (this.currentTrackIndex - 1 + this.playlist.length) %
+      this.playlist.length;
+    this.loadCurrentTrack();
+  }
+
+  loadCurrentTrack() {
+    if (this.sound) {
+      this.sound.unload();
+    }
+
+    this.sound = new Howl({
+      src: [this.playlist[this.currentTrackIndex]],
+      onplay: () => {
+        this.updateProgress();
+        this.duration = this.formatTime(this.sound.duration());
+      },
+      onend: () => {
+        if (this.isRepeating) {
+          this.sound.play();
+        } else {
+          this.nextTrack();
+        }
+      },
+    });
+
+    if (this.isPlaying) {
+      this.sound.play();
+    }
   }
 
   togglePlayPause() {

@@ -36,7 +36,7 @@
         <img src="assets/icon/music/clickedRepeat.svg" alt="clickedRepeat">
         }
       </ion-button>
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="previousTrack()">
         <img src="assets/icon/music/previous.svg" alt="previous">
       </ion-button>
 
@@ -50,11 +50,16 @@
         }
       </ion-button>
 
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="nextTrack()">
         <img src="assets/icon/music/next.svg" alt="next">
       </ion-button>
       <ion-button color="transparent">
+        @if(!isShuffling){
         <img src="assets/icon/music/shuffle.svg" alt="shuffle">
+        }
+        @else(){
+        <img src="assets/icon/music/clickedShuffle.svg" alt="clickedshuffle">
+        }
       </ion-button>
     </ion-row>
 
