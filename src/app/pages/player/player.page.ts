@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -88,6 +88,9 @@ export class PlayerPage implements OnInit {
   }
 
   nextTrack() {
+    if (this.isShuffling) {
+      this.shuffleArray(this.playlist);
+    }
     this.currentTrackIndex =
       (this.currentTrackIndex + 1) % this.playlist.length;
     this.loadCurrentTrack();
@@ -138,6 +141,10 @@ export class PlayerPage implements OnInit {
     this.isRepeating = !this.isRepeating;
   }
 
+  toggleShuffle() {
+    this.isShuffling = !this.isShuffling;
+  }
+
   updateProgress() {
     const seek = this.sound.seek() as number;
     const duration = this.sound.duration();
@@ -161,5 +168,12 @@ export class PlayerPage implements OnInit {
     const minutes = Math.floor(secs / 60) || 0;
     const seconds = Math.floor(secs % 60) || 0;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   }
 }
