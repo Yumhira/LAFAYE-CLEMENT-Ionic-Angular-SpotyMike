@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -21,6 +21,8 @@ import { addIcons } from 'ionicons';
 import { chevronBack, ellipsisHorizontal } from 'ionicons/icons';
 import { Location } from '@angular/common';
 import { Howl, Howler } from 'howler';
+import { ModalController } from '@ionic/angular';
+import { ShareComponent } from 'src/app/shared/modal/share/share.component';
 
 @Component({
   selector: 'app-player',
@@ -54,6 +56,9 @@ export class PlayerPage implements OnInit {
   isRepeating: boolean = false;
   isShuffling: boolean = false;
   currentTrackIndex: number = 0;
+  showLyrics = false;
+
+  private modalCtl = inject(ModalController);
 
   playlist: string[] = [
     'assets/audio/testSong.mp3',
@@ -175,5 +180,17 @@ export class PlayerPage implements OnInit {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+
+  toggleLyrics() {
+    this.showLyrics = !this.showLyrics;
+  }
+
+  async onShareModal() {
+    const modal = await this.modalCtl.create({
+      component: ShareComponent,
+      cssClass: 'share-modal',
+    });
+    return await modal.present();
   }
 }
