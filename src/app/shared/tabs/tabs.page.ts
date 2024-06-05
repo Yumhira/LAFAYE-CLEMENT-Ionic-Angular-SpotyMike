@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import {
   IonContent,
   IonHeader,
@@ -39,7 +38,7 @@ export class TabsPage implements OnInit {
   selectedTab: string = 'home';
   private albumService = inject(FirestoreService);
   constructor() {
-    //this.albumService.getAlbums2();
+    console.log(this.albumService.getAlbums2());
   }
 
   ngOnInit() {}
