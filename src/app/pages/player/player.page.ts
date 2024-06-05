@@ -21,6 +21,8 @@ import { addIcons } from 'ionicons';
 import { chevronBack, ellipsisHorizontal } from 'ionicons/icons';
 import { Location } from '@angular/common';
 import { Howl, Howler } from 'howler';
+import { ModalController } from '@ionic/angular';
+import { ShareComponent } from 'src/app/shared/modal/share/share.component';
 
 @Component({
   selector: 'app-player',
@@ -52,13 +54,24 @@ export class PlayerPage implements OnInit {
   sound: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;
+  isShuffling: boolean = false;
+  currentTrackIndex: number = 0;
+  showLyrics = false;
+
+  private modalCtl = inject(ModalController);
+
+  playlist: string[] = [
+    'assets/audio/testSong.mp3',
+    'assets/audio/testSong2.mp3',
+    'assets/audio/testSong3.mp3',
+  ];
 
   constructor(private _location: Location) {
     addIcons({ chevronBack });
     addIcons({ ellipsisHorizontal });
 
     this.sound = new Howl({
-      src: ['assets/audio/testSong.mp3'],
+      src: [this.playlist[this.currentTrackIndex]],
       onplay: () => {
         this.updateProgress();
         this.duration = this.formatTime(this.sound.duration());
@@ -67,9 +80,7 @@ export class PlayerPage implements OnInit {
         if (this.isRepeating) {
           this.sound.play();
         } else {
-          this.isPlaying = false;
-          this.progress = 0;
-          this.currentTime = '0:00';
+          this.nextTrack();
         }
       },
     });
@@ -79,6 +90,47 @@ export class PlayerPage implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+
+  nextTrack() {
+    if (this.isShuffling) {
+      this.shuffleArray(this.playlist);
+    }
+    this.currentTrackIndex =
+      (this.currentTrackIndex + 1) % this.playlist.length;
+    this.loadCurrentTrack();
+  }
+
+  previousTrack() {
+    this.currentTrackIndex =
+      (this.currentTrackIndex - 1 + this.playlist.length) %
+      this.playlist.length;
+    this.loadCurrentTrack();
+  }
+
+  loadCurrentTrack() {
+    if (this.sound) {
+      this.sound.unload();
+    }
+
+    this.sound = new Howl({
+      src: [this.playlist[this.currentTrackIndex]],
+      onplay: () => {
+        this.updateProgress();
+        this.duration = this.formatTime(this.sound.duration());
+      },
+      onend: () => {
+        if (this.isRepeating) {
+          this.sound.play();
+        } else {
+          this.nextTrack();
+        }
+      },
+    });
+
+    if (this.isPlaying) {
+      this.sound.play();
+    }
   }
 
   togglePlayPause() {
@@ -92,6 +144,10 @@ export class PlayerPage implements OnInit {
 
   toggleRepeat() {
     this.isRepeating = !this.isRepeating;
+  }
+
+  toggleShuffle() {
+    this.isShuffling = !this.isShuffling;
   }
 
   updateProgress() {
@@ -117,5 +173,24 @@ export class PlayerPage implements OnInit {
     const minutes = Math.floor(secs / 60) || 0;
     const seconds = Math.floor(secs % 60) || 0;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  toggleLyrics() {
+    this.showLyrics = !this.showLyrics;
+  }
+
+  async onShareModal() {
+    const modal = await this.modalCtl.create({
+      component: ShareComponent,
+      cssClass: 'share-modal',
+    });
+    return await modal.present();
   }
 }

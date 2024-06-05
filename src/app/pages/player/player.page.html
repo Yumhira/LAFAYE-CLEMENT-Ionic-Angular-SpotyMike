@@ -16,7 +16,7 @@
       </ion-col>
       <ion-col class="likeShare">
         <img class="iconLike" src="assets/icon/like.svg" alt="like">
-        <img class="iconShare" src="assets/icon/share.svg" alt="share">
+        <img class="iconShare" src="assets/icon/share.svg" alt="share" (click)="onShareModal()">
       </ion-col>
     </ion-row>
 
@@ -36,7 +36,7 @@
         <img src="assets/icon/music/clickedRepeat.svg" alt="clickedRepeat">
         }
       </ion-button>
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="previousTrack()">
         <img src="assets/icon/music/previous.svg" alt="previous">
       </ion-button>
 
@@ -50,11 +50,16 @@
         }
       </ion-button>
 
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="nextTrack()">
         <img src="assets/icon/music/next.svg" alt="next">
       </ion-button>
-      <ion-button color="transparent">
-        <img src="assets/icon/music/shuffle.svg" alt="shuffle">
+      <ion-button color="transparent" (click)="toggleShuffle()">
+        @if(!isShuffling){
+          <img src="assets/icon/music/shuffle.svg" alt="shuffle">
+        }
+        @else(){
+          <img src="assets/icon/music/clickedShuffle.svg" alt="clickedshuffle">
+        }
       </ion-button>
     </ion-row>
 
@@ -62,21 +67,25 @@
       <ion-row class="headerLyrics">
         <p class="titleLyrics">Lyrics</p>
         <ion-button color="transparent">
-          <img src="assets/icon/music/showLyrics.svg" alt="open">
+          <img src="assets/icon/music/showLyrics.svg" alt="open" (click)="toggleLyrics()">
         </ion-button>
       </ion-row>
 
       <ion-row class="lyrics">
-        <p class="contentLyrics">
-          Beneath the palm trees, we found our way, On this island, where the sun shines every day. The ocean breeze whispers
-          secrets in the air, In this paradise, we'll forget all our cares.
+        @if(showLyrics){
+          <p class="contentLyrics">
+            Beneath the palm trees, we found our way, On this island, where the sun shines every day. The ocean breeze whispers
+            secrets in the air, In this paradise, we'll forget all our cares.
 
-          Island getaway, where the waves gently sway, Underneath the golden sun's warm embrace. With sandy shores, and clear blue
-          skies, In this haven, we'll watch our worries subside.
+            Island getaway, where the waves gently sway, Underneath the golden sun's warm embrace. With sandy shores, and clear
+            blue
+            skies, In this haven, we'll watch our worries subside.
 
-          Crystal waters, inviting and so clear, As we explore, the island's treasures appear. Adventure calls us, with each
-          rising tide, In this magical place, our spirits come alive.
-        </p>
+            Crystal waters, inviting and so clear, As we explore, the island's treasures appear. Adventure calls us, with each
+            rising tide, In this magical place, our spirits come alive.
+          </p>
+        }
+
       </ion-row>
     </div>
   </ion-grid>
