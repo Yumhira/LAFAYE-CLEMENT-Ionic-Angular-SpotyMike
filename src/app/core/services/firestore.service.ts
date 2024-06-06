@@ -138,5 +138,15 @@ export class FirestoreService {
     return albumList;
   }
 
+  //get last song heard
+  async getLastSongHeard() {
+    const songCol = collection(this.db,'song');
+    const q = query(songCol, orderBy('dateEcoute', 'desc'), limit(3));
+    const songSnapshot = await getDocs(q);
+    const songList = songSnapshot.docs.map((doc) => doc.data());
+    console.log(songList);
+    return songList;
+  };
+
   constructor() {}
 }

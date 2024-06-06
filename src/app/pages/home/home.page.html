@@ -66,31 +66,15 @@
     </div>
     <div class="pad-container">
       <ion-row class="pad-row1">
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 1">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
-      </ion-row>
-      <ion-row class="pad-row2">
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 2">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
-      </ion-row>
-      <ion-row>
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 3">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+        @for (lastSongHeards of lastSongHeard; track lastSongHeards) {
+          <img class="resize-cover" src="{{lastSongHeards.cover}}" alt="Song Cover 1">
+          <div class="pad-text-container">
+            <p class="bold pad-text">{{lastSongHeards.title}}</p>
+            <p class="light pad-text">Artist Name</p>
+          </div>
+          <p class="light pad-text time-song">5:33</p>
+          <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+        }
       </ion-row>
     </div>
   </div>

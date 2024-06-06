@@ -47,6 +47,7 @@ export class HomePage {
   user: any;
   lastAlbum: any[] = [];
   song: any[] = [];
+  lastSongHeard: any[] = [];
   private userService = inject(UserService);
   private fireStoreService = inject(FirestoreService);
   private local = inject(LocalStorageService);
@@ -66,6 +67,7 @@ export class HomePage {
     this.getSongByNbEcoute();
     this.getLastAlbum();
     this.getArtistByNbLikes();
+    this.getLastSongHeard();
   }
 
   constructor(private router: Router) {
@@ -104,5 +106,10 @@ export class HomePage {
   async getArtistByNbLikes() {
     this.artist = await this.fireStoreService.getArtistByNbLikes();
     console.log(this.artist);
+  }
+
+  async getLastSongHeard() {
+    this.lastSongHeard = await this.fireStoreService.getLastSongHeard();
+    console.log(this.lastSongHeard);
   }
 }
