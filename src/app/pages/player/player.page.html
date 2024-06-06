@@ -15,7 +15,12 @@
         <p class="nameArtist">NameArtist</p>
       </ion-col>
       <ion-col class="likeShare">
-        <img class="iconLike" src="assets/icon/like.svg" alt="like">
+        @if(!isLiked){
+          <img class="iconLike" src="assets/icon/like.svg" alt="like" (click)="onLike()">
+        }
+        @else(){
+          <img class="iconLiked" src="assets/icon/likeClicked.svg" alt="likeClick" (click)="onLike()">
+        }
         <img class="iconShare" src="assets/icon/share.svg" alt="share" (click)="onShareModal()">
       </ion-col>
     </ion-row>

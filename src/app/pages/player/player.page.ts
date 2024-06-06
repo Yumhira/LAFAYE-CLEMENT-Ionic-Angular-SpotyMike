@@ -55,6 +55,7 @@ export class PlayerPage implements OnInit {
   isPlaying: boolean = false;
   isRepeating: boolean = false;
   isShuffling: boolean = false;
+  isLiked: boolean = false;
   currentTrackIndex: number = 0;
   showLyrics = false;
 
@@ -192,5 +193,9 @@ export class PlayerPage implements OnInit {
       cssClass: 'share-modal',
     });
     return await modal.present();
+  }
+
+  onLike() {
+    this.isLiked = !this.isLiked;
   }
 }
