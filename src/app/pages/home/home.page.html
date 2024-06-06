@@ -121,24 +121,14 @@
       </ion-row>
     </div>
     <div class="songs">
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 1">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
+      @for (artists of artist; track artist) {
+        <div>
+          <img src="{{artists.avatar}}" alt="Artist Avatar 1">
+          <div class="pad-top">
+            <p class="bold pad-text">{{artists.fullname}}</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 
