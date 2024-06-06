@@ -51,7 +51,7 @@ export class PlayerPage implements OnInit {
   public progress = 0;
   public currentTime = '0:00';
   public duration = '0:00';
-  sound: Howl;
+  sound!: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;
   isShuffling: boolean = false;
@@ -71,20 +71,7 @@ export class PlayerPage implements OnInit {
     addIcons({ chevronBack });
     addIcons({ ellipsisHorizontal });
 
-    this.sound = new Howl({
-      src: [this.playlist[this.currentTrackIndex]],
-      onplay: () => {
-        this.updateProgress();
-        this.duration = this.formatTime(this.sound.duration());
-      },
-      onend: () => {
-        if (this.isRepeating) {
-          this.sound.play();
-        } else {
-          this.nextTrack();
-        }
-      },
-    });
+    this.loadCurrentTrack();
   }
 
   ngOnInit() {}
@@ -116,6 +103,7 @@ export class PlayerPage implements OnInit {
 
     this.sound = new Howl({
       src: [this.playlist[this.currentTrackIndex]],
+      volume: 0.1,
       onplay: () => {
         this.updateProgress();
         this.duration = this.formatTime(this.sound.duration());
