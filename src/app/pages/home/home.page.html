@@ -3,7 +3,7 @@
     <img class="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe">
     <ion-icon class="search" name="search-outline"></ion-icon>
   </div>
-  
+
   <div class="first-container">
     <div class="modif-container">
       <ion-col>
@@ -105,31 +105,20 @@
     <div class="top-container">
       <ion-row>
         <h3>Top Albums</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="songs">
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Album Cover 1">
-        <div class="pad-top">
-          <p class="bold pad-text">Album Name</p>
-          <p class="light pad-text">Artist Name</p>
+      @for (albums of albums; track albums) {
+        <div>
+          <img src="{{albums.cover}}" alt="Album Cover 1">
+          <div class="pad-top">
+            <p class="bold pad-text">{{albums.title}}</p>
+            <p class="light pad-text">{{albums.artistId.fullname}}</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Album Cover 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Album Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Album Cover 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Album Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-      </div>
+      }
+
     </div>
   </div>
 
@@ -137,7 +126,7 @@
     <div class="top-container">
       <ion-row>
         <h3>Top Artists</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="songs">
@@ -166,7 +155,7 @@
     <div class="top-container">
       <ion-row>
         <h3>Playlists</h3>
-        <a class="see-all-button" href="">See All</a>  
+        <a class="see-all-button" href="">See All</a>
       </ion-row>
     </div>
     <div class="songs">
