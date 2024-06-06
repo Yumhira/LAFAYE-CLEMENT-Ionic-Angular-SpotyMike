@@ -97,8 +97,8 @@ export class HomePage {
   }
 
   async getLastAlbum(){
-    this.album = await this.fireStoreService.getLastAlbum();
-    console.log(this.album);
+    this.lastAlbum = await this.fireStoreService.getLastAlbum();
+    console.log(this.lastAlbum);
   }
 
   async getArtistByNbLikes() {

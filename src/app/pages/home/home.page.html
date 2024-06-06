@@ -11,10 +11,12 @@
   <div class="first-container">
     <div class="modif-container">
       <ion-col>
-        <p class="light new-album">New Album</p>
-        <p class="bold hits">R & B Hits</p>
-        <p class="light discover-text">Discover 87 songs!</p>
-        <ion-icon (click)="goToPlayer()" class="arrow-size" name="arrow-forward-outline"></ion-icon>
+        @for (lastAlbums of lastAlbum; track lastAlbum) {
+          <p class="light new-album">New Album</p>
+          <p class="bold hits">{{lastAlbums.title}}</p>
+          <p class="light discover-text">Discover 87 songs!</p>
+          <ion-icon (click)="goToPlayer()" class="arrow-size" name="arrow-forward-outline"></ion-icon>
+        }
       </ion-col>
     </div>
     <img class="rec-album-home-width pad" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
