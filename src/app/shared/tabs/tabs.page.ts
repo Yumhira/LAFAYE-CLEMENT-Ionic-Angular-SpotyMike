@@ -36,9 +36,9 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
 })
 export class TabsPage implements OnInit {
   selectedTab: string = 'home';
-  private albumService = inject(FirestoreService);
+  private userService = inject(FirestoreService);
   constructor() {
-    console.log(this.albumService.getAlbums2());
+    console.log(this.userService.getUser());
   }
 
   ngOnInit() {}

@@ -16,7 +16,7 @@ export class FirestoreService {
     const albumsSnapshot = await getDocs(albumsCol);
     const albumsList = albumsSnapshot.docs.map(doc => doc.data());
     console.log(albumsList);
-    return albumsList; 
+    return albumsList;
   }
 
   // GET ALBUM BY ARTIST NAME
@@ -26,7 +26,7 @@ export class FirestoreService {
     const albumsSnapshot = await getDocs(q);
     const albumsList = albumsSnapshot.docs.map(doc => doc.data());
     console.log(albumsList);
-    return albumsList; 
+    return albumsList;
   }
 
   // GET ALBUM BY SONG TITLE
@@ -36,7 +36,7 @@ export class FirestoreService {
     const albumsSnapshot = await getDocs(q);
     const albumsList = albumsSnapshot.docs.map(doc => doc.data());
     console.log(albumsList);
-    return albumsList; 
+    return albumsList;
   }
 
   // GET ALBUM BY SONGS
@@ -45,7 +45,52 @@ export class FirestoreService {
     const albumsSnapshot = await getDocs(albumsCol);
     const albumsList = albumsSnapshot.docs.map(doc => doc.data());
     console.log(albumsList);
-    return albumsList; 
+    return albumsList;
+  }
+
+  //get user
+  async getUser(){
+    const usersCol = collection(this.db, 'user');
+    const usersSnapshot = await getDocs(usersCol);
+    const usersList = usersSnapshot.docs.map(doc => doc.data());
+    console.log(usersList);
+    return usersList;
+  }
+
+  //get artist
+  async getArtist(){
+    const artistCol = collection(this.db, 'artist');
+    const artistSnapshot = await getDocs(artistCol);
+    const artistList = artistSnapshot.docs.map(doc => doc.data());
+    console.log(artistList);
+    return artistList;
+  }
+
+  //get playlist
+  async getPlaylist(){
+    const playlistCol = collection(this.db, 'playlist');
+    const playlistSnapshot = await getDocs(playlistCol);
+    const playlistList = playlistSnapshot.docs.map(doc => doc.data());
+    console.log(playlistList);
+    return playlistList;
+  }
+
+  //get album
+  async getAlbum(){
+    const albumCol = collection(this.db, 'album');
+    const albumSnapshot = await getDocs(albumCol);
+    const albumList = albumSnapshot.docs.map(doc => doc.data());
+    console.log(albumList);
+    return albumList;
+  }
+
+  //get song
+  async getSong(){
+    const songCol = collection(this.db,'song');
+    const songSnapshot = await getDocs(songCol);
+    const songList = songSnapshot.docs.map(doc => doc.data());
+    console.log(songList);
+    return songList;
   }
 
   constructor() { }
