@@ -38,7 +38,6 @@ export class TabsPage implements OnInit {
   selectedTab: string = 'home';
   private userService = inject(FirestoreService);
   constructor() {
-    console.log(this.userService.getUser());
   }
 
   ngOnInit() {}
