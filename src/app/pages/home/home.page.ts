@@ -41,8 +41,10 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class HomePage {
   users: IUserTest[] = [];
-  albums: any[] = [];
+  album: any[] = [];
+  playlist: any[] = [];
   user: any;
+  song: any[] = [];
   private userService = inject(UserService);
   private fireStoreService = inject(FirestoreService);
   private local = inject(LocalStorageService);
@@ -57,6 +59,9 @@ export class HomePage {
     //   });
     // else this.users = users;
     this.getAlbum();
+    this.getUserByEmail();
+    this.getPlaylist();
+    this.getSongByNbEcoute();
   }
 
   constructor(private router: Router) {
@@ -68,7 +73,22 @@ export class HomePage {
   }
 
   async getAlbum() {
-    this.albums = await this.fireStoreService.getAlbum();
-    console.log(this.albums);
+    this.album = await this.fireStoreService.getAlbum();
+    console.log(this.album);
+  }
+
+  async getUserByEmail(){
+    this.user = await this.fireStoreService.getUserByEmail();
+    console.log(this.user);
+  }
+
+  async getPlaylist() {
+    this.playlist = await this.fireStoreService.getPlaylist();
+    console.log(this.playlist);
+  }
+
+  async getSongByNbEcoute() {
+    this.song = await this.fireStoreService.getSongByNbEcoute();
+    console.log(this.song);
   }
 }

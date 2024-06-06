@@ -1,6 +1,10 @@
 <ion-content [fullscreen]="true">
   <div class="header-container">
-    <img class="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe">
+    @if (user) {
+      <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + user.firstName + ' ' + user.lastName">
+    }@else{
+      <img class="profile-picture"[src]="'https://ui-avatars.com/api/?name=Guest'">
+    }
     <ion-icon class="search" name="search-outline"></ion-icon>
   </div>
 
@@ -39,27 +43,15 @@
       </ion-row>
     </div>
     <div class="songs">
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Song Cover 1">
-        <div class="pad-top">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
+      @for (songs of song; track songs) {
+        <div>
+          <img src="{{songs.cover}}" alt="Song Cover 1">
+          <div class="pad-top">
+            <p class="bold pad-text">{{songs.title}}</p>
+            <p class="light pad-text">Artist Name</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Song Cover 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Song Cover 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 
@@ -109,16 +101,15 @@
       </ion-row>
     </div>
     <div class="songs">
-      @for (albums of albums; track albums) {
+      @for (albums of album; track albums) {
         <div>
           <img src="{{albums.cover}}" alt="Album Cover 1">
           <div class="pad-top">
             <p class="bold pad-text">{{albums.title}}</p>
-            <p class="light pad-text">{{albums.artistId.fullname}}</p>
+            <p class="light pad-text">Artist Name</p>
           </div>
         </div>
       }
-
     </div>
   </div>
 
@@ -159,24 +150,14 @@
       </ion-row>
     </div>
     <div class="songs">
+    @for (playlists of playlist; track playlists) {
       <div>
-        <img src="assets/formes/default_cover.png" alt="Playlist Cover 1">
+        <img src="{{playlists.cover}}" alt="Playlist Cover">
         <div class="pad-top">
-          <p class="bold pad-text">Playlist Name</p>
+          <p class="bold pad-text">{{playlists.name}}</p>
         </div>
       </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Playlist Cover 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Playlist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Playlist Cover 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Playlist Name</p>
-        </div>
-      </div>
+    }
     </div>
   </div>
 
