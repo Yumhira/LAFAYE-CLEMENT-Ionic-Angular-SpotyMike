@@ -24,29 +24,29 @@
 
   <div>
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Music Genres</h3>
         <a class="see-all-button" (click)="goToMusicList()">See All</a>
       </ion-row>
     </div>
     <div class="genres">
-      <ion-button (click)="goToMusicList()" class="bt1" color="transparent">All</ion-button>
+      <ion-button (click)="goToMusicList()" class="bt1">All</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">R&B</ion-button>
-      <ion-button (click)="goToMusicList()" class="bt3" color="transparent">Pop</ion-button>
-      <ion-button (click)="goToMusicList()" class="bt4" color="transparent">Rock</ion-button>
+      <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Pop</ion-button>
+      <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Rock</ion-button>
     </div>
   </div>
 
   <div>
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Top Songs</h3>
         <a class="see-all-button" (click)="goToMusicList()">See All</a>
       </ion-row>
     </div>
     <div class="songs">
       @for (songs of song; track songs) {
-        <div (click)="goToPlayer()">
+        <div>
           <img src="{{songs.cover}}" (click)="goToPlayer()" alt="Song Cover 1">
           <div class="pad-top">
             <p class="bold pad-text" (click)="goToPlayer()">{{songs.title}}</p>
@@ -59,45 +59,33 @@
 
   <div>
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Last Played</h3>
         <a class="see-all-button" (click)="goToMusicList()">See All</a>
       </ion-row>
     </div>
     <div class="pad-container">
-      <ion-row class="pad-row1">
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 1">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
-      </ion-row>
-      <ion-row class="pad-row2">
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 2">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
-      </ion-row>
-      <ion-row>
-        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 3">
-        <div class="pad-text-container">
-          <p class="bold pad-text">Song Name</p>
-          <p class="light pad-text">Artist Name</p>
-        </div>
-        <p class="light pad-text time-song">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
-      </ion-row>
+        @for (lastSongHeards of lastSongHeard; track lastSongHeards) {
+        <ion-row class="pad-row1">
+          <div class="lastPlayedSongInfo">
+            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1">
+            <div class="pad-text-container">
+              <p class="bold pad-text">{{lastSongHeards.title}}</p>
+              <p class="light pad-text">Artist Name</p>
+            </div>
+          </div>
+          <div class="timer">
+            <p class="light time-song">{{lastSongHeards.time}}</p>
+            <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+          </div>
+        </ion-row>
+        }
     </div>
   </div>
 
   <div>
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Top Albums</h3>
         <a class="see-all-button" (click)="goToAlbum()">See All</a>
       </ion-row>
@@ -117,36 +105,28 @@
 
   <div>
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Top Artists</h3>
         <a class="see-all-button" (click)="goToArtist()">See All</a>
       </ion-row>
     </div>
     <div class="songs">
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 1">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
+      @for (artists of artist; track artists) {
+        <div>
+          <img src="{{artists.avatar}}" alt="Artist Avatar 1">
+          <div class="pad-top">
+            <p class="bold pad-text">{{artists.fullname}}</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
+      }
+
+
     </div>
   </div>
 
   <div class="pad-cont">
     <div class="top-container">
-      <ion-row>
+      <ion-row class="titleHeader">
         <h3>Playlists</h3>
         <a class="see-all-button" (click)="goToPlaylist()">See All</a>
       </ion-row>
