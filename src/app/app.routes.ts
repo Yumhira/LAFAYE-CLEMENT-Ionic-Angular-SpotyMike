@@ -27,8 +27,32 @@ export const routes: Routes = [
   },
 
   {
+    path: 'listmusic',
+    loadComponent: () =>
+      import('./pages/listmusic/listmusic.page').then((m) => m.ListPage),
+  },
+
+  {
+    path: 'album',
+    loadComponent: () =>
+      import('./pages/album/album.page').then((m) => m.AlbumPage),
+  },
+
+  {
+    path: 'artist',
+    loadComponent: () =>
+      import('./pages/artist/artist.page').then((m) => m.ArtistPage),
+  },
+
+  {
     path: '',
     loadChildren: () =>
       import('./shared/tabs/tabs.routes').then((m) => m.routes),
   },
+  {
+    path: 'search',
+    loadComponent: () => import('./pages/search/search.page').then( m => m.SearchPage)
+  },
+
+
 ];
