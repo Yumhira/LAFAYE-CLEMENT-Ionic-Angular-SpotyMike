@@ -112,16 +112,41 @@ export class FirestoreService {
 
   async getSongByNbEcoute() {
     const songCol = collection(this.db, 'song');
-    const q = query(
-      songCol,
-      orderBy('nbEcoutes', 'desc'),
-      limit(3)
-    );
+    const q = query(songCol, orderBy('nbEcoutes', 'desc'), limit(3));
     const songSnapshot = await getDocs(q);
     const songList = songSnapshot.docs.map((doc) => doc.data());
     console.log(songList);
     return songList;
   }
+
+  //get artist by nbLikes
+  async getArtistByNbLikes() {
+    const artistCol = collection(this.db, 'artist');
+    const q = query(artistCol, orderBy('nbLikes', 'desc'), limit(3));
+    const artistSnapshot = await getDocs(q);
+    const artistList = artistSnapshot.docs.map((doc) => doc.data());
+    return artistList;
+  }
+
+  //get last album
+  async getLastAlbum() {
+    const albumCol = collection(this.db, 'album');
+    const q = query(albumCol, orderBy('createdAt', 'desc'), limit(1));
+    const albumSnapshot = await getDocs(q);
+    const albumList = albumSnapshot.docs.map((doc) => doc.data());
+    console.log(albumList);
+    return albumList;
+  }
+
+  //get last song heard
+  async getLastSongHeard() {
+    const songCol = collection(this.db,'song');
+    const q = query(songCol, orderBy('dateEcoute', 'desc'), limit(3));
+    const songSnapshot = await getDocs(q);
+    const songList = songSnapshot.docs.map((doc) => doc.data());
+    console.log(songList);
+    return songList;
+  };
 
   constructor() {}
 }

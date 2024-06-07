@@ -9,15 +9,16 @@
   </div>
 
   <div class="first-container">
+    @for (lastAlbums of lastAlbum; track lastAlbum) {
     <div class="modif-container">
       <ion-col>
-        <p class="light new-album" (click)="goToAlbum()">New Album</p>
-        <p class="bold hits" (click)="goToAlbum()">R & B Hits</p>
-        <p class="light discover-text" (click)="goToAlbum()">Discover 87 songs!</p>
-        <ion-icon class="arrow-size" (click)="goToAlbum()" name="arrow-forward-outline"></ion-icon>
+          <p class="light new-album" (click)="goToAlbum()">New Album</p>
+          <p class="bold hits" (click)="goToAlbum()">{{lastAlbums.title}}</p>
+          <p class="light discover-text" (click)="goToAlbum()">Discover 87 songs!</p>
+          <ion-icon class="arrow-size" (click)="goToAlbum()" name="arrow-forward-outline"></ion-icon>
       </ion-col>
     </div>
-    <img class="rec-album-home-width pad" (click)="goToAlbum()" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
+    <img class="rec-album-home-width pad" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
   </div>
 
   <div>
@@ -64,31 +65,31 @@
     </div>
     <div class="pad-container">
       <ion-row class="pad-row1">
-        <img class="resize-cover" src="assets/formes/default_cover.png" (click)="goToPlayer()" alt="Song Cover 1">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 1">
         <div class="pad-text-container">
-          <p class="bold pad-text" (click)="goToPlayer()">Song Name</p>
-          <p class="light pad-text" (click)="goToPlayer()">Artist Name</p>
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
         </div>
-        <p class="light pad-text time-song" (click)="goToPlayer()">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal" (click)="goToPlayer()"></ion-icon>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
       <ion-row class="pad-row2">
-        <img class="resize-cover" (click)="goToPlayer()" src="assets/formes/default_cover.png" alt="Song Cover 2">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 2">
         <div class="pad-text-container">
-          <p class="bold pad-text" (click)="goToPlayer()">Song Name</p>
-          <p class="light pad-text" (click)="goToPlayer()">Artist Name</p>
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
         </div>
-        <p class="light pad-text time-song" (click)="goToPlayer()">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal" (click)="goToPlayer()"></ion-icon>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
       <ion-row>
-        <img class="resize-cover" (click)="goToPlayer()" src="assets/formes/default_cover.png" alt="Song Cover 3">
+        <img class="resize-cover" src="assets/formes/default_cover.png" alt="Song Cover 3">
         <div class="pad-text-container">
-          <p class="bold pad-text" (click)="goToPlayer()">Song Name</p>
-          <p class="light pad-text" (click)="goToPlayer()">Artist Name</p>
+          <p class="bold pad-text">Song Name</p>
+          <p class="light pad-text">Artist Name</p>
         </div>
-        <p class="light pad-text time-song" (click)="goToPlayer()">5:33</p>
-        <ion-icon class="info-icon" name="ellipsis-horizontal" (click)="goToPlayer()"></ion-icon>
+        <p class="light pad-text time-song">5:33</p>
+        <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
       </ion-row>
     </div>
   </div>
@@ -122,21 +123,21 @@
     </div>
     <div class="songs">
       <div>
-        <img src="assets/formes/default_cover.png" (click)="goToArtist()"alt="Artist Avatar 1">
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 1">
         <div class="pad-top">
-          <p class="bold pad-text" (click)="goToArtist()">Artist Name</p>
+          <p class="bold pad-text">Artist Name</p>
         </div>
       </div>
       <div>
-        <img src="assets/formes/default_cover.png" (click)="goToArtist()" alt="Artist Avatar 2">
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 2">
         <div class="pad-top">
-          <p class="bold pad-text" (click)="goToArtist()">Artist Name</p>
+          <p class="bold pad-text">Artist Name</p>
         </div>
       </div>
       <div>
-        <img src="assets/formes/default_cover.png" (click)="goToArtist()" alt="Artist Avatar 3">
+        <img src="assets/formes/default_cover.png" alt="Artist Avatar 3">
         <div class="pad-top">
-          <p class="bold pad-text" (click)="goToArtist()">Artist Name</p>
+          <p class="bold pad-text">Artist Name</p>
         </div>
       </div>
     </div>
