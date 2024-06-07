@@ -9,11 +9,11 @@
       @for (playlists of playlist; track playlists) {
       <ion-item lines="full" class="items">
         <ion-col class="imgCov">
-          <img class="cover-resize" src="{{playlists.cover}}" alt="Cover 1">
+          <img class="cover-resize" src="{{playlists.cover}}" alt="Cover 1" (click)="goToPlayer()">
         </ion-col>
         <ion-col class="pad-text">
-            <p class="song-text">{{playlists.name}}</p>
-            <p class="light artist-text">Artist Name</p>
+            <p class="song-text" (click)="goToPlayer()">{{playlists.name}}</p>
+            <p class="light artist-text" (click)="goToPlayer()">Artist Name</p>
         </ion-col>
         <ion-col class="btnLS">
           <ion-row class="buttons-song">

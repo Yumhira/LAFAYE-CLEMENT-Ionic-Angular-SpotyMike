@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonIcon, IonButton, IonItem } from '@ionic/angular/standalone';
@@ -22,7 +23,7 @@ export class PlaylistPage implements OnInit {
   playlist: any[] = [];
   isLiked: boolean = false;
 
-  constructor(private _location: Location) {
+  constructor(private _location: Location, private router: Router) {
     addIcons({ chevronBack, ellipsisHorizontal })
   }
 
@@ -49,6 +50,10 @@ export class PlaylistPage implements OnInit {
 
   onLike() {
     this.isLiked = !this.isLiked;
+  }
+
+  goToPlayer() {
+    this.router.navigate(['/player']);
   }
 
 }
