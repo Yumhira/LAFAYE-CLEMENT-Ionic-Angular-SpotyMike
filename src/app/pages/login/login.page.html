@@ -37,6 +37,6 @@
   <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
   }
   <br>
-  <ion-button type="submit" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
+  <ion-button type="submit" (click)="goToHome()" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
   <a (click)="onPasswordLostModal()">Pas encore inscrit ?</a>
 </form>

@@ -110,6 +110,16 @@ export class FirestoreService {
     return songList;
   }
 
+  // GET SONG BY TITLE
+  async getSongByTitle() {
+    const songsCol = collection(this.db, 'song');
+    const q = query(songsCol, where('title', '==', 'Ipséité'));
+    const albumsSnapshot = await getDocs(q);
+    const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
+    console.log(albumsList);
+    return albumsList;
+  }
+
   async getSongByNbEcoute() {
     const songCol = collection(this.db, 'song');
     const q = query(songCol, orderBy('nbEcoutes', 'desc'), limit(3));
