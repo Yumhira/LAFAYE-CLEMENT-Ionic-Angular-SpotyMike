@@ -35,7 +35,7 @@
       </ion-row>
     </div>
     <div class="genres">
-      <ion-button (click)="goToMusicList()" class="bt1">All</ion-button>
+      <ion-button (click)="goToMusicList()" class="bt1" color="transparent">All</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">R&B</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Pop</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Rock</ion-button>
@@ -73,15 +73,15 @@
         @for (lastSongHeards of lastSongHeard; track lastSongHeards) {
         <ion-row class="pad-row1">
           <div class="lastPlayedSongInfo">
-            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1">
+            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1" (click)="goToPlayer()">
             <div class="pad-text-container">
-              <p class="bold pad-text">{{lastSongHeards.title}}</p>
-              <p class="light pad-text">Artist Name</p>
+              <p class="bold pad-text" (click)="goToPlayer()">{{lastSongHeards.title}}</p>
+              <p class="light pad-text" (click)="goToPlayer()">Artist Name</p>
             </div>
           </div>
           <div class="timer">
-            <p class="light time-song">{{lastSongHeards.time}}</p>
-            <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
+            <p class="light time-song" (click)="goToPlayer()">{{lastSongHeards.time}}</p>
+            <ion-icon class="info-icon" name="ellipsis-horizontal" (click)="goToPlayer()"></ion-icon>
           </div>
         </ion-row>
         }
@@ -118,14 +118,12 @@
     <div class="songs">
       @for (artists of artist; track artists) {
         <div>
-          <img src="{{artists.avatar}}" alt="Artist Avatar 1">
+          <img src="{{artists.avatar}}" alt="Artist Avatar 1" (click)="goToArtist()">
           <div class="pad-top">
-            <p class="bold pad-text">{{artists.fullname}}</p>
+            <p class="bold pad-text" (click)="goToArtist()">{{artists.fullname}}</p>
           </div>
         </div>
       }
-
-
     </div>
   </div>
 
@@ -139,9 +137,9 @@
     <div class="songs">
     @for (playlists of playlist; track playlists) {
       <div>
-        <img src="{{playlists.cover}}" (click)="goToPlaylist()" alt="Playlist Cover">
+        <img src="{{playlists.cover}}" (click)="goToMusicList()" alt="Playlist Cover">
         <div class="pad-top">
-          <p class="bold pad-text" (click)="goToPlaylist()">{{playlists.name}}</p>
+          <p class="bold pad-text" (click)="goToMusicList()">{{playlists.name}}</p>
         </div>
       </div>
     }
