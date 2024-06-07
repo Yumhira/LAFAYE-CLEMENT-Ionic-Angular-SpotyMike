@@ -57,8 +57,6 @@ export class HomePage {
   ngOnInit() {
     this.getAlbum();
     this.getUserByEmail();
-    this.getSongByAlbum();
-    this.getArtistBySong();
     this.getPlaylist();
     this.getSongByNbEcoute();
     this.getLastAlbum();
@@ -96,14 +94,6 @@ export class HomePage {
 
   async getAlbum() {
     this.album = await this.fireStoreService.getAlbum();
-  }
-
-  async getSongByAlbum() {
-    this.albumsong = await this.fireStoreService.getSongByAlbum();
-  }
-
-  async getArtistBySong() {
-    this.artistsong = await this.fireStoreService.getArtistBySong();
   }
 
   async getUserByEmail(){
