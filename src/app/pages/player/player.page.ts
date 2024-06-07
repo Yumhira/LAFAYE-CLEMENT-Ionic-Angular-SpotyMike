@@ -23,6 +23,7 @@ import { Location } from '@angular/common';
 import { Howl, Howler } from 'howler';
 import { ModalController } from '@ionic/angular';
 import { ShareComponent } from 'src/app/shared/modal/share/share.component';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
 
 @Component({
   selector: 'app-player',
@@ -51,6 +52,8 @@ export class PlayerPage implements OnInit {
   public progress = 0;
   public currentTime = '0:00';
   public duration = '0:00';
+  private fireStoreService = inject(FirestoreService);
+  song: any;
   sound!: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;
@@ -74,7 +77,9 @@ export class PlayerPage implements OnInit {
     this.loadCurrentTrack();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getSongByTitle();
+  }
 
   backClicked() {
     this._location.back();
@@ -94,6 +99,11 @@ export class PlayerPage implements OnInit {
       (this.currentTrackIndex - 1 + this.playlist.length) %
       this.playlist.length;
     this.loadCurrentTrack();
+  }
+
+  async getSongByTitle() {
+    this.song = await this.fireStoreService.getSongByTitle();
+    console.log(this.song);
   }
 
   loadCurrentTrack() {
