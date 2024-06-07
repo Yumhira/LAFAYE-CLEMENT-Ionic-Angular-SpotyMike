@@ -72,6 +72,26 @@ export class HomePage {
     this.router.navigate(['/player']);
   }
 
+  goToMusicList() {
+    this.router.navigate(['/listmusic']);
+  }
+
+  goToAlbum() {
+    this.router.navigate(['/album']);
+  }
+
+  goToArtist() {
+    this.router.navigate(['/artist']);
+  }
+
+  goToPlaylist() {
+    this.router.navigate(['/tabs/playlist']);
+  }
+
+  goToSearch() {
+    this.router.navigate(['/search']);
+  }
+
   async getAlbum() {
     this.album = await this.fireStoreService.getAlbum();
     console.log(this.album);
