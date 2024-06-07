@@ -8,110 +8,26 @@
     <div class="pad-container">
         <div>
           <ion-row>
-            <img class="cover-resize" src="assets/formes/default_cover.png" alt="Cover 1">
-            <div class="pad-text">
-              <p class="bold song-text">Playlist Name</p>
-              <p class="light artist-text">Artist Name</p>
-            </div>
+            @for (playlists of playlist; track playlists) {
+              <img class="cover-resize" src="{{playlists.cover}}" alt="Cover 1">
+              <div class="pad-text">
+                <p class="bold song-text">{{playlists.name}}</p>
+                <p class="light artist-text">Artist Name</p>
+              </div>
+            }
               <ion-icon class="ellipsis" name="ellipsis-horizontal"></ion-icon>
               <ion-col class="buttons-song">
-                <a class="bt1" color="transparent" href="">
-                  <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon">
-                </a>
-                <a class="bt2" color="transparent" href="">
-                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button">
-                </a>
-              </ion-col>
-            <div class="line"></div>
-          </ion-row>
-        </div>
-    </div>
-  </div>
-  <div class="pad-top">
-    <div class="pad-container">
-        <div>
-          <ion-row>
-            <img class="cover-resize" src="assets/formes/default_cover.png" alt="Cover 1">
-            <div class="pad-text">
-              <p class="bold song-text">Playlist Name</p>
-              <p class="light artist-text">Artist Name</p>
-            </div>
-              <ion-icon class="ellipsis" name="ellipsis-horizontal"></ion-icon>
-              <ion-col class="buttons-song">
-                <a class="bt1" color="transparent" href="">
-                  <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon">
-                </a>
-                <a class="bt2" color="transparent" href="">
-                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button">
-                </a>
-              </ion-col>
-            <div class="line"></div>
-          </ion-row>
-        </div>
-    </div>
-  </div>
-  <div class="pad-top">
-    <div class="pad-container">
-        <div>
-          <ion-row>
-            <img class="cover-resize" src="assets/formes/default_cover.png" alt="Cover 1">
-            <div class="pad-text">
-              <p class="bold song-text">Playlist Name</p>
-              <p class="light artist-text">Artist Name</p>
-            </div>
-              <ion-icon class="ellipsis" name="ellipsis-horizontal"></ion-icon>
-              <ion-col class="buttons-song">
-                <a class="bt1" color="transparent" href="">
-                  <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon">
-                </a>
-                <a class="bt2" color="transparent" href="">
-                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button">
-                </a>
-              </ion-col>
-            <div class="line"></div>
-          </ion-row>
-        </div>
-    </div>
-  </div>
-  <div class="pad-top">
-    <div class="pad-container">
-        <div>
-          <ion-row>
-            <img class="cover-resize" src="assets/formes/default_cover.png" alt="Cover 1">
-            <div class="pad-text">
-              <p class="bold song-text">Playlist Name</p>
-              <p class="light artist-text">Artist Name</p>
-            </div>
-              <ion-icon class="ellipsis" name="ellipsis-horizontal"></ion-icon>
-              <ion-col class="buttons-song">
-                <a class="bt1" color="transparent" href="">
-                  <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon">
-                </a>
-                <a class="bt2" color="transparent" href="">
-                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button">
-                </a>
-              </ion-col>
-            <div class="line"></div>
-          </ion-row>
-        </div>
-    </div>
-  </div>
-  <div class="pad-top">
-    <div class="pad-container">
-        <div>
-          <ion-row>
-            <img class="cover-resize" src="assets/formes/default_cover.png" alt="Cover 1">
-            <div class="pad-text">
-              <p class="bold song-text">Playlist Name</p>
-              <p class="light artist-text">Artist Name</p>
-            </div>
-              <ion-icon class="ellipsis" name="ellipsis-horizontal"></ion-icon>
-              <ion-col class="buttons-song">
-                <a class="bt1" color="transparent" href="">
-                  <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon">
-                </a>
-                <a class="bt2" color="transparent" href="">
-                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button">
+                @if(!isLiked){
+                  <a class="bt1" color="transparent">
+                    <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon" (click)="onLike()">
+                  </a>
+                } @else(){
+                  <a class="bt1" color="transparent">
+                    <img class="iconLiked like-resize" src="assets/icon/likeClicked.svg" alt="likeClick" (click)="onLike()">
+                  </a>
+                }
+                <a class="bt2" color="transparent">
+                  <img class="share-resize" src="assets/icon/share.svg" alt="Share Button" (click)="onShareModal()">
                 </a>
               </ion-col>
             <div class="line"></div>
