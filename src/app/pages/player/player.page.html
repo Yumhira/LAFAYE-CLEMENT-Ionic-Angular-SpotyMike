@@ -26,7 +26,6 @@
         <img class="iconShare" src="assets/icon/share.svg" alt="share" (click)="onShareModal()">
       </ion-col>
     </ion-row>
-    }
 
     <ion-range (ionChange)="seekTo($event)" [value]="progress">
     </ion-range>
@@ -82,19 +81,11 @@
       <ion-row class="lyrics">
         @if(showLyrics){
           <p class="contentLyrics">
-            Beneath the palm trees, we found our way, On this island, where the sun shines every day. The ocean breeze whispers
-            secrets in the air, In this paradise, we'll forget all our cares.
-
-            Island getaway, where the waves gently sway, Underneath the golden sun's warm embrace. With sandy shores, and clear
-            blue
-            skies, In this haven, we'll watch our worries subside.
-
-            Crystal waters, inviting and so clear, As we explore, the island's treasures appear. Adventure calls us, with each
-            rising tide, In this magical place, our spirits come alive.
+            {{songs.lyrics}}
           </p>
         }
-
       </ion-row>
     </div>
+    }
   </ion-grid>
 </ion-content>

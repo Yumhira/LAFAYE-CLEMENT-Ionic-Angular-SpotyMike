@@ -13,7 +13,7 @@
       <ion-col class="newAlbumInfo">
         <p class="light new-album" (click)="goToAlbum()">New Album</p>
         <p class="bold hits" (click)="goToAlbum()">{{lastAlbums.title}}</p>
-        <p class="light discover-text" (click)="goToAlbum()">Discover 87 songs!</p>
+        <p class="light discover-text" (click)="goToAlbum()">Discover {{lastAlbums.songs.length}} songs!</p>
         <ion-icon class="arrow-size" (click)="goToAlbum()" name="arrow-forward-outline"></ion-icon>
       </ion-col>
       <ion-col>

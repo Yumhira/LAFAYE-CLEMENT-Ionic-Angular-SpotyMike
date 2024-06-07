@@ -57,18 +57,8 @@ export class HomePage {
   private local = inject(LocalStorageService);
 
   ngOnInit() {
-    // GET ALL USERS
-    // const users: IUserTest[] = this.local.getElement('users');
-    // if (!users)
-    //   this.userService.requestTest().subscribe((response: IUserTest[]) => {
-    //     this.users = response;
-    //     this.local.setElement('users', JSON.stringify(this.users));
-    //   });
-    // else this.users = users;
     this.getAlbum();
     this.getUserByEmail();
-    this.getSongByAlbum();
-    this.getArtistBySong();
     this.getPlaylist();
     this.getSongByNbEcoute();
     this.getLastAlbum();
@@ -107,47 +97,30 @@ export class HomePage {
 
   async getAlbum() {
     this.album = await this.fireStoreService.getAlbum();
-    console.log(this.album);
-  }
-
-  async getSongByAlbum() {
-    this.albumsong = await this.fireStoreService.getSongByAlbum();
-    console.log(this.albumsong);
-  }
-
-  async getArtistBySong() {
-    this.artistsong = await this.fireStoreService.getArtistBySong();
-    console.log(this.artistsong);
   }
 
   async getUserByEmail(){
     this.user = await this.fireStoreService.getUserByName();
-    console.log(this.user);
   }
 
   async getPlaylist() {
     this.playlist = await this.fireStoreService.getPlaylist();
-    console.log(this.playlist);
   }
 
   async getSongByNbEcoute() {
     this.song = await this.fireStoreService.getSongByNbEcoute();
-    console.log(this.song);
   }
 
   async getLastAlbum() {
     this.lastAlbum = await this.fireStoreService.getLastAlbum();
-    console.log(this.lastAlbum);
   }
 
   async getArtistByNbLikes() {
     this.artist = await this.fireStoreService.getArtistByNbLikes();
-    console.log(this.artist);
   }
 
   async getLastSongHeard() {
     this.lastSongHeard = await this.fireStoreService.getLastSongHeard();
-    console.log(this.lastSongHeard);
   }
 
   async getArtistById(artistId:string) {

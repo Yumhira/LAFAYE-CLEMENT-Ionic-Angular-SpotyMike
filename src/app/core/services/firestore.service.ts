@@ -201,7 +201,7 @@ export class FirestoreService {
     const q = query(usersCol, where('firstName', '==', "Patrick"));
     const usersSnapshot = await getDocs(q);
     const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log(usersList);
+    console.log("Voici le getUserByName : ", usersList);
     return usersList;
   }
 
