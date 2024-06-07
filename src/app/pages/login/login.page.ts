@@ -82,11 +82,15 @@ export class LoginPage implements OnInit {
           } else {
             this.localStore.setItem('user', data.user);
             this.localStore.setItem('token', data.token);
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/tabs/home');
           }
           console.log(data);
         });
     }
+  }
+
+  goToHome(){
+    this.router.navigate(['/tabs/home']);
   }
 
   async onPasswordLostModal() {
