@@ -46,7 +46,7 @@ export class HomePage {
   artistsong: any[] = [];
   artist: any[] = [];
   playlist: any[] = [];
-  user: any;
+  user: any[] = [];
   lastAlbum: any[] = [];
   song: any[] = [];
   lastSongHeard: any[] = [];
@@ -118,7 +118,7 @@ export class HomePage {
   }
 
   async getUserByEmail(){
-    this.user = await this.fireStoreService.getUserByEmail();
+    this.user = await this.fireStoreService.getUserByName();
     console.log(this.user);
   }
 
@@ -132,7 +132,7 @@ export class HomePage {
     console.log(this.song);
   }
 
-  async getLastAlbum(){
+  async getLastAlbum() {
     this.lastAlbum = await this.fireStoreService.getLastAlbum();
     console.log(this.lastAlbum);
   }

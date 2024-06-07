@@ -53,7 +53,7 @@ export class PlayerPage implements OnInit {
   public currentTime = '0:00';
   public duration = '0:00';
   private fireStoreService = inject(FirestoreService);
-  song: any;
+  song: any[] = [];
   sound!: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;

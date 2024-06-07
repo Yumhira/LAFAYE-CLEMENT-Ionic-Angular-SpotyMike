@@ -1,18 +1,19 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
+    @for (songs of song; track songs) {
     <ion-row class="containerHeaderATD">
       <ion-icon (click)="backClicked()" class="iconHeaderATD" name="chevron-back"></ion-icon>
-      <p id="title">Nom musique</p>
+      <p id="title">{{songs.title}}</p>
       <ion-icon class="iconHeaderATD" name="ellipsis-horizontal"></ion-icon>
     </ion-row>
-    @if (song) {
+
     <div class="picMusic">
-        <img src="{{song.cover}}"
+        <img src="{{songs.cover}}"
         alt="Music Cover">
     </div>
     <ion-row class="infoLike">
       <ion-col class="infoSong">
-        <p class="nameSong">{{song.title}}</p>
+        <p class="nameSong">{{songs.title}}</p>
         <p class="nameArtist">NameArtist</p>
       </ion-col>
       <ion-col class="likeShare">
