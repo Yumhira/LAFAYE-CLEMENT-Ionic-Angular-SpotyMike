@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, query, where, limit, doc, getDoc, DocumentReference, orderBy } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy } from 'firebase/firestore/lite';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -125,7 +125,7 @@ export class FirestoreService {
     const songCol = collection(this.db, 'song');
     const songSnapshot = await getDocs(songCol);
     const songList: any[] = songSnapshot.docs.map((doc) => doc.data());
-    
+
     let artistList: any[] = [];
     if (songList[2]?.artistId) {
       for (let artist of songList[2].artistId) {
@@ -204,6 +204,20 @@ export class FirestoreService {
     console.log(usersList);
     return usersList;
   }
+
+  //get artist by id
+  async getArtistById(artistId = 'eiT0esFN8xYFDPNBwox1') {
+    const artistCol = collection(this.db, 'artist');
+    const q = query(
+      artistCol,
+      where(documentId(), '==', artistId)
+    );
+    const artistSnapshot = await getDocs(q);
+    const artistList = artistSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getArtistById : ", artistList);
+    return artistList;
+  }
+
 
   constructor() {}
 }
