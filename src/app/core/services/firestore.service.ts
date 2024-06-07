@@ -101,43 +101,6 @@ export class FirestoreService {
     return albumList;
   }
 
-  //get song by album
-  async getSongByAlbum() {
-    const albumCol = collection(this.db, 'album');
-    const albumSnapshot = await getDocs(albumCol);
-    const albumList: any[] = albumSnapshot.docs.map((doc) => doc.data());
-    let songList: any[] = [];
-
-    if (albumList[1]?.songs) {
-      for (let song of albumList[1].songs) {
-        const songSnapshot = await getDocs(song);
-        const songs = songSnapshot.docs.map((doc) => doc.data());
-        songList = songs;
-      }
-    }
-
-    console.log("Voici le getSongByAlbum : ", songList);
-    return songList;
-  }
-
-  //get artist by song
-  async getArtistBySong() {
-    const songCol = collection(this.db, 'song');
-    const songSnapshot = await getDocs(songCol);
-    const songList: any[] = songSnapshot.docs.map((doc) => doc.data());
-    
-    let artistList: any[] = [];
-    if (songList[2]?.artistId) {
-      for (let artist of songList[2].artistId) {
-        const artistSnapshot = await getDocs(artist);
-        const artists = artistSnapshot.docs.map((doc) => doc.data());
-        artistList = artists;
-      }
-    }
-    console.log("Voici le getArtistBySong : ", artistList);
-    return artistList;
-  }
-
   //get song
   async getSong() {
     const songCol = collection(this.db, 'song');
@@ -201,7 +164,7 @@ export class FirestoreService {
     const q = query(usersCol, where('firstName', '==', "Patrick"));
     const usersSnapshot = await getDocs(q);
     const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log(usersList);
+    console.log("Voici le getUserByName : ", usersList);
     return usersList;
   }
 
