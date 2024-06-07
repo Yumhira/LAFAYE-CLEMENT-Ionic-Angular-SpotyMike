@@ -46,7 +46,7 @@
     </div>
     <div class="songs">
       @for (songs of song; track songs) {
-        <div (click)="goToPlayer()">
+        <div>
           <img src="{{songs.cover}}" (click)="goToPlayer()" alt="Song Cover 1">
           <div class="pad-top">
             <p class="bold pad-text" (click)="goToPlayer()">{{songs.title}}</p>
@@ -123,24 +123,14 @@
       </ion-row>
     </div>
     <div class="songs">
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 1">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
+      @for (artists of artist; track artists) {
+        <div>
+          <img src="{{artists.cover}}" alt="Artist Avatar 1">
+          <div class="pad-top">
+            <p class="bold pad-text">{{artists.fullname}}</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 2">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
-      <div>
-        <img src="assets/formes/default_cover.png" alt="Artist Avatar 3">
-        <div class="pad-top">
-          <p class="bold pad-text">Artist Name</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 
