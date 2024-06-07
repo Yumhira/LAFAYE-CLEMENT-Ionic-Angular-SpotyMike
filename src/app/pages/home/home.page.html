@@ -71,8 +71,8 @@
         @for (lastSongHeards of lastSongHeard; track lastSongHeards) {
         <ion-row class="pad-row1">
           <div class="lastPlayedSongInfo">
-            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1">
-            <div class="pad-text-container">
+            <img src="{{lastSongHeards.cover}}" (click)="goToPlayer()" alt="Song Cover 1">
+            <div class="pad-text-container" (click)="goToPlayer()">
               <p class="bold pad-text">{{lastSongHeards.title}}</p>
               <p class="light pad-text">Artist Name</p>
             </div>
@@ -116,9 +116,9 @@
     <div class="songs">
       @for (artists of artist; track artists) {
         <div>
-          <img src="{{artists.avatar}}" alt="Artist Avatar 1">
+          <img src="{{artists.avatar}}" (click)="goToArtist()" alt="Artist Avatar 1">
           <div class="pad-top">
-            <p class="bold pad-text">{{artists.fullname}}</p>
+            <p class="bold pad-text" (click)="goToArtist()">{{artists.fullname}}</p>
           </div>
         </div>
       }
