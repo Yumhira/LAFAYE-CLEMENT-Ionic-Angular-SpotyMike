@@ -99,7 +99,7 @@
           <img src="{{albums.cover}}" (click)="goToAlbum()" alt="Album Cover 1">
           <div class="pad-top">
             <p class="bold pad-text" (click)="goToAlbum()">{{albums.title}}</p>
-            <p class="light pad-text" (click)="goToAlbum()">Artist Name</p>
+            <p class="light pad-text" (click)="goToAlbum()">{{(getArtistById(albums.artistId) | async)}}</p>
           </div>
         </div>
       }

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 import {
   IonHeader,
   IonToolbar,
@@ -37,6 +38,7 @@ import { UserService } from 'src/app/core/services/user.service';
     IonRow,
     IonCol,
     IonCard,
+    AsyncPipe,
   ],
 })
 export class HomePage {
@@ -62,6 +64,7 @@ export class HomePage {
     this.getLastAlbum();
     this.getArtistByNbLikes();
     this.getLastSongHeard();
+    this.getArtistById('eiT0esFN8xYFDPNBwox1');
   }
 
   constructor(private router: Router) {
@@ -118,5 +121,11 @@ export class HomePage {
 
   async getLastSongHeard() {
     this.lastSongHeard = await this.fireStoreService.getLastSongHeard();
+  }
+
+  async getArtistById(artistId:string) {
+    const artist = await this.fireStoreService.getArtistById(artistId);
+    console.log(artist);
+    return artist;
   }
 }
