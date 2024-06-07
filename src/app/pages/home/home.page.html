@@ -1,9 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="header-container">
-    @if (user) {
-      <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + user.firstName + ' ' + user.lastName">
-    }@else{
-      <img class="profile-picture"[src]="'https://ui-avatars.com/api/?name=Guest'">
+    @for (users of user; track users) {
+      <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + users.firstName + ' ' + users.lastname">
     }
     <ion-icon class="search" (click)="goToSearch()" name="search-outline"></ion-icon>
   </div>
@@ -35,7 +33,7 @@
       </ion-row>
     </div>
     <div class="genres">
-      <ion-button (click)="goToMusicList()" class="bt1" color="transparent">All</ion-button>
+      <ion-button (click)="goToMusicList()" class="bt1">All</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">R&B</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Pop</ion-button>
       <ion-button (click)="goToMusicList()" class="bt2" color="transparent">Rock</ion-button>
@@ -73,15 +71,15 @@
         @for (lastSongHeards of lastSongHeard; track lastSongHeards) {
         <ion-row class="pad-row1">
           <div class="lastPlayedSongInfo">
-            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1" (click)="goToPlayer()">
+            <img src="{{lastSongHeards.cover}}" alt="Song Cover 1">
             <div class="pad-text-container">
-              <p class="bold pad-text" (click)="goToPlayer()">{{lastSongHeards.title}}</p>
-              <p class="light pad-text" (click)="goToPlayer()">Artist Name</p>
+              <p class="bold pad-text">{{lastSongHeards.title}}</p>
+              <p class="light pad-text">Artist Name</p>
             </div>
           </div>
           <div class="timer">
-            <p class="light time-song" (click)="goToPlayer()">{{lastSongHeards.time}}</p>
-            <ion-icon class="info-icon" name="ellipsis-horizontal" (click)="goToPlayer()"></ion-icon>
+            <p class="light time-song">{{lastSongHeards.time}}</p>
+            <ion-icon class="info-icon" name="ellipsis-horizontal"></ion-icon>
           </div>
         </ion-row>
         }
@@ -118,12 +116,14 @@
     <div class="songs">
       @for (artists of artist; track artists) {
         <div>
-          <img src="{{artists.avatar}}" alt="Artist Avatar 1" (click)="goToArtist()">
+          <img src="{{artists.avatar}}" alt="Artist Avatar 1">
           <div class="pad-top">
-            <p class="bold pad-text" (click)="goToArtist()">{{artists.fullname}}</p>
+            <p class="bold pad-text">{{artists.fullname}}</p>
           </div>
         </div>
       }
+
+
     </div>
   </div>
 
@@ -137,9 +137,9 @@
     <div class="songs">
     @for (playlists of playlist; track playlists) {
       <div>
-        <img src="{{playlists.cover}}" (click)="goToMusicList()" alt="Playlist Cover">
+        <img src="{{playlists.cover}}" (click)="goToPlaylist()" alt="Playlist Cover">
         <div class="pad-top">
-          <p class="bold pad-text" (click)="goToMusicList()">{{playlists.name}}</p>
+          <p class="bold pad-text" (click)="goToPlaylist()">{{playlists.name}}</p>
         </div>
       </div>
     }

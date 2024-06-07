@@ -29,19 +29,6 @@ export class FirestoreService {
     return albumsList;
   }
 
-  //get user by email
-  async getUserByEmail() {
-    const usersCol = collection(this.db, 'user');
-    const q = query(
-      usersCol,
-      where('email', '==', 'utilisateurRandom@gmail.com')
-    );
-    const usersSnapshot = await getDocs(q);
-    const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log(usersList);
-    return usersList;
-  }
-
   // GET ALBUM BY SONG TITLE
   async getAlbumBySongTitle() {
     const albumsCol = collection(this.db, 'albums');
@@ -157,6 +144,16 @@ export class FirestoreService {
     console.log(songList);
     return songList;
   };
+
+  //get user by name
+  async getUserByName() {
+    const usersCol = collection(this.db, 'user');
+    const q = query(usersCol, where('firstName', '==', "Patrick"));
+    const usersSnapshot = await getDocs(q);
+    const usersList = usersSnapshot.docs.map((doc) => doc.data());
+    console.log(usersList);
+    return usersList;
+  }
 
   constructor() {}
 }

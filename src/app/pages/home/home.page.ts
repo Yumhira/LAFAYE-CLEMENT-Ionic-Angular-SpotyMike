@@ -44,7 +44,7 @@ export class HomePage {
   album: any[] = [];
   artist: any[] = [];
   playlist: any[] = [];
-  user: any;
+  user: any[] = [];
   lastAlbum: any[] = [];
   song: any[] = [];
   lastSongHeard: any[] = [];
@@ -62,7 +62,7 @@ export class HomePage {
     //   });
     // else this.users = users;
     this.getAlbum();
-    this.getUserByEmail();
+    this.getUserByName();
     this.getPlaylist();
     this.getSongByNbEcoute();
     this.getLastAlbum();
@@ -103,8 +103,8 @@ export class HomePage {
     console.log(this.album);
   }
 
-  async getUserByEmail(){
-    this.user = await this.fireStoreService.getUserByEmail();
+  async getUserByName() {
+    this.user = await this.fireStoreService.getUserByName();
     console.log(this.user);
   }
 
@@ -118,7 +118,7 @@ export class HomePage {
     console.log(this.song);
   }
 
-  async getLastAlbum(){
+  async getLastAlbum() {
     this.lastAlbum = await this.fireStoreService.getLastAlbum();
     console.log(this.lastAlbum);
   }
