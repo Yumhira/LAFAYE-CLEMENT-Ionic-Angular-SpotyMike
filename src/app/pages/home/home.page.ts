@@ -42,6 +42,8 @@ import { UserService } from 'src/app/core/services/user.service';
 export class HomePage {
   users: IUserTest[] = [];
   album: any[] = [];
+  albumsong: any;
+  artistsong: any[] = [];
   artist: any[] = [];
   playlist: any[] = [];
   user: any;
@@ -63,6 +65,8 @@ export class HomePage {
     // else this.users = users;
     this.getAlbum();
     this.getUserByEmail();
+    this.getSongByAlbum();
+    this.getArtistBySong();
     this.getPlaylist();
     this.getSongByNbEcoute();
     this.getLastAlbum();
@@ -101,6 +105,16 @@ export class HomePage {
   async getAlbum() {
     this.album = await this.fireStoreService.getAlbum();
     console.log(this.album);
+  }
+
+  async getSongByAlbum() {
+    this.albumsong = await this.fireStoreService.getSongByAlbum();
+    console.log(this.albumsong);
+  }
+
+  async getArtistBySong() {
+    this.artistsong = await this.fireStoreService.getArtistBySong();
+    console.log(this.artistsong);
   }
 
   async getUserByEmail(){

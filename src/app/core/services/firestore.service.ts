@@ -15,7 +15,7 @@ export class FirestoreService {
     const albumsCol = collection(this.db, 'albums');
     const albumsSnapshot = await getDocs(albumsCol);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log(albumsList);
+    console.log("Voici le getAlbums : ", albumsList);
     return albumsList;
   }
 
@@ -25,7 +25,7 @@ export class FirestoreService {
     const q = query(albumsCol, where('artist.name', '==', 'Mike'), limit(3));
     const albumsSnapshot = await getDocs(q);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log(albumsList);
+    console.log("Voici le getAlbums2 : ", albumsList);
     return albumsList;
   }
 
@@ -38,7 +38,7 @@ export class FirestoreService {
     );
     const usersSnapshot = await getDocs(q);
     const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log(usersList);
+    console.log("Voici le getUserByEmail : ", usersList);
     return usersList;
   }
 
@@ -52,7 +52,7 @@ export class FirestoreService {
     );
     const albumsSnapshot = await getDocs(q);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log(albumsList);
+    console.log("Voici le getAlbumBySongTitle : ", albumsList);
     return albumsList;
   }
 
@@ -61,7 +61,7 @@ export class FirestoreService {
     const albumsCol = collection(this.db, 'albums.songs');
     const albumsSnapshot = await getDocs(albumsCol);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log(albumsList);
+    console.log("Voici le getAlbumBySongs : ", albumsList);
     return albumsList;
   }
 
@@ -70,7 +70,7 @@ export class FirestoreService {
     const usersCol = collection(this.db, 'user');
     const usersSnapshot = await getDocs(usersCol);
     const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log(usersList);
+    console.log("Voici le getUser : ", usersList);
     return usersList;
   }
 
@@ -79,7 +79,7 @@ export class FirestoreService {
     const artistCol = collection(this.db, 'artist');
     const artistSnapshot = await getDocs(artistCol);
     const artistList = artistSnapshot.docs.map((doc) => doc.data());
-    console.log(artistList);
+    console.log("Voici le getArtist : ", artistList);
     return artistList;
   }
 
@@ -88,7 +88,7 @@ export class FirestoreService {
     const playlistCol = collection(this.db, 'playlist');
     const playlistSnapshot = await getDocs(playlistCol);
     const playlistList = playlistSnapshot.docs.map((doc) => doc.data());
-    console.log(playlistList);
+    console.log("Voici le getPlaylist : ", playlistList);
     return playlistList;
   }
 
@@ -97,8 +97,45 @@ export class FirestoreService {
     const albumCol = collection(this.db, 'album');
     const albumSnapshot = await getDocs(albumCol);
     const albumList = albumSnapshot.docs.map((doc) => doc.data());
-    console.log(albumList);
+    console.log("Voici le getAlbum : ", albumList);
     return albumList;
+  }
+
+  //get song by album
+  async getSongByAlbum() {
+    const albumCol = collection(this.db, 'album');
+    const albumSnapshot = await getDocs(albumCol);
+    const albumList: any[] = albumSnapshot.docs.map((doc) => doc.data());
+    let songList: any[] = [];
+
+    if (albumList[1]?.songs) {
+      for (let song of albumList[1].songs) {
+        const songSnapshot = await getDocs(song);
+        const songs = songSnapshot.docs.map((doc) => doc.data());
+        songList = songs;
+      }
+    }
+
+    console.log("Voici le getSongByAlbum : ", songList);
+    return songList;
+  }
+
+  //get artist by song
+  async getArtistBySong() {
+    const songCol = collection(this.db, 'song');
+    const songSnapshot = await getDocs(songCol);
+    const songList: any[] = songSnapshot.docs.map((doc) => doc.data());
+    
+    let artistList: any[] = [];
+    if (songList[2]?.artistId) {
+      for (let artist of songList[2].artistId) {
+        const artistSnapshot = await getDocs(artist);
+        const artists = artistSnapshot.docs.map((doc) => doc.data());
+        artistList = artists;
+      }
+    }
+    console.log("Voici le getArtistBySong : ", artistList);
+    return artistList;
   }
 
   //get song
@@ -106,7 +143,7 @@ export class FirestoreService {
     const songCol = collection(this.db, 'song');
     const songSnapshot = await getDocs(songCol);
     const songList = songSnapshot.docs.map((doc) => doc.data());
-    console.log(songList);
+    console.log("Voici le getSong : ", songList);
     return songList;
   }
 
@@ -116,7 +153,7 @@ export class FirestoreService {
     const q = query(songsCol, where('title', '==', 'Ipséité'));
     const albumsSnapshot = await getDocs(q);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log(albumsList);
+    console.log("Voici le getSongByTitle : ", albumsList);
     return albumsList;
   }
 
@@ -125,7 +162,7 @@ export class FirestoreService {
     const q = query(songCol, orderBy('nbEcoutes', 'desc'), limit(3));
     const songSnapshot = await getDocs(q);
     const songList = songSnapshot.docs.map((doc) => doc.data());
-    console.log(songList);
+    console.log("Voici le getSongByNbEcoute : ", songList);
     return songList;
   }
 
@@ -144,7 +181,7 @@ export class FirestoreService {
     const q = query(albumCol, orderBy('createdAt', 'desc'), limit(1));
     const albumSnapshot = await getDocs(q);
     const albumList = albumSnapshot.docs.map((doc) => doc.data());
-    console.log(albumList);
+    console.log("Voici le getLastAlbum : ", albumList);
     return albumList;
   }
 
@@ -154,7 +191,7 @@ export class FirestoreService {
     const q = query(songCol, orderBy('dateEcoute', 'desc'), limit(3));
     const songSnapshot = await getDocs(q);
     const songList = songSnapshot.docs.map((doc) => doc.data());
-    console.log(songList);
+    console.log("Voici le getLastSongHeard : ", songList);
     return songList;
   };
 
