@@ -214,22 +214,44 @@
   text-decoration: none;
 }
 
-.modif-container {
-  position: absolute;
-  z-index: 1;
-  color: white;
-  padding-left: 15%;
-  padding-top: 2%;
+.first-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modif-container {
+    position: absolute;
+    z-index: 3;
+    color: white;
+    padding-left: 6.5%;
+    padding-right: 6.5%;
+    padding-top: 2%;
+
+    .newAlbumInfo{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .arrow-size {
+      font-size: 180%;
+    }
+
+    .cover-album {
+      width: 138px;
+      height: 171px;
+      padding-bottom: 1.2%;
+      border-bottom-right-radius: 2.5%;
+      object-fit: cover;
+    }
+  }
+
+  .backgroundAlbum {
+    z-index: 2;
+  }
 }
 
-.arrow-size {
-  font-size: 180%;
-}
 
-.rec-album-home-width {
-  z-index: 5;
-  width: 90%;
-}
+
+
 
 .pad {
   padding-left: 9%;

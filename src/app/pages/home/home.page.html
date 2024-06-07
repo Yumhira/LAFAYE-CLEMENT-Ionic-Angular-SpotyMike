@@ -11,14 +11,19 @@
   <div class="first-container">
     @for (lastAlbums of lastAlbum; track lastAlbum) {
     <div class="modif-container">
-      <ion-col>
-          <p class="light new-album" (click)="goToAlbum()">New Album</p>
-          <p class="bold hits" (click)="goToAlbum()">{{lastAlbums.title}}</p>
-          <p class="light discover-text" (click)="goToAlbum()">Discover 87 songs!</p>
-          <ion-icon class="arrow-size" (click)="goToAlbum()" name="arrow-forward-outline"></ion-icon>
+    <ion-row>
+      <ion-col class="newAlbumInfo">
+        <p class="light new-album" (click)="goToAlbum()">New Album</p>
+        <p class="bold hits" (click)="goToAlbum()">{{lastAlbums.title}}</p>
+        <p class="light discover-text" (click)="goToAlbum()">Discover 87 songs!</p>
+        <ion-icon class="arrow-size" (click)="goToAlbum()" name="arrow-forward-outline"></ion-icon>
       </ion-col>
+      <ion-col>
+        <img class="cover-album" src="{{lastAlbums.cover}}" (click)="goToAlbum()" alt="Cover Album">
+      </ion-col>
+    </ion-row>
     </div>
-    <img class="rec-album-home-width pad" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
+    <img class="backgroundAlbum" src="../../../assets/formes/rec_album_home.png" alt="Rectangle New Album">
     }
   </div>
 
