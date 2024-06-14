@@ -43,7 +43,12 @@ export class AudioService {
   }
 
   next() {
+    
   }
+
   previous() {}
-  loop() {}
+
+  loop() {
+    this.audio.loop =!this.audio.loop;
+  }
 }
