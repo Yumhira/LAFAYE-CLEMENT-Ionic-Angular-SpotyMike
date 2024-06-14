@@ -79,6 +79,10 @@ export class HomePage {
     this.router.navigate(['/listmusic']);
   }
 
+  goToMusicGenres() {
+    this.router.navigate(['/listgenres']);
+  }
+
   goToAlbum() {
     this.router.navigate(['/album']);
   }
