@@ -1,0 +1,124 @@
+.containerHeaderATD {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7%;
+
+  #title{
+    font-size: 16px;
+    color: black;
+    font-family: 'Manrope', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    font-style: normal;
+    padding-right: 23%;
+  }
+  .iconHeaderATD {
+    font-size: 6vw;
+    color: black;
+  }
+}
+ion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ion-button{
+    width: 80%;
+  }
+  .bt1{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 32%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 13%;
+      width: 35%;
+    }
+  }
+  .bt2{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 28%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 8%;
+      width: 34%;
+    }
+  }
+  .bt3{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 25%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 10%;
+      width: 35%;
+    }
+  }
+  .bt4{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 33%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 10%;
+      width: 35%;
+    }
+  }
+  .bt5{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 21%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 10%;
+      width: 35%;
+    }
+  }
+  .bt6{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 20%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 10%;
+      width: 35%;
+    }
+  }
+  .bt7{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 33%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 10%;
+      width: 36%;
+    }
+  }
+  .bt8{
+    --background: rgb(21,171,144);
+    --background: linear-gradient(90deg, rgba(21,171,144,1) 0%, rgba(8,69,58,1) 100%);
+    p{
+      padding-right: 27%;
+      font-size: 23px;
+    }
+    img{
+      padding-right: 13%;
+      width: 33%;
+    }
+  }
+}

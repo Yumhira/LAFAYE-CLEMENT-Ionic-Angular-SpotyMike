@@ -33,6 +33,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'listgenres',
+    loadComponent: () =>
+      import('./pages/listgenres/listgenres.page').then((m) => m.ListGenresPage),
+  },
+
+  {
     path: 'album',
     loadComponent: () =>
       import('./pages/album/album.page').then((m) => m.AlbumPage),
