@@ -4,69 +4,88 @@
 }
 
 #header{
-  background-color: #15AB90;
-  height: 181px;
   position: relative;
-}
 
-#btnArt{
-  display: flex;
-  justify-content: flex-end;
-}
+    #btnArt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      #beArtist {
+        border-radius: 30px;
+        background-color: white;
+        color: black;
+        padding: 10px;
+        margin: 10px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 10;
+        font-weight: bold;
+      }
 
-#btnArt {
-    #beArtist {
-    border-radius: 30px;
-    background-color: white;
-    color: black;
-    padding: 10px;
-    margin: 10px;
-    font-family: 'Plus Jakarta Sans',sans-serif;;
-    font-size: 10;
-    font-weight: bold;
+      #btnSettings{
+        margin: 10px;
+      }
+    }
+
+    #infoUser {
+      display: flex;
+      justify-content: center;
+      align-items: left;
+      flex-direction: column;
+      margin-left: 13%;
+      margin-top: 7%;
+
+      #firstname {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 30px;
+        font-weight: bolder;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      #lastname {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 24px;
+        font-weight: lighter;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      #memberSince {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: normal;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
 }
 
-#infoUser{
+#formUser{
+  position: absolute;
+  top: 30%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: left;
   flex-direction: column;
-  margin-left: 50px;
-  #firstname{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 36px;
-    font-weight:bolder;
-    color: white;
-    margin-top: 0;
-    margin-bottom: 0;
+
+  ion-label {
+      --color: #AAAAAA;
+      font-weight: semi-bold;
+    }
+
+    ion-input {
+      --color: black;
+    }
+
+  ion-item{
+    --border-bottom: 2px solid #AAAAAA;
+    --padding-bottom: 5%;
   }
-  #lastname{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight:lighter;
-    color: white;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  #memberSince{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 10px;
-    font-weight: normal;
-    color: white;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+
+
 }
 
-#wave{
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-  top: 19%;
-  position: absolute;
-  img{
-    width: 100vw;
-    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
-  }
-}
+

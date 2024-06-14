@@ -11,8 +11,12 @@ import {
   IonTabBar,
   IonIcon,
   IonImg,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from '@ionic/angular/standalone';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { AudioService } from './../../core/services/audio.service';
 
 @Component({
   selector: 'app-tabs',
@@ -20,6 +24,10 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
   imports: [
+    IonCol,
+    IonRow,
+    IonGrid,
+
     IonImg,
     IonIcon,
     IonTabBar,
@@ -37,12 +45,23 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
 export class TabsPage implements OnInit {
   selectedTab: string = 'home';
   private userService = inject(FirestoreService);
-  constructor() {
-  }
-
-  ngOnInit() {}
+  private AudioService = inject(AudioService);
+  constructor() {}
 
   onTabChange(event: any) {
     this.selectedTab = event.tab;
+  }
+
+  ngOnInit() {
+    this.AudioService.load();
+  }
+
+  play() {
+
+    this.AudioService.play();
+  }
+
+  pause() {
+    this.AudioService.pause();
   }
 }

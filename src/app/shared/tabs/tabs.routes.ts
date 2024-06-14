@@ -23,11 +23,24 @@ export const routes: Routes = [
             (m) => m.PlaylistPage
           ),
       },
+
       {
-        path: 'account',
+        path: 'account-head',
         loadComponent: () =>
-          import('../../pages/account/account.page').then((m) => m.AccountPage),
+          import('./../../layouts/account-head/account-head.page').then(
+            (m) => m.AccountHeadPage
+          ),
+        children: [
+          {
+            path: 'account',
+            loadComponent: () =>
+              import('../../pages/account/account.page').then(
+                (m) => m.AccountPage
+              ),
+          },
+        ],
       },
+
       {
         path: '',
         redirectTo: '/tabs/home',

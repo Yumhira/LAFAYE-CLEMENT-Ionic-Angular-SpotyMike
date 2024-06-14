@@ -32,6 +32,8 @@
     "@ionic/angular": "^8.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.1",
     "firebase": "^10.12.2",
     "howler": "^2.2.4",
     "ionicons": "^7.2.1",

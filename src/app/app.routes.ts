@@ -60,5 +60,4 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/search/search.page').then( m => m.SearchPage)
   },
 
-
 ];

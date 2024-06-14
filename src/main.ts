@@ -14,6 +14,7 @@ import { i18nProviders } from './app/core/providers/i18n.providers';
 import { IonicModule } from '@ionic/angular';
 import { LocalStorageService } from './app/core/services/local-storage.service';
 import { FirestoreService } from './app/core/services/firestore.service';
+import { AudioService } from './app/core/services/audio.service';
 
 if (environment.production) {
   enableProdMode();
@@ -28,6 +29,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     importProvidersFrom(IonicModule.forRoot()),
     provideRouter(routes),
+    AudioService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
 });

@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="header-container">
     @for (users of user; track users) {
-      <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + users.firstName + ' ' + users.lastname">
+      <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + users.firstname + ' ' + users.lastname">
     }
     <ion-icon class="search" (click)="goToSearch()" name="search-outline"></ion-icon>
   </div>
