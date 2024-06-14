@@ -1,16 +1,35 @@
+<div >
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="3" (click)="play()">
+        play
+      </ion-col>
+      <ion-col size="3" (click)="pause()">
+        pause
+      </ion-col>
+      <ion-col size="3" (click)="pause()">
+        stop
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
 <ion-tabs (ionTabsDidChange)="onTabChange($event)">
   <ion-tab-bar slot="bottom" class="navbar">
     <ion-tab-button tab="home">
-      <img [src]="selectedTab === 'home' ? 'assets/tabs/in-home.svg' : 'assets/tabs/home.svg'" alt="Home" class="tab-icon">
+      <img [src]="selectedTab === 'home' ? 'assets/tabs/in-home.svg' : 'assets/tabs/home.svg'" alt="Home"
+        class="tab-icon">
     </ion-tab-button>
     <ion-tab-button tab="like">
-      <img [src]="selectedTab === 'like' ? 'assets/tabs/in-like.svg' : 'assets/tabs/like.svg'" alt="like" class="tab-icon">
+      <img [src]="selectedTab === 'like' ? 'assets/tabs/in-like.svg' : 'assets/tabs/like.svg'" alt="like"
+        class="tab-icon">
     </ion-tab-button>
     <ion-tab-button tab="playlist">
-      <img [src]="selectedTab === 'playlist' ? 'assets/tabs/in-playlist.svg' : 'assets/tabs/playlist.svg'" alt="playlist" class="tab-icon">
+      <img [src]="selectedTab === 'playlist' ? 'assets/tabs/in-playlist.svg' : 'assets/tabs/playlist.svg'"
+        alt="playlist" class="tab-icon">
     </ion-tab-button>
-    <ion-tab-button tab="account">
-      <img [src]="selectedTab === 'account' ? 'assets/tabs/in-account.svg' : 'assets/tabs/account.svg'" alt="account" class="tab-icon">
+    <ion-tab-button tab="account-head/account">
+      <img [src]="selectedTab === 'account' ? 'assets/tabs/in-account.svg' : 'assets/tabs/account.svg'" alt="account"
+        class="tab-icon">
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
