@@ -21,6 +21,7 @@ import { PhoneNumberPipe } from 'src/app/core/pipe/phone-number.pipe';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -39,6 +40,7 @@ import { UserService } from 'src/app/core/services/user.service';
     IonCol,
     IonCard,
     AsyncPipe,
+    ReactiveFormsModule,
   ],
 })
 export class HomePage {
