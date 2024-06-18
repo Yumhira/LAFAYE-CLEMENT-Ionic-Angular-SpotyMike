@@ -1,8 +1,7 @@
 <ion-tabs (ionTabsDidChange)="onTabChange($event)">
   <div class="playerNavBar">
-    <ion-row>
 
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="toggleRepeat()">
         @if(!isRepeating){
         <img src="assets/icon/music/repeat.svg" alt="repeat">
         }
@@ -15,10 +14,10 @@
         <img src="assets/icon/music/previous.svg" alt="previous">
       </ion-button>
 
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="togglePlayPause()">
 
         @if(isPlaying){
-        <img src="assets/icon/music/pause.svg" alt="pause">
+        <img src="assets/icon/music/pause.svg" alt="pause" >
         }
         @else(){
         <img src="assets/icon/music/play.svg" alt="play">
@@ -29,7 +28,7 @@
         <img src="assets/icon/music/next.svg" alt="next">
       </ion-button>
 
-      <ion-button color="transparent">
+      <ion-button color="transparent" (click)="toggleShuffle()">
         @if(!isShuffling){
         <img src="assets/icon/music/shuffle.svg" alt="shuffle">
         }
@@ -37,7 +36,8 @@
         <img src="assets/icon/music/clickedShuffle.svg" alt="clickedshuffle">
         }
       </ion-button>
-    </ion-row>
+
+
   </div>
   <ion-tab-bar slot="bottom" class="navbar">
     <ion-tab-button tab="home">

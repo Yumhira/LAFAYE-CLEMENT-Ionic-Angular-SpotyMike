@@ -16,6 +16,7 @@ import {
   IonCol,
   IonRange,
   IonButton,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { AudioService } from './../../core/services/audio.service';
@@ -26,6 +27,7 @@ import { AudioService } from './../../core/services/audio.service';
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
   imports: [
+    IonLabel,
     IonButton,
     IonRange,
     IonCol,
@@ -51,9 +53,13 @@ export class TabsPage implements OnInit {
   private userService = inject(FirestoreService);
   private AudioService = inject(AudioService);
 
-  public isPlaying: boolean = false;
-  public isRepeating: boolean = false;
-  public isShuffling: boolean = false;
+  isPlaying: boolean = false;
+  isRepeating: boolean = false;
+  isShuffling: boolean = false;
+
+  public progress = 0;
+  public currentTime = '0:00';
+  public duration = '0:00';
 
   constructor() {}
 
@@ -65,11 +71,21 @@ export class TabsPage implements OnInit {
     this.AudioService.load();
   }
 
-  play() {
-    this.AudioService.play();
+  toggleRepeat() {
+    this.isRepeating = !this.isRepeating;
+    this.AudioService.loop();
   }
 
-  pause() {
-    this.AudioService.pause();
+  toggleShuffle() {
+    this.isShuffling = !this.isShuffling;
+  }
+
+  togglePlayPause() {
+    if (this.isPlaying) {
+      this.AudioService.pause();
+    } else {
+      this.AudioService.play();
+    }
+    this.isPlaying =!this.isPlaying;
   }
 }
