@@ -52,7 +52,7 @@ export class AccountPage implements OnInit {
   private router = inject(Router);
   private fireStoreService = inject(FirestoreService);
   user: any[] = [];
-  isEditMode: any;
+  isEditMode = false;
 
   form = new FormGroup({
     email: new FormControl(''),
@@ -91,5 +91,13 @@ export class AccountPage implements OnInit {
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
+    //bloque le champ email
+    if (this.isEditMode) {
+      this.form.controls.email.disable();
+      this.form.controls.dateBirth.disable();
+    }else{
+      this.form.controls.email.enable();
+      this.form.controls.dateBirth.enable();
+    }
   }
 }

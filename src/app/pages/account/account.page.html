@@ -16,39 +16,46 @@
   <form [formGroup]="form">
     @for (users of user; track users){
 
-    <ion-item lines="full" class="items">
-      <ion-label position="stacked">Email*</ion-label>
+      <ion-label>Email*</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="email"></ion-input>
-    </ion-item>
 
-    <ion-item>
       <ion-label position="stacked">Prénom*</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="firstname"></ion-input>
-    </ion-item>
 
-    <ion-item>
       <ion-label position="stacked">Nom*</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="lastname"></ion-input>
-    </ion-item>
 
-    <ion-item>
       <ion-label position="stacked">Téléphone</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="tel" placeholder="Champ vide"></ion-input>
-    </ion-item>
 
-    <ion-item>
       <ion-label position="stacked">Date de naissance*</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="dateBirth"></ion-input>
-    </ion-item>
 
-    <ion-item>
       <ion-label position="stacked">Sexe</ion-label>
       <ion-input [readonly]="!isEditMode" formControlName="sexe" placeholder="Champ vide"></ion-input>
-    </ion-item>
 
-    <ion-button expand="full" (click)="toggleEditMode()">
-      {{ isEditMode ? 'Enregistrer' : 'Modifier' }}
-    </ion-button>
+      <div class="btnEdit">
+        @if (!isEditMode) {
+        <ion-button class="edit" expand="block" color="transparent" (click)="toggleEditMode()">
+          MODIFIER LE PROFIL
+        </ion-button>
+        }@else{
+          <div class="onEdit">
+            <ion-button class="valider" color="transparent">
+              VALIDER
+            </ion-button>
+
+            <ion-button class="annuler" color="transparent" (click)="toggleEditMode()">
+              ANNULER
+            </ion-button>
+          </div>
+
+        }
+      </div>
+
+
   }
   </form>
+
+
 </div>
