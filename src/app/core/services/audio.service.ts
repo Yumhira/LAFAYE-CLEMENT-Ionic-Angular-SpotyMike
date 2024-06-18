@@ -14,15 +14,18 @@ export class AudioService {
   private audio: HTMLAudioElement;
   private playlist$: BehaviorSubject<IPlaylistsMusic[]>;
   private isPlay$: BehaviorSubject<boolean>;
+  private currentTrackIndex: number;
 
   constructor() {
     this.audio = new Audio();
     this.playlist$ = new BehaviorSubject<IPlaylistsMusic[]>([]);
     this.isPlay$ = new BehaviorSubject<boolean>(false);
+    this.currentTrackIndex = 0;
   }
 
-  load(id: string = ""){
+  load(id: string = '') {
     this.audio = new Audio('url/${id}');
+    //this.audio = new Audio('assets/audio/testSong.mp3');
     this.audio.load();
   }
 
@@ -43,7 +46,18 @@ export class AudioService {
   }
 
   next() {
+
   }
-  previous() {}
-  loop() {}
+
+  previous() {
+   
+  }
+
+  loop() {
+    this.audio.loop =!this.audio.loop;
+  }
+
+  shuffle() {
+
+  }
 }

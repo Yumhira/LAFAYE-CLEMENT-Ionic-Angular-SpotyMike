@@ -1,5 +1,17 @@
+.playerNavBar {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 8%;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  background: #D9D9D9;
+}
+
 .navbar {
-    padding-bottom: 3%;
-    padding-top: 3%;
-    box-shadow: 0px 0px 2px grey;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  box-shadow: 0px 0px 2px grey;
 }

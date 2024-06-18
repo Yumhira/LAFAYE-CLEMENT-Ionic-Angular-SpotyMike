@@ -1,19 +1,44 @@
-<div >
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="3" (click)="play()">
-        play
-      </ion-col>
-      <ion-col size="3" (click)="pause()">
-        pause
-      </ion-col>
-      <ion-col size="3" (click)="pause()">
-        stop
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</div>
 <ion-tabs (ionTabsDidChange)="onTabChange($event)">
+  <div class="playerNavBar">
+
+      <ion-button color="transparent" (click)="toggleRepeat()">
+        @if(!isRepeating){
+        <img src="assets/icon/music/repeat.svg" alt="repeat">
+        }
+        @else(){
+        <img src="assets/icon/music/clickedRepeat.svg" alt="clickedRepeat">
+        }
+      </ion-button>
+
+      <ion-button color="transparent">
+        <img src="assets/icon/music/previous.svg" alt="previous">
+      </ion-button>
+
+      <ion-button color="transparent" (click)="togglePlayPause()">
+
+        @if(isPlaying){
+        <img src="assets/icon/music/pause.svg" alt="pause" >
+        }
+        @else(){
+        <img src="assets/icon/music/play.svg" alt="play">
+        }
+      </ion-button>
+
+      <ion-button color="transparent">
+        <img src="assets/icon/music/next.svg" alt="next">
+      </ion-button>
+
+      <ion-button color="transparent" (click)="toggleShuffle()">
+        @if(!isShuffling){
+        <img src="assets/icon/music/shuffle.svg" alt="shuffle">
+        }
+        @else(){
+        <img src="assets/icon/music/clickedShuffle.svg" alt="clickedshuffle">
+        }
+      </ion-button>
+
+
+  </div>
   <ion-tab-bar slot="bottom" class="navbar">
     <ion-tab-button tab="home">
       <img [src]="selectedTab === 'home' ? 'assets/tabs/in-home.svg' : 'assets/tabs/home.svg'" alt="Home"
