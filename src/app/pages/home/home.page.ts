@@ -22,13 +22,20 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { ISong } from 'src/app/core/interfaces/song';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store/app.state';
+import { addSong, loadSong } from 'src/app/core/store/action/song.action';
+import { selectStoreList } from 'src/app/core/store/selector/song.selector';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    IonIcon,
+  IonIcon,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -44,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
 })
 export class HomePage {
+  song$: Observable<ISong[]> = new Observable<ISong[]>();
   users: IUserTest[] = [];
   album: any[] = [];
   albumsong: any;
@@ -57,6 +65,7 @@ export class HomePage {
   private userService = inject(UserService);
   private fireStoreService = inject(FirestoreService);
   private local = inject(LocalStorageService);
+  store = inject(Store<AppState>);
 
   ngOnInit() {
     this.getAlbum();
@@ -67,6 +76,19 @@ export class HomePage {
     this.getArtistByNbLikes();
     this.getLastSongHeard();
     this.getArtistById('eiT0esFN8xYFDPNBwox1');
+    this.store.dispatch(loadSong());
+    const song: ISong = {
+      id: 'oijvvoij',
+      title: 'edzedzd',
+      cover: '',
+      artistId: [],
+      albumId: [],
+      genre: '',
+      url: '',
+      visibility: false
+    };
+    this.store.dispatch(addSong({ songs: [song, song] }));
+    this.song$ = this.store.select(selectStoreList);
   }
 
   constructor(private router: Router) {
@@ -106,7 +128,7 @@ export class HomePage {
   }
 
   async getUserByEmail(){
-    this.user = await this.fireStoreService.getUserByName();
+    this.user = await this.fireStoreService.getUserByEmail();
   }
 
   async getPlaylist() {

@@ -15,6 +15,9 @@ import { IonicModule } from '@ionic/angular';
 import { LocalStorageService } from './app/core/services/local-storage.service';
 import { FirestoreService } from './app/core/services/firestore.service';
 import { AudioService } from './app/core/services/audio.service';
+import { provideStore } from '@ngrx/store';
+import { songReducer } from './app/core/store/reducer/song.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 if (environment.production) {
   enableProdMode();
@@ -27,7 +30,13 @@ bootstrapApplication(AppComponent, {
     FirestoreService,
     provideHttpClient(),
     provideIonicAngular(),
+    provideStore(songReducer),
     importProvidersFrom(IonicModule.forRoot()),
+    importProvidersFrom(
+      StoreDevtoolsModule.instrument({
+        maxAge: 50,
+        logOnly: environment.production
+    })),
     provideRouter(routes),
     AudioService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
