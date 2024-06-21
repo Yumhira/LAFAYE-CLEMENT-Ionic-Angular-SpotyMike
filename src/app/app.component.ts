@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IonApp, IonRouterOutlet, IonIcon, IonTabBar } from '@ionic/angular/standalone';
 import { TranslateService } from '@ngx-translate/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

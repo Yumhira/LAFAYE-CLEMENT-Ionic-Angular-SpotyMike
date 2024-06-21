@@ -5,7 +5,7 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
-
+import { register as registerSwiperElements } from 'swiper/element/bundle';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
@@ -18,10 +18,14 @@ import { AudioService } from './app/core/services/audio.service';
 import { provideStore } from '@ngrx/store';
 import { songReducer } from './app/core/store/reducer/song.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { UtilisateurComponent } from './app/pages/account/fragments/utilisateur/utilisateur.component';
+import { ArtisteComponent } from './app/pages/account/fragments/artiste/artiste.component';
 
 if (environment.production) {
   enableProdMode();
 }
+
+registerSwiperElements();
 
 bootstrapApplication(AppComponent, {
   providers: [

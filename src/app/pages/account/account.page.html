@@ -1,54 +1,35 @@
-<div id="header">
-    <div id="btnArt">
-      <button id="beArtist" (click)="goToLogin()">Devenir artiste</button>
-      <img id="btnSettings" src="assets/icon/settings.svg" alt="">
-    </div>
-    <div id="infoUser">
-      @for (users of user; track users){
-        <p id="firstname">{{users.firstname}}</p>
-        <p id="lastname">{{users.lastname}}</p>
-        <p id="memberSince">Membre depuis le {{users.createdAt.toDate() | date:'dd/MM/yyyy'}}</p>
-      }
-    </div>
-</div>
+<div class="page">
 
-<div id="formUser">
-  <form [formGroup]="form">
-    @for (users of user; track users){
+  <div class="header-btn">
+    @for(users of user; track user){
+    @if(!users.isArtist){
+      <div class="isNotArtist">
+        <button class="beArtist" (click)="goToLogin()">Devenir artiste</button>
+        <img class="btnSettings" src="assets/icon/settings.svg" alt="">
+      </div>
+    }@else{
+      <div class="isArtist">
+        <ion-segment class="segment" [(ngModel)]="segment" mode="md">
+          <ion-segment-button class="user" value="Utilisateur">
+            <ion-label>Utilisateur</ion-label>
+          </ion-segment-button>
 
-    <ion-item lines="full" class="items">
-      <ion-label position="stacked">Email*</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Prénom*</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="firstname"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Nom*</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="lastname"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Téléphone</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="tel" placeholder="Champ vide"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Date de naissance*</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="dateBirth"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Sexe</ion-label>
-      <ion-input [readonly]="!isEditMode" formControlName="sexe" placeholder="Champ vide"></ion-input>
-    </ion-item>
-
-    <ion-button expand="full" (click)="toggleEditMode()">
-      {{ isEditMode ? 'Enregistrer' : 'Modifier' }}
-    </ion-button>
+          <ion-segment-button value="Artiste">
+            <ion-label>Artiste</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <img class="btnSettings" src="assets/icon/settings.svg" alt="">
+      </div>
+    }
   }
-  </form>
+  </div>
+
+  @if(segment === 'Utilisateur'){
+    <app-utilisateur></app-utilisateur>
+  }
+
+  @if(segment === 'Artiste'){
+    <app-artiste></app-artiste>
+  }
+
 </div>

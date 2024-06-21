@@ -1,0 +1,91 @@
+#infoUser {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  margin-left: 13%;
+  margin-top: 7%;
+
+  #firstname {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #lastname {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    font-weight: lighter;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #memberSince {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+
+#formUser {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 22%;
+
+  ion-label {
+    color: #AAAAAA;
+    font-weight: semi-bold;
+    font-size: 12px;
+  }
+
+  ion-input {
+    color: black;
+    border-bottom: 2px solid #AAAAAA;
+    font-size: 16px;
+    margin-bottom: 3%;
+  }
+
+  .btnEdit {
+    .edit {
+      background-color: #15AB90;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 30px;
+    }
+
+    .onEdit {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row;
+
+      .valider {
+        background-color: #15AB90;
+        border-radius: 30px;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .annuler {
+        background-color: #B43B3B;
+        border-radius: 30px;
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+    }
+
+  }
+
+}

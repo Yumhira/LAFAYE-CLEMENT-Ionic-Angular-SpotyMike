@@ -50,7 +50,7 @@ export class AudioService {
   }
 
   previous() {
-   
+
   }
 
   loop() {
