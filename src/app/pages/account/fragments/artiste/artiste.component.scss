@@ -1,0 +1,53 @@
+.infoArtist{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: 8%;
+  align-items: center;
+  padding-top: 5%;
+  .avatar{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+  }
+
+  .info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 5%;
+    #fullname{
+      font-size: 30px;
+      font-weight: bolder;
+      color: white;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    #follower{
+      font-size: 18px;
+        font-weight: normal;
+        color: white;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #artistSince {
+      font-size: 13px;
+      font-weight: normal;
+      color: white;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.segmentArtist{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+}

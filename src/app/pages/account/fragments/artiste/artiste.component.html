@@ -1,3 +1,24 @@
-<p>
-  artiste works!
-</p>
+<div class="infoArtist">
+  <img class="avatar" src="https://picsum.photos/id/1/200/300" alt="profile">
+  <div class="info">
+    <p id="fullname">Nom Artiste</p>
+    <p id="follower">nb abbonée</p>
+    <p id="artistSince">artist depuis</p>
+  </div>
+</div>
+
+  <ion-segment class="segmentArtist" [(ngModel)]="segmentArtist" mode="md">
+    <ion-segment-button class="compte" value="Compte">
+      <ion-label>Compte</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Sons">
+      <ion-label>Sons</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Albums">
+      <ion-label>Albums</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  
