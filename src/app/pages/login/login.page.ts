@@ -99,4 +99,8 @@ export class LoginPage implements OnInit {
     });
     modal.present();
   }
+
+  async redirectToRegister() {
+    this.router.navigate(['/auth/register']);
+  }
 }

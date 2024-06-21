@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ion-list class="bg-transparent">
+    <ion-item>
+      <ion-input type="email" formControlName="email" name="email" label="Email" labelPlacement="floating"
+        placeholder="mike@mike.mike"></ion-input>
+    </ion-item>
+    @if(form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)){
+    <div>
+      @if(form.get('email')?.errors?.['required'] ){
+      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.email_required'|translate }}</p>
+      }
+      @else if(form.get('email')?.errors?.['pattern'] ){
+      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.email_format'|translate }}</p>
+      }
+    </div>
+    }
+    <ion-item>
+      <ion-input type="password" formControlName="password" name="password" label="Password" labelPlacement="floating"
+        placeholder="••••••••••••••"></ion-input>
+    </ion-item>
+    @if(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)){
+    <div>
+      @if(form.get('password')?.errors?.['required'] ){
+      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_required'|translate }}</p>
+      }
+      @else if(form.get('password')?.errors?.['pattern'] ){
+      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_format'|translate }}</p>
+      }
+      @else if(form.get('password')?.errors?.['minlength'] ){
+      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_minSize'|translate }}</p>
+      }
+    </div>
+    }
+  </ion-list>
+  <br>
+  @if(error){
+  <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
+  }
+  <br>
+  <ion-button type="submit" (click)="redirectToLogin()" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
+  <a (click)="redirectToLogin()">Déjà un compte ?</a>
+</form>

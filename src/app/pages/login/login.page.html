@@ -31,6 +31,7 @@
       }
     </div>
     }
+    <a (click)="onPasswordLostModal()">Mot de passe oublié ?</a>
   </ion-list>
   <br>
   @if(error){
@@ -38,5 +39,5 @@
   }
   <br>
   <ion-button type="submit" (click)="goToHome()" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
-  <a (click)="onPasswordLostModal()">Pas encore inscrit ?</a>
+  <a (click)="redirectToRegister()">Pas encore inscrit ?</a>
 </form>
