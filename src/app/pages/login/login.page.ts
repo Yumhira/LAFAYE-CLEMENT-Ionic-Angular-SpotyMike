@@ -101,6 +101,6 @@ export class LoginPage implements OnInit {
   }
 
   async redirectToRegister() {
-    this.router.navigate(['/auth/register']);
+    this.router.navigate(['/auth/layoutRegister/register']);
   }
 }

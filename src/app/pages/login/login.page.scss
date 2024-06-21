@@ -20,6 +20,12 @@ app-login{
     }
     .bg-transparent {
       background: transparent;
+      a {
+        display: flex;
+        justify-content: start;
+        padding-top: 2%;
+        padding-left: 4.5%;
+      }
     }
   
   }
