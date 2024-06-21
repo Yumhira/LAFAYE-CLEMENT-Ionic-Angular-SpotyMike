@@ -1,7 +1,29 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <ion-list class="bg-transparent">
     <ion-item>
-      <ion-input type="email" formControlName="email" name="email" label="Email" labelPlacement="floating"
+      <ion-input type="text" formControlName="firstname" name="firstname" label="Firstname*" labelPlacement="floating"
+        placeholder="Mike"></ion-input>
+    </ion-item>
+    @if(form.get('firstname')?.invalid && (form.get('firstname')?.dirty || form.get('firstname')?.touched)){
+      <div>
+        @if(form.get('firstname')?.errors?.['required'] ){
+        <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.firstname_required'|translate }}</p>
+        }
+      </div>
+    }
+    <ion-item>
+      <ion-input type="text" formControlName="lastname" name="lastname" label="Lastname*" labelPlacement="floating"
+        placeholder="Sylvestre"></ion-input>
+    </ion-item>
+    @if(form.get('lastname')?.invalid && (form.get('lastname')?.dirty || form.get('lastname')?.touched)){
+      <div>
+        @if(form.get('lastname')?.errors?.['required'] ){
+        <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.lastname_required'|translate }}</p>
+        }
+      </div>
+    }
+    <ion-item>
+      <ion-input type="email" formControlName="email" name="email" label="Email*" labelPlacement="floating"
         placeholder="mike@mike.mike"></ion-input>
     </ion-item>
     @if(form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)){
@@ -15,7 +37,7 @@
     </div>
     }
     <ion-item>
-      <ion-input type="password" formControlName="password" name="password" label="Password" labelPlacement="floating"
+      <ion-input type="password" formControlName="password" name="password" label="Password*" labelPlacement="floating"
         placeholder="••••••••••••••"></ion-input>
     </ion-item>
     @if(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)){
@@ -31,12 +53,37 @@
       }
     </div>
     }
+    <ion-item>
+      <ion-input type="tel" formControlName="tel" name="tel" label="Tel" labelPlacement="floating"
+        placeholder="06 12 37 12 22"></ion-input>
+    </ion-item>
+    <div class="row">
+      <ion-col class="column">
+        <ion-item>
+          <ion-input type="date" class="birthdate" formControlName="birthdate" name="birthdate" label="Date de naissance*" labelPlacement="floating"></ion-input>
+        </ion-item>
+        @if(form.get('birthdate')?.invalid && (form.get('birthdate')?.dirty || form.get('birthdate')?.touched)){
+          <div>
+            @if(form.get('birthdate')?.errors?.['required'] ){
+            <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.birthdate_required'|translate }}</p>
+            }
+          </div>
+        }
+      </ion-col>
+      <ion-item>
+        <ion-label position="stacked">Sexe</ion-label>
+        <ion-select aria-label="Sexe" interface="popover" formControlName="sexe" placeholder="Homme">
+          <ion-select-option value="Homme">Homme</ion-select-option>
+          <ion-select-option value="Femme">Femme</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
   </ion-list>
   <br>
   @if(error){
   <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
   }
   <br>
-  <ion-button type="submit" (click)="redirectToLogin()" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
+  <ion-button type="submit" (click)="redirectToLogin()" [disabled]="!form.valid && !submitForm">Inscription</ion-button>
   <a (click)="redirectToLogin()">Déjà un compte ?</a>
 </form>

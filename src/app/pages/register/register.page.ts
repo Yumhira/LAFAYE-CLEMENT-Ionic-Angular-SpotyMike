@@ -17,6 +17,10 @@ import {
   IonInput,
   IonButton,
   IonIcon,
+  IonLabel,
+  IonSelect,
+  IonCol,
+  IonSelectOption
 } from '@ionic/angular/standalone';
 import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,9 +38,13 @@ import { Router } from '@angular/router';
     IonTitle,
     IonInput,
     IonHeader,
+    IonSelect,
+    IonLabel,
     IonButton,
     IonToolbar,
+    IonCol,
     IonContent,
+    IonSelectOption,
     FormsModule,
     CommonModule,
     TranslateModule,
@@ -51,6 +59,12 @@ export class RegisterPage implements OnInit {
   private serviceAuth = inject(AuthentificationService);
 
   form: FormGroup = new FormGroup({
+    firstname: new FormControl('', [
+      Validators.required
+    ]),
+    lastname: new FormControl('', [
+      Validators.required
+    ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
@@ -58,6 +72,9 @@ export class RegisterPage implements OnInit {
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
+    ]),
+    birthdate: new FormControl('', [
+      Validators.required
     ]),
   });
   constructor() {}
@@ -74,7 +91,7 @@ export class RegisterPage implements OnInit {
           if (data?.error) {
             // this.error = data?.message;
           } else {
-            this.router.navigateByUrl('/auth/login');
+            this.router.navigateByUrl('/auth/layoutLogin/login');
           }
           console.log(data);
         });
@@ -82,6 +99,6 @@ export class RegisterPage implements OnInit {
   }
 
   async redirectToLogin() {
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/auth/layoutLogin/login']);
   }
 }

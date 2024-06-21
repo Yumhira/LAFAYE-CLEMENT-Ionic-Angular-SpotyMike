@@ -1,0 +1,44 @@
+app-login{
+    width: 100%;
+  }
+  form{
+    padding: 0 5%;
+    text-align: center;
+    ion-list{
+      padding-bottom: 5%;
+      ion-item{
+        --background: transparent;
+      }
+    }
+    ion-button{
+    --color: white;
+      --background: #15AB90;
+    }
+    a{
+      display: block;
+      color: #15AB90;
+    }
+    .bg-transparent {
+      background: transparent;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .column {
+        padding-top: 5%;
+        ion-item{
+            width: 75%;
+        }
+        p{
+            display: flex;
+            width: 80%;
+            padding-right: 5%;
+        }
+    }
+  
+  }
+  

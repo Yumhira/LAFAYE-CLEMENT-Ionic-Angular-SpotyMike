@@ -4,6 +4,9 @@
         "email_format": "Format email invalid",
         "password_required": "Password required",
         "password_format": "Format password invalid",
-        "password_minSize": "Size password invalid"
+        "password_minSize": "Size password invalid",
+        "firstname_required": "Firstname required",
+        "lastname_required": "Lastname required",
+        "birthdate_required": "Birthdate required"
     }
 }
