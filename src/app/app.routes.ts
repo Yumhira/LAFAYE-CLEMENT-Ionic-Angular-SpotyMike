@@ -2,22 +2,34 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    // Delete
     path: 'auth',
-    loadComponent: () =>
-      import('./layouts/auth/auth.page').then((m) => m.AuthPage),
     children: [
       {
-        path: 'login',
+        path: 'layoutLogin',
         loadComponent: () =>
-          import('./pages/login/login.page').then((m) => m.LoginPage),
-      },
+          import('./layouts/auth/auth.page').then((m) => m.AuthPage),
+        children: [
+          {
+            path: 'login',
+            loadComponent: () =>
+              import('./pages/login/login.page').then((m) => m.LoginPage)
+          }
+        ]
+      }
+      ,
       {
-        path: 'register',
+        path: 'layoutRegister',
         loadComponent: () =>
-          import('./pages/register/register.page').then((m) => m.RegisterPage),
-      },
-    ],
+          import('./layouts/register/register.page').then((m) => m.RegisterLayoutPage),
+        children: [
+          {
+            path: 'register',
+            loadComponent: () =>
+              import('./pages/register/register.page').then((m) => m.RegisterPage),
+          },
+        ],
+      }
+    ]
   },
 
   {
