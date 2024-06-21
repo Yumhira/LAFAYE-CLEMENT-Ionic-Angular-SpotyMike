@@ -21,7 +21,26 @@ export class AuthentificationService {
       })
       .pipe(catchError(this.errorRequest));
   }
-  register() {}
+  register(firstname: string, lastname: string, email: string, password: string, birthdate: Date, tel?: string, sexe?: boolean) {
+    return this.http
+      .post(`${this.route}/auth/register`, {
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password: password,
+        birthdate: birthdate,
+        tel: tel,
+        sexe: sexe
+      })
+      .pipe(catchError(this.errorRequest));
+  }
+  passwordLost(password: string) {
+    return this.http
+      .post(`${this.route}/auth/login`, {
+        password: password,
+      })
+      .pipe(catchError(this.errorRequest));
+  }
 
   errorRequest(httpError: HttpErrorResponse): Observable<ILoginRequestError> {
     return of({ ...httpError.error, error: true });
