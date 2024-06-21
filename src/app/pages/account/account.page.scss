@@ -3,123 +3,81 @@
   padding: 0;
 }
 
-.page{
+.page {
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 100%;
   height: 100%;
-}
 
-#header {
-  width: 100%;
-  margin-bottom: 25%;
-  #btnArt {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    #beArtist {
-      border-radius: 30px;
-      background-color: white;
-      color: black;
-      padding: 10px;
-      margin: 10px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10;
-      font-weight: bold;
-    }
-
-    #btnSettings {
-      margin: 10px;
-    }
-  }
-
-  #infoUser {
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
-    margin-left: 13%;
-    margin-top: 7%;
-
-    #firstname {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 30px;
-      font-weight: bolder;
-      color: white;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    #lastname {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 24px;
-      font-weight: lighter;
-      color: white;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    #memberSince {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13px;
-      font-weight: normal;
-      color: white;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
-#formUser {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
-
-  ion-label {
-    color: #AAAAAA;
-    font-weight: semi-bold;
-    font-size: 12px;
-  }
-
-  ion-input {
-    color: black;
-    border-bottom: 2px solid #AAAAAA;
-    font-size: 16px;
-    margin-bottom: 3%;
-  }
-
-  .btnEdit {
-    .edit {
-      background-color: #15AB90;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 30px;
-    }
-    .onEdit{
+  .header-btn {
+      width: 100%;
       display: flex;
-      justify-content: space-evenly;
       flex-direction: row;
 
-      .valider{
-        background-color: #15AB90;
-        border-radius: 30px;
-        padding-left: 5%;
-        padding-right: 5%;
+      .isNotArtist{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        .beArtist {
+            border-radius: 30px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            margin: 10px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 10;
+            font-weight: bold;
+          }
+        .btnSettings {
+            margin: 10px;
+          }
       }
-      .annuler{
-        background-color: #B43B3B;
-        border-radius: 30px;
-        padding-left: 5%;
-        padding-right: 5%;
+
+      .isArtist{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .segment{
+          width: 50%;
+          align-items: center;
+
+          ion-segment{
+            height: 50%;
+          }
+
+          ion-segment-button {
+              --indicator-color: white;
+              width: 100%;
+
+              font-size: small;
+              --padding-start: 0px;
+              --padding-end: 0px;
+              --padding-bottom: 0px;
+              --margin-start: 0px;
+            }
+
+            /* Material Design styles */
+            ion-segment-button.md {
+              --color: white;
+
+              --color-checked: white;
+              --indicator-height: 2px;
+              --padding-bottom: 0;
+            }
+        }
+
+        .btnSettings {
+          position: absolute;
+          right: 0;
+          margin: 10px;
+        }
       }
+
     }
-
-  }
-
 }
+
+
