@@ -130,3 +130,61 @@
     }
   }
 }
+
+.Songs{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  margin-bottom: 30%;
+
+  .listSongs{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5%;
+    .cover{
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .infoSong{
+      display: flex;
+      flex-direction: column;
+      margin-left: 3%;
+      width: 100%;
+      p{
+        font-size: 18px;
+        margin: 0;
+      }
+      #Title {
+          font-weight: bold;
+          padding-bottom: 5px;
+        }
+      #Artist{
+        font-weight: light;
+        padding-top: 5px;
+      }
+
+      .visible{
+        width: 100%;
+        right: 0;
+      }
+    }
+
+  }
+
+  .addSongs{
+    width: 13%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 2%;
+    margin-bottom: 2%;
+  }
+}
