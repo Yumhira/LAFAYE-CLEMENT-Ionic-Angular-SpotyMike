@@ -188,3 +188,49 @@
     margin-bottom: 2%;
   }
 }
+
+.album{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  margin-bottom: 33%;
+
+  .listAlbum{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .infoAlbum{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .cover {
+          width: 156px;
+          height: 156px;
+          border-radius: 16.36px;
+          margin-top: 7%;
+        }
+      #Title{
+        font-weight: bold;
+        margin: 0;
+        padding-top: 2%;
+      }
+    }
+
+  }
+
+    .addAlbums {
+      width: 13%;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin-right: 2%;
+      margin-bottom: 2%;
+    }
+}
