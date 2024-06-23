@@ -47,7 +47,86 @@
 .segmentArtist{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding-top: 10%;
+
+  ion-segment-button {
+      --indicator-color: #15AB90;
+      width: 100%;
+
+      font-size: small;
+      --padding-start: 0px;
+      --padding-end: 0px;
+      --padding-bottom: 0px;
+      --margin-start: 0px;
+    }
+
+    /* Material Design styles */
+    ion-segment-button.md {
+      --color: gray;
+      font-weight: bold;
+      font-size: 17px;
+      --color-checked: black;
+      --indicator-height: 2.2px;
+      --padding-bottom: 0;
+    }
+
+}
+
+.formArtist {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+
+  ion-label {
+    color: #AAAAAA;
+    font-weight: semi-bold;
+    font-size: 12px;
+  }
+
+  ion-input {
+    color: black;
+    border-bottom: 2px solid #AAAAAA;
+    font-size: 16px;
+    margin-bottom: 3%;
+  }
+
+  ion-textarea{
+    border: 2px solid #AAAAAA;
+    border-radius: 8px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+  }
+
+  .btnEdit {
+    padding-top: 2%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+
+    .edit{
+      background-color: #15AB90;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 30px;
+      width: 40%;
+    }
+
+    .desac{
+      background-color: red;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 30px;
+      width: 40%;
+    }
+  }
 }

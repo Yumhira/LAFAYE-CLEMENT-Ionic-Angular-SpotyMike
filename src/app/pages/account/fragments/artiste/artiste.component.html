@@ -8,6 +8,7 @@
 </div>
 
   <ion-segment class="segmentArtist" [(ngModel)]="segmentArtist" mode="md">
+
     <ion-segment-button class="compte" value="Compte">
       <ion-label>Compte</ion-label>
     </ion-segment-button>
@@ -19,6 +20,50 @@
     <ion-segment-button value="Albums">
       <ion-label>Albums</ion-label>
     </ion-segment-button>
+
   </ion-segment>
 
-  
+  @if(segmentArtist === "Compte"){
+    <div class="formArtist">
+      <form [formGroup]="form">
+        <ion-label>Nom d'artist*</ion-label>
+        <ion-input [readonly]="!isEditMode" formControlName="fullname"></ion-input>
+
+        <ion-label>Label*</ion-label>
+        <ion-input [readonly]="!isEditMode" formControlName="label"></ion-input>
+
+        <ion-label>Description</ion-label>
+        <ion-textarea counter="true" maxlength="500" auto-grow="true" formControlName="Description" [readonly]="!isEditMode" fill="outline"></ion-textarea>
+
+        <div class="btnEdit">
+          @if (!isEditMode) {
+          <ion-button class="edit" (click)="toggleEditMode()" color="transparent">
+            MODIFIER
+          </ion-button>
+
+          <ion-button class="desac" color="transparent">
+            DESACTIVER
+          </ion-button>
+          }@else{
+            <ion-button class="edit" (click)="toggleEditMode()" color="transparent">
+              VALIDER
+            </ion-button>
+
+            <ion-button class="desac" color="transparent">
+              ANNULER
+            </ion-button>
+          }
+        </div>
+      </form>
+    </div>
+  }
+
+  @if(segmentArtist === "Sons"){
+
+  }
+
+  @if(segmentArtist === "Albums"){
+
+  }
+
+
