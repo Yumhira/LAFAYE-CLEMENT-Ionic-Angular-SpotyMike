@@ -26,7 +26,11 @@
     <ion-input [readonly]="!isEditMode" formControlName="dateBirth"></ion-input>
 
     <ion-label position="stacked">Sexe</ion-label>
-    <ion-input [readonly]="!isEditMode" formControlName="sexe" placeholder="Champ vide"></ion-input>
+      
+    <ion-select aria-label="Sexe" interface="popover"  formControlName="sexe" placeholder="Champ vide">
+      <ion-select-option value="Homme">Homme</ion-select-option>
+      <ion-select-option value="Femme">Femme</ion-select-option>
+    </ion-select>
 
     <div class="btnEdit">
       @if (!isEditMode) {

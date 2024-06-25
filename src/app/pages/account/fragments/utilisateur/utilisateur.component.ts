@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonLabel, IonInput, IonButton } from "@ionic/angular/standalone";
+import { IonLabel, IonInput, IonButton, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import {
   FormControl,
@@ -22,6 +22,9 @@ import { format } from 'date-fns';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
+    IonSelect,
+    IonSelectOption,
   ],
 })
 export class UtilisateurComponent implements OnInit {
@@ -52,13 +55,15 @@ export class UtilisateurComponent implements OnInit {
         lastname: this.user[0].lastname,
         tel: this.user[0].tel,
         dateBirth: format(this.user[0].dateBirth.toDate(), 'dd/MM/yyyy'),
-        sexe: this.user[0].sexe,
+        sexe: this.user[0].sexe ? 'Homme' : 'Femme',
       });
     });
   }
 
-  async getUserByEmail() {
-    this.user = await this.fireStoreService.getUserByName();
+  getUserByEmail() {
+    this.fireStoreService.getUserByEmail().then((data) => {
+      this.user = data;
+    });
   }
 
   toggleEditMode() {
