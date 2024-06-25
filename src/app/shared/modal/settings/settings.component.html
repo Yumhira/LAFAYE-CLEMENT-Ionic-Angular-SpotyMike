@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true">
+  <div class="header-container">
+    <div class="background">
+      <div id="header">
+        <ion-icon (click)="backClicked()" class="back" name="chevron-back-outline"></ion-icon>
+      </div>
+      <div id="wave">
+        <img src="assets/formes/waveAccount.svg" alt="">
+      </div>
+    </div>
+
+
+    <div id="infoUser">
+      @for (users of user; track user){
+      <p id="firstname">{{users.firstname}}</p>
+      <p id="lastname">{{users.lastname}}</p>
+      <p id="memberSince">Membre depuis le {{users.createdAt.toDate() | date:'dd/MM/yyyy'}}</p>
+      }
+    </div>
+
+  </div>
+
+
+  <div class="content">
+    <div class="content-container">
+      <p>Notificatons</p>
+      <ion-icon class="forward" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div class="content-container">
+      <p>Langues</p>
+      <ion-icon class="forward" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div class="content-container">
+      <p>Conditions générales</p>
+      <ion-icon class="forward" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+  </div>
+
+  <div class="btn">
+    <ion-button class="desactiver" color="transparent">Désactiver</ion-button>
+  </div>
+</ion-content>

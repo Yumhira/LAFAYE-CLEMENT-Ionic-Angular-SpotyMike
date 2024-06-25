@@ -29,7 +29,8 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { format } from 'date-fns';
 import { UtilisateurComponent } from './fragments/utilisateur/utilisateur.component';
 import { ArtisteComponent } from './fragments/artiste/artiste.component';
-
+import { ModalController } from '@ionic/angular';
+import { SettingsComponent } from 'src/app/shared/modal/settings/settings.component';
 
 @Component({
   selector: 'app-account',
@@ -61,6 +62,7 @@ import { ArtisteComponent } from './fragments/artiste/artiste.component';
 export class AccountPage implements OnInit {
   private router = inject(Router);
   private fireStoreService = inject(FirestoreService);
+  private modalCtl = inject(ModalController);
 
   user: any[] = [];
   segment = 'Utilisateur';
@@ -78,8 +80,12 @@ export class AccountPage implements OnInit {
     this.user = await this.fireStoreService.getUserByEmail();
   }
 
-
-
+  async onSettingsModal() {
+    const modal = await this.modalCtl.create({
+      component: SettingsComponent,
+    });
+    modal.present();
+  }
 }
 
 
