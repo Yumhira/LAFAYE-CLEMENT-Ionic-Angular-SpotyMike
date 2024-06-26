@@ -4,8 +4,8 @@
     @for(users of user; track user){
     @if(!users.isArtist){
       <div class="isNotArtist">
-        <button class="beArtist" (click)="goToLogin()">Devenir artiste</button>
-        <img class="btnSettings" src="assets/icon/settings.svg" alt="">
+        <button class="beArtist" (click)="onBeArtistModal()">Devenir artiste</button>
+        <img class="btnSettings" src="assets/icon/settings.svg" alt="" (click)="onSettingsModal()">
       </div>
     }@else{
       <div class="isArtist">

@@ -31,6 +31,7 @@ import { UtilisateurComponent } from './fragments/utilisateur/utilisateur.compon
 import { ArtisteComponent } from './fragments/artiste/artiste.component';
 import { ModalController } from '@ionic/angular';
 import { SettingsComponent } from 'src/app/shared/modal/settings/settings.component';
+import { BecomeArtistComponent } from 'src/app/shared/modal/become-artist/become-artist.component';
 
 @Component({
   selector: 'app-account',
@@ -72,10 +73,6 @@ export class AccountPage implements OnInit {
     this.getUserByEmail();
   }
 
-  goToLogin() {
-    this.router.navigate(['/auth/login']);
-  }
-
   async getUserByEmail() {
     this.user = await this.fireStoreService.getUserByEmail();
   }
@@ -83,6 +80,13 @@ export class AccountPage implements OnInit {
   async onSettingsModal() {
     const modal = await this.modalCtl.create({
       component: SettingsComponent,
+    });
+    modal.present();
+  }
+
+  async onBeArtistModal() {
+    const modal = await this.modalCtl.create({
+      component: BecomeArtistComponent,
     });
     modal.present();
   }
