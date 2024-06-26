@@ -1,0 +1,59 @@
+<ion-content [fullscreen]="true">
+  <div class="page">
+    <div class="header-container">
+      <div class="background">
+        <div id="header">
+          <ion-icon (click)="backClicked()" class="back" name="chevron-back-outline"></ion-icon>
+        </div>
+        <div id="wave">
+          <img src="assets/formes/waveAccount.svg" alt="">
+        </div>
+      </div>
+
+
+      <div id="infoUser">
+        <div class="avatar">
+          <div class="camera">
+            <img src="assets/icon/camera.svg" (click)="triggerFileInput()" id="icon">
+          </div>
+
+          <img [src]="avatarSrc" alt="avatar" (click)="triggerFileInput()" class="avatar-image">
+          <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden>
+          @if(errorMessage){
+          <ion-toast [message]="errorMessage"></ion-toast>
+          }
+        </div>
+        <div class="info">
+          @for (users of user; track user){
+          <p id="welcome">Bienvenue</p>
+          <p id="firstname">{{users.firstname}} !</p>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="Title">
+      <h1>Devenir un artiste</h1>
+    </div>
+
+
+    <div class="formArtist">
+      <form [formGroup]="form">
+        <ion-label>Nom d'artist*</ion-label>
+        <ion-input formControlName="fullname"></ion-input>
+
+        <ion-label>Label*</ion-label>
+        <ion-input formControlName="label"></ion-input>
+
+        <ion-label>Description</ion-label>
+        <ion-textarea counter="true" maxlength="500" auto-grow="true" formControlName="Description"
+          fill="outline"></ion-textarea>
+      </form>
+    </div>
+
+    <div class="btnValid">
+      <ion-button>DEVENIR</ion-button>
+    </div>
+
+  </div>
+</ion-content>
