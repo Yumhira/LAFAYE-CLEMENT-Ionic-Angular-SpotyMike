@@ -7,7 +7,7 @@
     @if(form.get('firstname')?.invalid && (form.get('firstname')?.dirty || form.get('firstname')?.touched)){
       <div>
         @if(form.get('firstname')?.errors?.['required'] ){
-        <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.firstname_required'|translate }}</p>
+        <p class="error">{{ 'auth.firstname_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
         }
       </div>
     }
@@ -18,7 +18,7 @@
     @if(form.get('lastname')?.invalid && (form.get('lastname')?.dirty || form.get('lastname')?.touched)){
       <div>
         @if(form.get('lastname')?.errors?.['required'] ){
-        <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.lastname_required'|translate }}</p>
+        <p class="error">{{ 'auth.lastname_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
         }
       </div>
     }
@@ -65,7 +65,7 @@
         @if(form.get('birthdate')?.invalid && (form.get('birthdate')?.dirty || form.get('birthdate')?.touched)){
           <div>
             @if(form.get('birthdate')?.errors?.['required'] ){
-            <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.birthdate_required'|translate }}</p>
+            <p class="error">{{ 'auth.birthdate_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
             }
           </div>
         }
@@ -81,9 +81,10 @@
   </ion-list>
   <br>
   @if(error){
-  <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
+  <p class="error">{{ error }}<ion-icon name="alert-outline"></ion-icon></p>
   }
   <br>
-  <ion-button type="submit" (click)="redirectToLogin()" [disabled]="!form.valid && !submitForm">Inscription</ion-button>
+  <ion-button type="submit" (click)="submitRegister()" [disabled]="!form.valid && !submitForm">Inscription</ion-button>
+  <p class="check" [hidden]="!submitForm"><ion-icon name="checkmark-outline"></ion-icon></p>
   <a (click)="redirectToLogin()">Déjà un compte ?</a>
 </form>

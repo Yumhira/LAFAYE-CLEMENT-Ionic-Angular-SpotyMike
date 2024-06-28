@@ -25,6 +25,8 @@ import {
 import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { alertOutline, checkmarkOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-register',
@@ -76,8 +78,12 @@ export class RegisterPage implements OnInit {
     birthdate: new FormControl('', [
       Validators.required
     ]),
+    tel: new FormControl(''),
+    sexe: new FormControl('')
   });
-  constructor() {}
+  constructor() {
+    addIcons({alertOutline, checkmarkOutline});
+  }
 
   ngOnInit() {}
 
@@ -97,8 +103,14 @@ export class RegisterPage implements OnInit {
       //   });
     }
   }
-
+  
   async redirectToLogin() {
     this.router.navigate(['/auth/layoutLogin/login']);
+  }
+
+  async submitRegister() {
+    setTimeout(() => {
+      this.router.navigate(['/auth/layoutLogin/login']);
+    }, 1000);
   }
 }

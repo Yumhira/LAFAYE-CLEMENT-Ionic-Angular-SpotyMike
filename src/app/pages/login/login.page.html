@@ -44,9 +44,10 @@
   </ion-list>
   <br>
   @if(error){
-  <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
+  <p class="error">{{ error }}<ion-icon name="alert-outline"></ion-icon></p>
   }
   <br>
-  <ion-button type="submit" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
+  <ion-button type="submit" [disabled]="!form.valid && !submitForm">Connexion</ion-button>
+  <p class="check" [hidden]="!submitForm"><ion-icon name="checkmark-outline"></ion-icon></p>
   <a (click)="redirectToRegister()">Pas encore inscrit ?</a>
 </form>
