@@ -28,6 +28,7 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { IUser } from 'src/app/core/interfaces/user';
 import { addIcons } from 'ionicons';
 import { eyeOffOutline, eyeOutline, alertOutline } from 'ionicons/icons';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-login',
@@ -91,6 +92,8 @@ export class LoginPage implements OnInit {
                 'userIdDocument',
                 JSON.stringify(user.idDocument)
               );
+              const token = uuidv4();
+              this.localStore.setItem('token', JSON.stringify(token));
               this.router.navigateByUrl('/tabs/home');
             } else {
               this.error = 'Email ou mot de passe incorrect';

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -34,30 +35,35 @@ export const routes: Routes = [
 
   {
     path: 'player',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/player/player.page').then((m) => m.PlayerPage),
   },
 
   {
     path: 'listmusic',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/listmusic/listmusic.page').then((m) => m.ListPage),
   },
 
   {
     path: 'listgenres',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/listgenres/listgenres.page').then((m) => m.ListGenresPage),
   },
 
   {
     path: 'album',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/album/album.page').then((m) => m.AlbumPage),
   },
 
   {
     path: 'artist',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/artist/artist.page').then((m) => m.ArtistPage),
   },
@@ -69,6 +75,7 @@ export const routes: Routes = [
   },
   {
     path: 'search',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/search/search.page').then( m => m.SearchPage)
   },
 
