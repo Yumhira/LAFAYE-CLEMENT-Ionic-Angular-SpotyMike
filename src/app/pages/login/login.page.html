@@ -7,10 +7,10 @@
     @if(form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)){
     <div>
       @if(form.get('email')?.errors?.['required'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.email_required'|translate }}</p>
+      <p class="error">{{ 'auth.email_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('email')?.errors?.['pattern'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.email_format'|translate }}</p>
+      <p class="error">{{ 'auth.email_format'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
     </div>
     }
@@ -30,13 +30,13 @@
     @if(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)){
     <div>
       @if(form.get('password')?.errors?.['required'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_required'|translate }}</p>
+      <p class="error">{{ 'auth.password_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('password')?.errors?.['pattern'] ){
       <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_format'|translate }}</p>
       }
       @else if(form.get('password')?.errors?.['minlength'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_minSize'|translate }}</p>
+      <p class="error">{{ 'auth.password_minSize'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
     </div>
     }
