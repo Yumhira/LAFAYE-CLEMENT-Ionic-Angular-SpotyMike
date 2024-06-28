@@ -51,7 +51,7 @@ export class PasswordLostComponent {
   form: FormGroup = new FormGroup({
     email: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
+      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),
     ]),
     password: new FormControl('', [
       Validators.required,
