@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy } from 'firebase/firestore/lite';
+import { from } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ISong } from 'src/app/core/interfaces/song'
+import { IArtist } from '../interfaces/artist';
 
 @Injectable({
   providedIn: 'root',
@@ -172,6 +175,7 @@ export class FirestoreService {
     const q = query(artistCol, orderBy('nbLikes', 'desc'), limit(3));
     const artistSnapshot = await getDocs(q);
     const artistList = artistSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getArtistByNbLikes : ", artistList)
     return artistList;
   }
 
@@ -216,6 +220,27 @@ export class FirestoreService {
     const artistList = artistSnapshot.docs.map((doc) => doc.data());
     console.log("Voici le getArtistById : ", artistList);
     return artistList;
+  }
+
+  //get user by email and password
+  async getUserByEmailPassword($email: string, $password: string) {
+    const usersCol = collection(this.db, 'user');
+    const q = query(
+      usersCol,
+      where('email', '==', $email),
+      where('password', '==', $password)
+    );
+    const usersSnapshot = await getDocs(q);
+    const usersList = usersSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return { idDocument: doc.id, ...data };
+    });
+    console.log("Voici le getUserByEmailPassword : ", usersList);
+    return usersList;
+  }
+
+  getUserByEmailPasswordObservable($email: string, $password: string) {
+    return from(this.getUserByEmailPassword($email, $password));
   }
 
 

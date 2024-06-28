@@ -85,16 +85,16 @@ export class RegisterPage implements OnInit {
     this.error = '';
     if (this.form.valid) {
       this.submitForm = true;
-      this.serviceAuth
-        .register(this.form.value.firstname, this.form.value.lastname, this.form.value.email, this.form.value.password, this.form.value.tel, this.form.value.sexe)
-        .subscribe((data: any) => {
-          if (data?.error) {
-            // this.error = data?.message;
-          } else {
-            this.router.navigateByUrl('/auth/layoutLogin/login');
-          }
-          console.log(data);
-        });
+      // this.serviceAuth
+      //   .register(this.form.value.firstname, this.form.value.lastname, this.form.value.email, this.form.value.password, this.form.value.tel, this.form.value.sexe)
+      //   .subscribe((data: any) => {
+      //     if (data?.error) {
+      //       // this.error = data?.message;
+      //     } else {
+      //       this.router.navigateByUrl('/auth/layoutLogin/login');
+      //     }
+      //     console.log(data);
+      //   });
     }
   }
 

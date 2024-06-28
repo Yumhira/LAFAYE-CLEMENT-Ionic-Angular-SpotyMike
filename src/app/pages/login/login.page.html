@@ -15,8 +15,17 @@
     </div>
     }
     <ion-item>
-      <ion-input type="password" formControlName="password" name="password" label="Password" labelPlacement="floating"
+      <ion-input [type]="passwordFieldType==='password' ? 'password' : 'text'" formControlName="password" name="password" label="Password" labelPlacement="floating"
         placeholder="••••••••••••••"></ion-input>
+      <button
+        (click)="togglePasswordVisibility()"
+        type="button"
+        class="passwordVisibility"
+      >
+        <ion-icon
+          [name]="passwordFieldType === 'password' ? 'eye-off-outline' : 'eye-outline'"
+        ></ion-icon>
+      </button>
     </ion-item>
     @if(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)){
     <div>
@@ -38,6 +47,6 @@
   <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ error }}</p>
   }
   <br>
-  <ion-button type="submit" (click)="goToHome()" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
+  <ion-button type="submit" [disabled]="!form.valid && !submitForm">Se Connecter</ion-button>
   <a (click)="redirectToRegister()">Pas encore inscrit ?</a>
 </form>

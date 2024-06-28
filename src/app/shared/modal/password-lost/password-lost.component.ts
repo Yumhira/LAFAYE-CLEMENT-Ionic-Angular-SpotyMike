@@ -11,7 +11,9 @@ import {
   IonContent,
   IonInput,
   IonItem,
-  IonIcon
+  IonIcon,
+  IonCol,
+  IonRow
 } from '@ionic/angular/standalone';
 import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
@@ -32,6 +34,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IonToolbar,
     IonHeader,
     IonIcon,
+    IonCol,
+    IonRow,
     TranslateModule
   ],
 })
@@ -59,25 +63,25 @@ export class PasswordLostComponent {
     this.error = '';
     if (this.form.valid) {
       this.submitForm = true;
-      this.serviceAuth
-        .passwordLost(this.form.value.password)
-        .subscribe((data: any) => {
-          if (data?.error) {
-            // this.error = data?.message;
-          } else {
-            this.router.navigateByUrl('/auth/login');
-          }
-          console.log(data);
-        });
+      // this.serviceAuth
+      //   .passwordLost(this.form.value.email, this.form.value.password)
+      //   .subscribe(async (data: any) => {
+      //     if (data?.error) {
+      //       // this.error = data?.message;
+      //     } else {
+      //       this.router.navigateByUrl('/auth/layoutLogin/login');
+      //     }
+      //     console.log(data);
+      //   });
     }
   }
 
   constructor() {}
   async cancel() {
-    await this.modalCtl.dismiss();
+    await this.modalCtl.dismiss(null, 'cancel');
   }
 
-  async redirectToLogin() {
-    this.router.navigate(['/auth/login']);
+  async confirm() {
+    await this.modalCtl.dismiss(this.form, 'confirm');
   }
 }

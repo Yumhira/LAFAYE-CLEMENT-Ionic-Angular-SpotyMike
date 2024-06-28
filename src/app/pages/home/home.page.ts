@@ -75,7 +75,7 @@ export class HomePage {
     this.getLastAlbum();
     this.getArtistByNbLikes();
     this.getLastSongHeard();
-    this.getArtistById('eiT0esFN8xYFDPNBwox1');
+    
     this.store.dispatch(loadSong());
     const song: ISong = {
       id: 'oijvvoij',

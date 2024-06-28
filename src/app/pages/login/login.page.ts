@@ -18,13 +18,16 @@ import {
   IonButton,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { ILoginRequestError, ILoginRequestSuccess } from 'src/app/core/interfaces/login';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { PasswordLostComponent } from 'src/app/shared/modal/password-lost/password-lost.component';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { IUser } from 'src/app/core/interfaces/user';
+import { addIcons } from 'ionicons';
+import { eyeOffOutline, eyeOutline, alertOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-login',
@@ -50,11 +53,13 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class LoginPage implements OnInit {
   error = '';
   submitForm = false;
+  user: IUser[] | undefined;
+  passwordFieldType: string = 'password';
 
   private localStore = inject (LocalStorageService);
   private router = inject(Router);
   private modalCtl = inject(ModalController);
-  private serviceAuth = inject(AuthentificationService);
+  private serviceFirestore = inject(FirestoreService);
 
   form: FormGroup = new FormGroup({
     email: new FormControl('', [
@@ -66,7 +71,9 @@ export class LoginPage implements OnInit {
       Validators.minLength(8),
     ]),
   });
-  constructor() {}
+  constructor() {
+    addIcons({ eyeOutline, eyeOffOutline, alertOutline });
+  }
 
   ngOnInit() {}
 
@@ -74,18 +81,27 @@ export class LoginPage implements OnInit {
     this.error = '';
     if (this.form.valid) {
       this.submitForm = true;
-      this.serviceAuth
-        .login(this.form.value.email, this.form.value.password)
-        .subscribe((data: any) => {
-          if (data?.error) {
-            // this.error = data?.message;
+      this.serviceFirestore
+        .getUserByEmailPasswordObservable(this.form.value.email, this.form.value.password)
+        .subscribe((users) => {
+          if (users.length > 0) {
+            const user = users[0];
+            if (user.idDocument) {
+              this.localStore.setItem(
+                'userIdDocument',
+                JSON.stringify(user.idDocument)
+              );
+              this.router.navigateByUrl('/tabs/home');
+            } else {
+              this.error = 'Email ou mot de passe incorrect';
+              console.log(this.error);
+            }
           } else {
-            this.localStore.setItem('user', data.user);
-            this.localStore.setItem('token', data.token);
-            this.router.navigateByUrl('/tabs/home');
+            this.error = 'Email ou mot de passe incorrect';
+            console.log(this.error);
           }
-          console.log(data);
-        });
+        }
+      );
     }
   }
 
@@ -102,5 +118,10 @@ export class LoginPage implements OnInit {
 
   async redirectToRegister() {
     this.router.navigate(['/auth/layoutRegister/register']);
+  }
+  
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
