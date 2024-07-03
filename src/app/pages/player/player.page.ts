@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -20,10 +20,11 @@ import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { chevronBack, ellipsisHorizontal } from 'ionicons/icons';
 import { Location } from '@angular/common';
-import { Howl, Howler } from 'howler';
 import { ModalController } from '@ionic/angular';
 import { ShareComponent } from 'src/app/shared/modal/share/share.component';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { AudioService } from 'src/app/core/services/audio.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-player',
@@ -48,13 +49,12 @@ import { FirestoreService } from 'src/app/core/services/firestore.service';
     FormsModule,
   ],
 })
-export class PlayerPage implements OnInit {
+export class PlayerPage implements OnInit, OnDestroy {
   public progress = 0;
   public currentTime = '0:00';
   public duration = '0:00';
   private fireStoreService = inject(FirestoreService);
   song: any[] = [];
-  sound!: Howl;
   isPlaying: boolean = false;
   isRepeating: boolean = false;
   isShuffling: boolean = false;
@@ -63,42 +63,73 @@ export class PlayerPage implements OnInit {
   showLyrics = false;
 
   private modalCtl = inject(ModalController);
+  private AudioService = inject(AudioService);
 
-  playlist: string[] = [
-    'assets/audio/testSong.mp3',
-    'assets/audio/testSong2.mp3',
-    'assets/audio/testSong3.mp3',
-  ];
+  private currentTimeSubscription!: Subscription;
+  private durationSubscription!: Subscription;
 
   constructor(private _location: Location) {
     addIcons({ chevronBack });
     addIcons({ ellipsisHorizontal });
-
-    this.loadCurrentTrack();
   }
 
   ngOnInit() {
     this.getSongByTitle();
+    if (!this.AudioService.audio.src) {
+      this.AudioService.load();
+    }
+
+    this.currentTimeSubscription = this.AudioService.getCurrentTime().subscribe(
+      (time) => {
+        this.currentTime = this.formatTime(time);
+        this.progress = (time / this.AudioService.audio.duration) * 100;
+      }
+    );
+
+    this.durationSubscription = this.AudioService.getDuration().subscribe(
+      (duration) => {
+        this.duration = this.formatTime(duration);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.currentTimeSubscription) {
+      this.currentTimeSubscription.unsubscribe();
+    }
+    if (this.durationSubscription) {
+      this.durationSubscription.unsubscribe();
+    }
   }
 
   backClicked() {
     this._location.back();
   }
 
-  nextTrack() {
-    if (this.isShuffling) {
-      this.shuffleArray(this.playlist);
+  toggleRepeat() {
+    this.isRepeating = !this.isRepeating;
+    this.AudioService.loop();
+  }
+
+  toggleShuffle() {
+    this.isShuffling = !this.isShuffling;
+  }
+
+  togglePlayPause() {
+    if (this.isPlaying) {
+      this.AudioService.pause();
+    } else {
+      this.AudioService.play();
     }
-    this.currentTrackIndex =
-      (this.currentTrackIndex + 1) % this.playlist.length;
-    this.loadCurrentTrack();
+    this.isPlaying = !this.isPlaying;
+  }
+
+  nextTrack() {
+    this.AudioService.next();
   }
 
   previousTrack() {
-    this.currentTrackIndex =
-      (this.currentTrackIndex - 1 + this.playlist.length) %
-      this.playlist.length;
-    this.loadCurrentTrack();
+    this.AudioService.previous();
   }
 
   async getSongByTitle() {
@@ -106,79 +137,16 @@ export class PlayerPage implements OnInit {
     console.log(this.song);
   }
 
-  loadCurrentTrack() {
-    if (this.sound) {
-      this.sound.unload();
-    }
-
-    this.sound = new Howl({
-      src: [this.playlist[this.currentTrackIndex]],
-      volume: 0.1,
-      onplay: () => {
-        this.updateProgress();
-        this.duration = this.formatTime(this.sound.duration());
-      },
-      onend: () => {
-        if (this.isRepeating) {
-          this.sound.play();
-        } else {
-          this.nextTrack();
-        }
-      },
-    });
-
-    if (this.isPlaying) {
-      this.sound.play();
-    }
-  }
-
-  togglePlayPause() {
-    if (this.isPlaying) {
-      this.sound.pause();
-    } else {
-      this.sound.play();
-    }
-    this.isPlaying = !this.isPlaying;
-  }
-
-  toggleRepeat() {
-    this.isRepeating = !this.isRepeating;
-  }
-
-  toggleShuffle() {
-    this.isShuffling = !this.isShuffling;
-  }
-
-  updateProgress() {
-    const seek = this.sound.seek() as number;
-    const duration = this.sound.duration();
-
-    this.progress = (seek / duration) * 100;
-    this.currentTime = this.formatTime(seek);
-
-    if (this.isPlaying) {
-      requestAnimationFrame(() => this.updateProgress());
-    }
-  }
-
   seekTo(event: any) {
     const newValue = event.detail.value;
-    const duration = this.sound.duration();
-    this.sound.seek((newValue / 100) * duration);
-    this.currentTime = this.formatTime(this.sound.seek() as number);
+    const duration = this.AudioService.audio.duration;
+    this.AudioService.audio.currentTime = (newValue / 100) * duration;
   }
 
   formatTime(secs: number) {
     const minutes = Math.floor(secs / 60) || 0;
     const seconds = Math.floor(secs % 60) || 0;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  }
-
-  shuffleArray(array: any[]) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
   }
 
   toggleLyrics() {

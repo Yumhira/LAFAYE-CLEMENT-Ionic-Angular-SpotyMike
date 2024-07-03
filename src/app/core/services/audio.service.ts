@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-interface IPlaylistsMusic{
-  audio: HTMLAudioElement;
+interface IPlaylistsMusic {
+  url: string;
   position: number;
   status: boolean;
 }
@@ -11,21 +11,47 @@ interface IPlaylistsMusic{
   providedIn: 'root',
 })
 export class AudioService {
-  private audio: HTMLAudioElement;
+  public audio: HTMLAudioElement;
   private playlist$: BehaviorSubject<IPlaylistsMusic[]>;
   private isPlay$: BehaviorSubject<boolean>;
   private currentTrackIndex: number;
+  private currentTime$: BehaviorSubject<number>;
+  private duration$: BehaviorSubject<number>;
 
   constructor() {
     this.audio = new Audio();
     this.playlist$ = new BehaviorSubject<IPlaylistsMusic[]>([]);
     this.isPlay$ = new BehaviorSubject<boolean>(false);
     this.currentTrackIndex = 0;
+    this.currentTime$ = new BehaviorSubject<number>(0);
+    this.duration$ = new BehaviorSubject<number>(0);
+
+    this.audio.addEventListener('timeupdate', () => {
+      this.currentTime$.next(this.audio.currentTime);
+    });
+
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.duration$.next(this.audio.duration);
+    });
+
+    // Example playlist data
+    this.setPlaylist([
+      { url: 'assets/audio/testSong.mp3', position: 0, status: false },
+      { url: 'assets/audio/testSong2.mp3', position: 1, status: false },
+      { url: 'assets/audio/testSong3.mp3', position: 2, status: false },
+    ]);
+  }
+
+  private setPlaylist(playlist: IPlaylistsMusic[]) {
+    this.playlist$.next(playlist);
   }
 
   load(id: string = '') {
-    this.audio = new Audio('url/${id}');
-    //this.audio = new Audio('assets/audio/testSong.mp3');
+    if (id) {
+      this.audio.src = `url/${id}`;
+    } else {
+      this.loadCurrentTrack();
+    }
     this.audio.load();
   }
 
@@ -46,18 +72,61 @@ export class AudioService {
   }
 
   next() {
-
+    if (this.currentTrackIndex < this.playlist$.value.length - 1) {
+      this.currentTrackIndex++;
+    } else {
+      this.currentTrackIndex = 0; // Loop back to the start of the playlist
+    }
+    this.loadCurrentTrack();
+    this.play();
+    console.log(`Next track: ${this.currentTrackIndex}`);
   }
 
   previous() {
-
+    if (this.currentTrackIndex > 0) {
+      this.currentTrackIndex--;
+    } else {
+      this.currentTrackIndex = this.playlist$.value.length - 1; // Loop to the end of the playlist
+    }
+    this.loadCurrentTrack();
+    this.play();
+    console.log(`Previous track: ${this.currentTrackIndex}`);
   }
 
   loop() {
-    this.audio.loop =!this.audio.loop;
+    this.audio.loop = !this.audio.loop;
   }
 
   shuffle() {
+    const shuffledPlaylist = this.shuffleArray([...this.playlist$.value]);
+    this.playlist$.next(shuffledPlaylist);
+    this.currentTrackIndex = 0;
+    this.loadCurrentTrack();
+    console.log(`Shuffled playlist: ${JSON.stringify(shuffledPlaylist)}`);
+  }
 
+  private shuffleArray(array: IPlaylistsMusic[]): IPlaylistsMusic[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  private loadCurrentTrack() {
+    const currentTrack = this.playlist$.value[this.currentTrackIndex];
+    if (currentTrack) {
+      this.audio.src = currentTrack.url;
+      this.audio.load();
+    }
+    console.log(`Loaded track: ${this.audio.src}`);
+  }
+
+  getCurrentTime(): Observable<number> {
+    return this.currentTime$.asObservable();
+  }
+
+  getDuration(): Observable<number> {
+    return this.duration$.asObservable();
   }
 }
