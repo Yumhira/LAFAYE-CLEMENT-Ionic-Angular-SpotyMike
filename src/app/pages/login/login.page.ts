@@ -27,7 +27,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { IUser } from 'src/app/core/interfaces/user';
 import { addIcons } from 'ionicons';
-import { eyeOffOutline, eyeOutline, alertOutline } from 'ionicons/icons';
+import { eyeOffOutline, eyeOutline, alertOutline, checkmarkOutline } from 'ionicons/icons';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
     ]),
   });
   constructor() {
-    addIcons({ eyeOutline, eyeOffOutline, alertOutline });
+    addIcons({ eyeOutline, eyeOffOutline, alertOutline, checkmarkOutline });
   }
 
   ngOnInit() {}
@@ -94,7 +94,9 @@ export class LoginPage implements OnInit {
               );
               const token = uuidv4();
               this.localStore.setItem('token', JSON.stringify(token));
-              this.router.navigateByUrl('/tabs/home');
+              setTimeout(() => {
+                this.router.navigateByUrl('/tabs/home');
+              }, 1000);
             } else {
               this.error = 'Email ou mot de passe incorrect';
               console.log(this.error);

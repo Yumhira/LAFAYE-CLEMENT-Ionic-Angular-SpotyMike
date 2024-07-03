@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import {
@@ -18,6 +18,8 @@ import {
 import { AuthentificationService } from 'src/app/core/services/authentification.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { addIcons } from 'ionicons';
+import { alertOutline, chevronBackOutline, chevronForwardOutline, eyeOffOutline, eyeOutline } from 'ionicons/icons';
 
 @Component({
   standalone: true,
@@ -36,12 +38,15 @@ import { TranslateModule } from '@ngx-translate/core';
     IonIcon,
     IonCol,
     IonRow,
-    TranslateModule
+    FormsModule,
+    TranslateModule,
+    ReactiveFormsModule,
   ],
 })
 export class PasswordLostComponent {
   error = '';
   submitForm = false;
+  passwordFieldType: string = 'password';
 
   private localStore = inject (LocalStorageService);
   private router = inject(Router);
@@ -76,12 +81,24 @@ export class PasswordLostComponent {
     }
   }
 
-  constructor() {}
+  constructor() {
+    addIcons({ eyeOutline, eyeOffOutline, alertOutline, chevronBackOutline, chevronForwardOutline });
+  }
+
   async cancel() {
-    await this.modalCtl.dismiss(null, 'cancel');
+    await this.modalCtl.dismiss();
   }
 
   async confirm() {
-    await this.modalCtl.dismiss(this.form, 'confirm');
+    await this.modalCtl.dismiss();
+  }
+
+  backClicked() {
+    this.modalCtl.dismiss();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
