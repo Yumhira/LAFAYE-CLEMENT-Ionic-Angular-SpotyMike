@@ -60,7 +60,7 @@
   }
 
   @if(segmentArtist === "Sons"){
-    @for(songs of song; track songs){ 
+    @for(songs of song; track songs){
       <div class="Songs">
           <div class="listSongs">
               <img class="cover" src={{songs.cover}} alt="profile">
@@ -77,18 +77,20 @@
   }
 
   @if(segmentArtist === "Albums"){
-    @for(albums of album; track albums){ 
+
       <div class="album">
         <div class="listAlbum">
+          @for(albums of album; track albums){
           <div class="infoAlbum">
             <img class="cover" src={{albums.cover}} alt="profile">
             <p id="Title">{{ albums.title }}</p>
           </div>
+          }
         </div>
 
         <img class="addAlbums" src="assets/icon/add.svg" alt="profile">
       </div>
     }
-  }
+
 }
 
