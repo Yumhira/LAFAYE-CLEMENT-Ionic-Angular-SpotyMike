@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ISong } from 'src/app/core/interfaces/song'
 import { IArtist } from '../interfaces/artist';
 import { IPlaylist } from '../interfaces/playlist';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -70,12 +71,36 @@ export class FirestoreService {
   }
 
   //get user
-  async getUser() {
-    const usersCol = collection(this.db, 'user');
-    const usersSnapshot = await getDocs(usersCol);
-    const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getUser : ", usersList);
-    return usersList;
+  async getUser(): Promise<IUser[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, 'user'));
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data() as IUser;
+        const id = doc.id;
+        return { ...data, id };
+      });
+    } catch (error) {
+      console.error('Error fetching playlists:', error);
+      return [];
+    }
+  }
+
+  //get user by id
+  async getUserById(userId: string) {
+    const userCol = collection(this.db, 'user');
+    const q = query(
+      userCol,
+      where(documentId(), '==', userId)
+    );
+    const userSnapshot = await getDocs(q);
+    const userList = userSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getUserById : ", userList);
+    return userList;
+  }
+
+  async updateUser(userId: string, data: Partial<IUser>) {
+    const userDoc = doc(this.db, 'user', userId);
+    await updateDoc(userDoc, data);
   }
 
   //get artist

@@ -50,10 +50,12 @@
           fill="outline"></ion-textarea>
       </form>
     </div>
-
-    <div class="btnValid">
-      <ion-button>DEVENIR</ion-button>
-    </div>
+    
+    @for (users of user; track user){
+      <div class="btnValid">
+        <ion-button (click)="onClick(users.id)">DEVENIR</ion-button>
+      </div>
+    }
 
   </div>
 </ion-content>

@@ -118,6 +118,21 @@ export class BecomeArtistComponent implements OnInit {
     });
   }
 
+  async onClick(userId: string) {
+    const user = this.user.find(p => p.id === userId);
+    if (user) {
+      user.isArtist = !user.isArtist;
+      try {
+        await this.fireStoreService.updateUser(userId, { isArtist: user.isArtist });
+        console.log('Successfully updated user in Firestore:', userId);
+        location.reload();
+      } catch (error) {
+        console.error('Error updating document:', error);
+        user.isArtist = !user.isArtist;
+      }
+    }
+  }
+
   backClicked() {
     this.modalCtl.dismiss();
   }
