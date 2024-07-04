@@ -128,11 +128,13 @@ ion-range {
 
       ion-button {
         --box-shadow: 0;
+        padding-right: 1%;
       }
   }
 
   .lyrics{
     .contentLyrics{
+      text-align: center;
       margin: 0;
       font-size: 18px;
       color: #737373;

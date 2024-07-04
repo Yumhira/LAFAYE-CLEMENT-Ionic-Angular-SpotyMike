@@ -1,13 +1,18 @@
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item>
+  <ion-icon (click)="backClicked()" class="cross" name="close-outline"></ion-icon>
+  <ion-title class="title-share">Share</ion-title>
+  <ion-list>  
+    <ion-item (click)="shareFacebook()">
       <ion-label>Partager sur Facebook</ion-label>
+      <img class="facebook" src="assets/icon/facebook.svg" alt="Icon Facebook">
     </ion-item>
-    <ion-item>
+    <ion-item (click)="shareTwitter()">
       <ion-label>Partager sur Twitter</ion-label>
+      <img class="twitter" src="assets/icon/twitter.svg" alt="Icon Twitter">
     </ion-item>
-    <ion-item>
+    <ion-item (click)="shareInstagram()">
       <ion-label>Partager sur Instagram</ion-label>
+      <img class="instagram" src="assets/icon/instagram.svg" alt="Icon Instagram">
     </ion-item>
   </ion-list>
 </ion-content>
