@@ -35,15 +35,15 @@ export class FirestoreService {
 
   //get user by email
   async getUserByEmail() {
-    const usersCol = collection(this.db, 'user');
+    const userCol = collection(this.db, 'user');
     const q = query(
-      usersCol,
+      userCol,
       where('email', '==', 'utilisateurRandom@gmail.com')
     );
-    const usersSnapshot = await getDocs(q);
-    const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getUserByEmail : ", usersList);
-    return usersList;
+    const userSnapshot = await getDocs(q);
+    const userList = userSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getUserByEmail : ", userList);
+    return userList;
   }
 
   // GET ALBUM BY SONG TITLE

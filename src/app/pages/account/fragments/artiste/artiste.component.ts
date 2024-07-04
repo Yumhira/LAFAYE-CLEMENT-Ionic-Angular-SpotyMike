@@ -78,6 +78,12 @@ export class ArtisteComponent implements OnInit {
     this.getAlbumsByArtistId();
   }
 
+  getUserByEmail() {
+    this.fireStoreService.getUserByEmail().then((data) => {
+      this.user = data;
+    });
+  }
+
   async getArtistByFullname() {
     this.artist = await this.fireStoreService.getArtistByFullname();
   }
@@ -90,13 +96,8 @@ export class ArtisteComponent implements OnInit {
     this.song = await this.fireStoreService.getSongByArtist();
   }
 
-  getUserByEmail() {
-    this.fireStoreService.getUserByEmail().then((data) => {
-      this.user = data;
-    });
-  }
-
   async onClick(userId: string) {
+    this.isEditMode = false;
     const user = this.user.find(p => p.id === userId);
     if (user) {
       user.isArtist = !user.isArtist;

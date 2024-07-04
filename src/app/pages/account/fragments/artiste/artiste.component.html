@@ -38,19 +38,19 @@
 
         <div class="btnEdit">
           @if (!isEditMode) {
-          <ion-button class="edit" (click)="toggleEditMode()" color="transparent">
-            MODIFIER
-          </ion-button>
-
-          <ion-button class="desac" color="transparent" (click)="onClick(artists.userId)">
-            DESACTIVER
-          </ion-button>
+            <ion-button class="edit" (click)="toggleEditMode()" color="transparent">
+              MODIFIER
+            </ion-button>
+            @for (users of user; track user){
+              <ion-button class="desac" color="transparent" (click)="onClick(users.id)">
+                DESACTIVER
+              </ion-button>
+            }
           }@else{
             <ion-button class="edit" (click)="toggleEditMode()" color="transparent">
               VALIDER
             </ion-button>
-
-            <ion-button class="desac" color="transparent">
+            <ion-button class="desac" (click)="toggleEditMode()" color="transparent">
               ANNULER
             </ion-button>
           }
