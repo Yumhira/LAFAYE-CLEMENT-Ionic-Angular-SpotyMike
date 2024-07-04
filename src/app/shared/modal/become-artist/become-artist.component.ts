@@ -23,14 +23,13 @@ import {
   IonIcon,
   IonToast,
   IonLabel,
+  IonTextarea
 } from '@ionic/angular/standalone';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
-  ReactiveFormsModule,
-  Validators,
+  ReactiveFormsModule
 } from '@angular/forms';
 
 @Component({
@@ -53,7 +52,7 @@ import {
     IonTitle,
     FormsModule,
     ReactiveFormsModule,
-    
+    IonTextarea
   ],
 })
 export class BecomeArtistComponent implements OnInit {
