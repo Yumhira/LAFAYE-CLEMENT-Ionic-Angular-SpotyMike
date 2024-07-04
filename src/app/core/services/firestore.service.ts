@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy, updateDoc } from 'firebase/firestore/lite';
 import { from } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ISong } from 'src/app/core/interfaces/song'
 import { IArtist } from '../interfaces/artist';
+import { IPlaylist } from '../interfaces/playlist';
 
 @Injectable({
   providedIn: 'root',
@@ -87,12 +88,36 @@ export class FirestoreService {
   }
 
   //get playlist
-  async getPlaylist() {
+  async getPlaylist(): Promise<IPlaylist[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, 'playlist'));
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data() as IPlaylist;
+        const id = doc.id;
+        return { ...data, id };
+      });
+    } catch (error) {
+      console.error('Error fetching playlists:', error);
+      return []; // Return empty array or handle error appropriately
+    }
+  }
+
+  //get playlist by id
+  async getPlaylistById(playlistId: string) {
     const playlistCol = collection(this.db, 'playlist');
-    const playlistSnapshot = await getDocs(playlistCol);
+    const q = query(
+      playlistCol,
+      where(documentId(), '==', playlistId)
+    );
+    const playlistSnapshot = await getDocs(q);
     const playlistList = playlistSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getPlaylist : ", playlistList);
+    console.log("Voici le getPlaylistById : ", playlistList);
     return playlistList;
+  }
+
+  async updatePlaylist(playlistId: string, data: Partial<IPlaylist>) {
+    const playlistDoc = doc(this.db, 'playlist', playlistId);
+    await updateDoc(playlistDoc, data);
   }
 
   //get album

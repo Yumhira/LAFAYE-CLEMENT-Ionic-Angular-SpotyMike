@@ -6,26 +6,23 @@
   </ion-row>
   <div>
     <div class="pad-container">
-      @for (playlists of playlist; track playlists) {
+      @for (playlist of playlists; track playlist) {
       <ion-item lines="full" class="items">
         <ion-col class="imgCov">
-          <img class="cover-resize" src="{{playlists.cover}}" alt="Cover 1" (click)="goToPlayer()">
+          <img class="cover-resize" src="{{playlist.cover}}" alt="Cover 1" (click)="goToPlayer()">
         </ion-col>
         <ion-col class="pad-text">
-            <p class="song-text" (click)="goToPlayer()">{{playlists.name}}</p>
+            <p class="song-text" (click)="goToPlayer()">{{playlist.name}}</p>
             <p class="light artist-text" (click)="goToPlayer()">Artist Name</p>
         </ion-col>
         <ion-col class="btnLS">
           <ion-row class="buttons-song">
-            @if(!isLiked){
-            <a class="bt1" color="transparent">
-              <img class="like-resize" src="assets/icon/like.svg" alt="Like Icon" (click)="onLike()">
+            <a class="bt1" [style.color]="playlist.isLiked ? 'blue' : 'transparent'">
+              <img class="like-resize" 
+                [src]="playlist.isLiked ? 'assets/icon/likeClicked.svg' : 'assets/icon/like.svg'" 
+                [alt]="playlist.isLiked ? 'Like Clicked' : 'Like Icon'" 
+                (click)="onLike(playlist.id)">
             </a>
-            } @else(){
-            <a class="bt1" color="transparent">
-              <img class="iconLiked like-resize" src="assets/icon/likeClicked.svg" alt="likeClick" (click)="onLike()">
-            </a>
-            }
             <a class="bt2" color="transparent">
               <img class="share-resize" src="assets/icon/share.svg" alt="Share Button" (click)="onShareModal()">
             </a>

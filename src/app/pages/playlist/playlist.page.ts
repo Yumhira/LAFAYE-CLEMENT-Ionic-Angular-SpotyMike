@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 import { chevronBack, ellipsisHorizontal } from 'ionicons/icons';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { ShareComponent } from 'src/app/shared/modal/share/share.component';
+import { IPlaylist } from 'src/app/core/interfaces/playlist';
 
 @Component({
   selector: 'app-playlist',
@@ -20,7 +21,7 @@ import { ShareComponent } from 'src/app/shared/modal/share/share.component';
 export class PlaylistPage implements OnInit {
   private modalCtl = inject(ModalController);
   private fireStoreService = inject(FirestoreService);
-  playlist: any[] = [];
+  playlists: IPlaylist[] = [];
   isLiked: boolean = false;
 
   constructor(private _location: Location, private router: Router) {
@@ -36,8 +37,8 @@ export class PlaylistPage implements OnInit {
   }
 
   async getPlaylist() {
-    this.playlist = await this.fireStoreService.getPlaylist();
-    console.log(this.playlist);
+    this.playlists = await this.fireStoreService.getPlaylist();
+    console.log(this.playlists);
   }
 
   async onShareModal() {
@@ -48,9 +49,19 @@ export class PlaylistPage implements OnInit {
     return await modal.present();
   }
 
-  onLike() {
-    this.isLiked = !this.isLiked;
-  }
+  async onLike(playlistId: string) {
+    const playlist = this.playlists.find(p => p.id === playlistId);
+    if (playlist) {
+      playlist.isLiked = !playlist.isLiked;
+      try {
+        await this.fireStoreService.updatePlaylist(playlistId, { isLiked: playlist.isLiked });
+        console.log('Successfully updated playlist in Firestore:', playlistId);
+      } catch (error) {
+        console.error('Error updating document:', error);
+        playlist.isLiked = !playlist.isLiked;
+      }
+    }
+  }  
 
   goToPlayer() {
     this.router.navigate(['/player']);
