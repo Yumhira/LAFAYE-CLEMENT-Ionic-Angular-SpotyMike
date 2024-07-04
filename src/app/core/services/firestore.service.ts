@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy, updateDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, documentId ,query, where, limit, doc, getDoc, DocumentReference, orderBy, updateDoc, setDoc } from 'firebase/firestore/lite';
+import { v4 as uuidv4 } from 'uuid';
 import { from } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ISong } from 'src/app/core/interfaces/song'
@@ -100,6 +101,12 @@ export class FirestoreService {
   async updateUser(userId: string, data: Partial<IUser>) {
     const userDoc = doc(this.db, 'user', userId);
     await updateDoc(userDoc, data);
+  }
+
+  async postUser(data: IUser) {
+    const userId = uuidv4();
+    const userDoc = doc(this.db, 'user', userId);
+    await setDoc(userDoc, data);
   }
 
   //get artist

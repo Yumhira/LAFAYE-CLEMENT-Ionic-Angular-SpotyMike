@@ -60,11 +60,11 @@
     <div class="row">
       <ion-col class="column">
         <ion-item>
-          <ion-input type="date" class="birthdate" formControlName="birthdate" name="birthdate" label="Date de naissance*" labelPlacement="floating"></ion-input>
+          <ion-input type="date" class="birthdate" formControlName="dateBirth" name="dateBirth" label="Date de naissance*" labelPlacement="floating"></ion-input>
         </ion-item>
-        @if(form.get('birthdate')?.invalid && (form.get('birthdate')?.dirty || form.get('birthdate')?.touched)){
+        @if(form.get('dateBirth')?.invalid && (form.get('dateBirth')?.dirty || form.get('dateBirth')?.touched)){
           <div>
-            @if(form.get('birthdate')?.errors?.['required'] ){
+            @if(form.get('dateBirth')?.errors?.['required'] ){
             <p class="error">{{ 'auth.birthdate_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
             }
           </div>
@@ -84,7 +84,7 @@
   <p class="error">{{ error }}<ion-icon name="alert-outline"></ion-icon></p>
   }
   <br>
-  <ion-button type="submit" (click)="submitRegister()" [disabled]="!form.valid && !submitForm">Inscription</ion-button>
+  <ion-button type="submit" [disabled]="!form.valid && !submitForm">Inscription</ion-button>
   <p class="check" [hidden]="!submitForm"><ion-icon name="checkmark-outline"></ion-icon></p>
   <a (click)="redirectToLogin()">Déjà un compte ?</a>
 </form>

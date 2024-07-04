@@ -27,6 +27,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { alertOutline, checkmarkOutline } from 'ionicons/icons';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
+import { IUser } from 'src/app/core/interfaces/user';
 
 @Component({
   selector: 'app-register',
@@ -56,9 +58,11 @@ import { alertOutline, checkmarkOutline } from 'ionicons/icons';
 export class RegisterPage implements OnInit {
   error = '';
   submitForm = false;
+  isUserCreated = false;
 
   private router = inject(Router);
   private serviceAuth = inject(AuthentificationService);
+  private fireStoreService = inject(FirestoreService);
 
   form: FormGroup = new FormGroup({
     firstname: new FormControl('', [
@@ -75,7 +79,7 @@ export class RegisterPage implements OnInit {
       Validators.required,
       Validators.minLength(8),
     ]),
-    birthdate: new FormControl('', [
+    dateBirth: new FormControl('', [
       Validators.required
     ]),
     tel: new FormControl(''),
@@ -91,26 +95,26 @@ export class RegisterPage implements OnInit {
     this.error = '';
     if (this.form.valid) {
       this.submitForm = true;
-      // this.serviceAuth
-      //   .register(this.form.value.firstname, this.form.value.lastname, this.form.value.email, this.form.value.password, this.form.value.tel, this.form.value.sexe)
-      //   .subscribe((data: any) => {
-      //     if (data?.error) {
-      //       // this.error = data?.message;
-      //     } else {
-      //       this.router.navigateByUrl('/auth/layoutLogin/login');
-      //     }
-      //     console.log(data);
-      //   });
+      const user: IUser = this.form.value;
+      this.submitRegister(user);
     }
   }
-  
+
   async redirectToLogin() {
     this.router.navigate(['/auth/layoutLogin/login']);
   }
 
-  async submitRegister() {
-    setTimeout(() => {
-      this.router.navigate(['/auth/layoutLogin/login']);
-    }, 1000);
+  async submitRegister(user: IUser) {
+    try {
+      await this.fireStoreService.postUser(user);
+      console.log('Successfully created user in Firestore!');
+      this.isUserCreated = true;
+      setTimeout(() => {
+        this.router.navigate(['/auth/layoutLogin/login']);
+      }, 1000);
+    } catch (error) {
+      console.error('Error updating document:', error);
+      this.isUserCreated = false;
+    }
   }
 }
