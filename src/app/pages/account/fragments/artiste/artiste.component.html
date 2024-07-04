@@ -1,9 +1,10 @@
+@for(artists of artist; track artists){
 <div class="infoArtist">
-  <img class="avatar" src="https://picsum.photos/id/1/200/300" alt="profile">
+  <img class="avatar" src={{artists.avatar}} alt="profile">
   <div class="info">
-    <p id="fullname">Nom Artiste</p>
-    <p id="follower">nb abbonée</p>
-    <p id="artistSince">artist depuis</p>
+    <p id="fullname">{{ artists.fullname }}</p>
+    <p id="follower">{{ artists.nbLikes }} abonné(s)</p>
+    <p id="artistSince">Artiste depuis le {{ artists.createdAt.toDate() | date:'dd/MM/yyyy'}}</p>
   </div>
 </div>
 
@@ -26,14 +27,14 @@
   @if(segmentArtist === "Compte"){
     <div class="formArtist">
       <form [formGroup]="form">
-        <ion-label>Nom d'artist*</ion-label>
+        <ion-label>Nom d'artiste*</ion-label>
         <ion-input [readonly]="!isEditMode" formControlName="fullname"></ion-input>
 
         <ion-label>Label*</ion-label>
         <ion-input [readonly]="!isEditMode" formControlName="label"></ion-input>
 
         <ion-label>Description</ion-label>
-        <ion-textarea counter="true" maxlength="500" auto-grow="true" formControlName="Description" [readonly]="!isEditMode" fill="outline"></ion-textarea>
+        <ion-textarea counter="true" maxlength="500" auto-grow="true" formControlName="description" [readonly]="!isEditMode" fill="outline"></ion-textarea>
 
         <div class="btnEdit">
           @if (!isEditMode) {
@@ -41,7 +42,7 @@
             MODIFIER
           </ion-button>
 
-          <ion-button class="desac" color="transparent">
+          <ion-button class="desac" color="transparent" (click)="onClick(artists.userId)">
             DESACTIVER
           </ion-button>
           }@else{
@@ -59,137 +60,35 @@
   }
 
   @if(segmentArtist === "Sons"){
-    <div class="Songs">
-        <div class="listSongs">
-            <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s" alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
+    @for(songs of song; track songs){ 
+      <div class="Songs">
+          <div class="listSongs">
+              <img class="cover" src={{songs.cover}} alt="profile">
+            <div class="infoSong">
+              <p id="Title">{{ songs.title }}</p>
+              <p id="Artist">{{ artists.fullname }}</p>
+            </div>
+            <img class="visible" src="assets/icon/visible.svg" alt="profile">
           </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
 
-        <div class="listSongs">
-            <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s" alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <div class="listSongs">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <div class="infoSong">
-            <p id="Title">Nom du son</p>
-            <p id="Artist">Artiste</p>
-          </div>
-          <img class="visible" src="assets/icon/visible.svg" alt="profile">
-        </div>
-
-        <img class="addSongs" src="assets/icon/add.svg" alt="profile">
-    </div>
+          <img class="addSongs" src="assets/icon/add.svg" alt="profile">
+      </div>
+    }
   }
 
   @if(segmentArtist === "Albums"){
-    <div class="album">
-      <div class="listAlbum">
-
-        <div class="infoAlbum">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <p id="Title">Nom de l'album</p>
+    @for(albums of album; track albums){ 
+      <div class="album">
+        <div class="listAlbum">
+          <div class="infoAlbum">
+            <img class="cover" src={{albums.cover}} alt="profile">
+            <p id="Title">{{ albums.title }}</p>
+          </div>
         </div>
 
-        <div class="infoAlbum">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <p id="Title">Nom de l'album</p>
-        </div>
-
-        <div class="infoAlbum">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <p id="Title">Nom de l'album</p>
-        </div>
-
-        <div class="infoAlbum">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <p id="Title">Nom de l'album</p>
-        </div>
-
-        <div class="infoAlbum">
-          <img class="cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo_lUqkfSzU6BYJ7wKkc-ZZENXNcQbQ01WQQ&s"
-            alt="profile">
-          <p id="Title">Nom de l'album</p>
-        </div>
-
+        <img class="addAlbums" src="assets/icon/add.svg" alt="profile">
       </div>
-
-      <img class="addAlbums" src="assets/icon/add.svg" alt="profile">
-    </div>
+    }
   }
-
+}
 

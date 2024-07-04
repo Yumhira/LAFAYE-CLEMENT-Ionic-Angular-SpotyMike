@@ -7,6 +7,7 @@ import { ISong } from 'src/app/core/interfaces/song'
 import { IArtist } from '../interfaces/artist';
 import { IPlaylist } from '../interfaces/playlist';
 import { IUser } from '../interfaces/user';
+import { IAlbum } from '../interfaces/album';
 
 @Injectable({
   providedIn: 'root',
@@ -17,21 +18,19 @@ export class FirestoreService {
 
   // GET ALBUMS
   async getAlbums() {
-    const albumsCol = collection(this.db, 'albums');
+    const albumsCol = collection(this.db, 'album');
     const albumsSnapshot = await getDocs(albumsCol);
     const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
     console.log("Voici le getAlbums : ", albumsList);
     return albumsList;
   }
 
-  // GET ALBUM BY ARTIST NAME
-  async getAlbums2() {
-    const albumsCol = collection(this.db, 'albums');
-    const q = query(albumsCol, where('artist.name', '==', 'Mike'), limit(3));
+  // GET ALBUM BY ARTIST ID
+  async getAlbumsByArtistId(artistId = "eiT0esFN8xYFDPNBwox1"): Promise<IAlbum[]> {
+    const albumsCol = collection(this.db, 'album');
+    const q = query(albumsCol, where('artistId', '==', artistId));
     const albumsSnapshot = await getDocs(q);
-    const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getAlbums2 : ", albumsList);
-    return albumsList;
+    return albumsSnapshot.docs.map(doc => doc.data() as IAlbum);
   }
 
   //get user by email
@@ -210,6 +209,14 @@ export class FirestoreService {
     return albumsList;
   }
 
+  // GET SONG BY ARTIST
+  async getSongByArtist(artistId = "eiT0esFN8xYFDPNBwox1"): Promise<ISong[]> {
+    const songsCol = collection(this.db, 'song');
+    const q = query(songsCol, where('artistId', '==', artistId));
+    const songsSnapshot = await getDocs(q);
+    return songsSnapshot.docs.map(doc => doc.data() as ISong);
+  }
+
   async getSongByNbEcoute() {
     const songCol = collection(this.db, 'song');
     const q = query(songCol, orderBy('nbEcoutes', 'desc'), limit(3));
@@ -223,6 +230,16 @@ export class FirestoreService {
   async getArtistByNbLikes() {
     const artistCol = collection(this.db, 'artist');
     const q = query(artistCol, orderBy('nbLikes', 'desc'), limit(3));
+    const artistSnapshot = await getDocs(q);
+    const artistList = artistSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getArtistByNbLikes : ", artistList)
+    return artistList;
+  }
+
+  //get artist by name
+  async getArtistByFullname() {
+    const artistCol = collection(this.db, 'artist');
+    const q = query(artistCol, where('fullname', '==', "Ninho"));
     const artistSnapshot = await getDocs(q);
     const artistList = artistSnapshot.docs.map((doc) => doc.data());
     console.log("Voici le getArtistByNbLikes : ", artistList)

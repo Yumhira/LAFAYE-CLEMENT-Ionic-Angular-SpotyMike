@@ -8,6 +8,7 @@ export interface IArtist {
     avatar: string;
     description?: string;
     label: string;
+    userId: string;
     songs?: ISong[];
     albums?: IAlbum[];
     createdAt: Timestamp;

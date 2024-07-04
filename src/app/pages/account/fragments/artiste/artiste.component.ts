@@ -26,6 +26,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ISong } from 'src/app/core/interfaces/song';
 @Component({
   selector: 'app-artiste',
   templateUrl: './artiste.component.html',
@@ -56,6 +57,9 @@ export class ArtisteComponent implements OnInit {
   private fireStoreService = inject(FirestoreService);
 
   isEditMode = false;
+  artist: any[] = [];
+  song: any[] = [];
+  album: any[] = [];
   user: any[] = [];
   segmentArtist = 'Compte';
 
@@ -67,7 +71,45 @@ export class ArtisteComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getArtistByFullname();
+    this.getUserByEmail();
+    this.getSongByArtist();
+    this.getAlbumsByArtistId();
+  }
+
+  async getArtistByFullname() {
+    this.artist = await this.fireStoreService.getArtistByFullname();
+  }
+
+  async getAlbumsByArtistId() {
+    this.album = await this.fireStoreService.getAlbumsByArtistId();
+  }
+
+  async getSongByArtist() {
+    this.song = await this.fireStoreService.getSongByArtist();
+  }
+
+  getUserByEmail() {
+    this.fireStoreService.getUserByEmail().then((data) => {
+      this.user = data;
+    });
+  }
+
+  async onClick(userId: string) {
+    const user = this.user.find(p => p.id === userId);
+    if (user) {
+      user.isArtist = !user.isArtist;
+      try {
+        await this.fireStoreService.updateUser(userId, { isArtist: user.isArtist });
+        console.log('Successfully updated user in Firestore:', userId);
+        location.reload();
+      } catch (error) {
+        console.error('Error updating document:', error);
+        user.isArtist = !user.isArtist;
+      }
+    }
+  }
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;

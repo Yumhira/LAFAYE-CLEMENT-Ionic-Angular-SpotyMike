@@ -81,7 +81,7 @@ export class HomePage {
       id: 'oijvvoij',
       title: 'edzedzd',
       cover: '',
-      artistId: [],
+      artistId: '',
       albumId: [],
       genre: '',
       url: '',

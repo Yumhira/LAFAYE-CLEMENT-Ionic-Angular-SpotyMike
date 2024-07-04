@@ -139,14 +139,12 @@
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5%;
-  margin-bottom: 30%;
 
   .listSongs{
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 5%;
     .cover{
       width: 90px;
       height: 90px;
@@ -194,10 +192,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 9%;
   padding-top: 5%;
-  margin-bottom: 33%;
 
   .listAlbum{
     width: 100%;

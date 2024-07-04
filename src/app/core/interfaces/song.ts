@@ -6,7 +6,7 @@ export interface ISong {
     id: string;
     title: string;
     cover: string;
-    artistId: IArtist[];
+    artistId: string;
     albumId: IAlbum[];
     genre: string;
     url: string;
