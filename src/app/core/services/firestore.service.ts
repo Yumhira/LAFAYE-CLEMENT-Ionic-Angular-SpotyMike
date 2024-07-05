@@ -160,6 +160,16 @@ export class FirestoreService {
     return albumList;
   }
 
+  //get top album
+  async getTopAlbum() {
+    const albumCol = collection(this.db, 'album');
+    const q = query(albumCol, limit(3));
+    const albumSnapshot = await getDocs(q);
+    const albumList = albumSnapshot.docs.map((doc) => doc.data());
+    console.log("Voici le getTopAlbum : ", albumList);
+    return albumList;
+  }
+
   //get song by album
   async getSongByAlbum() {
     const albumCol = collection(this.db, 'album');

@@ -68,7 +68,7 @@ export class HomePage {
   store = inject(Store<AppState>);
 
   ngOnInit() {
-    this.getAlbum();
+    this.getTopAlbum();
     this.getUserByEmail();
     this.getPlaylist();
     this.getSongByNbEcoute();
@@ -123,8 +123,8 @@ export class HomePage {
     this.router.navigate(['/search']);
   }
 
-  async getAlbum() {
-    this.album = await this.fireStoreService.getAlbum();
+  async getTopAlbum() {
+    this.album = await this.fireStoreService.getTopAlbum();
   }
 
   async getUserByEmail(){
