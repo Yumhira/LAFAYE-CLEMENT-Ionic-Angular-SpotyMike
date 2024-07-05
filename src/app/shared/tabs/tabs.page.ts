@@ -97,6 +97,7 @@ export class TabsPage implements OnInit {
 
   toggleShuffle() {
     this.isShuffling = !this.isShuffling;
+    this.AudioService.shuffle();
   }
 
   togglePlayPause() {
