@@ -37,8 +37,17 @@
     </div>
     }
     <ion-item>
-      <ion-input type="password" formControlName="password" name="password" label="Password*" labelPlacement="floating"
+      <ion-input [type]="passwordFieldType==='password' ? 'password' : 'text'" formControlName="password" name="password" label="Password" labelPlacement="floating"
         placeholder="••••••••••••••"></ion-input>
+      <button
+        (click)="togglePasswordVisibility()"
+        type="button"
+        class="passwordVisibility"
+      >
+        <ion-icon
+          [name]="passwordFieldType === 'password' ? 'eye-off-outline' : 'eye-outline'"
+        ></ion-icon>
+      </button>
     </ion-item>
     @if(form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)){
     <div>
@@ -54,13 +63,13 @@
     </div>
     }
     <ion-item>
-      <ion-input type="tel" formControlName="tel" name="tel" label="Tel" labelPlacement="floating"
+      <ion-input type="tel" formControlName="tel" name="tel" label="Phone number" labelPlacement="floating"
         placeholder="06 12 37 12 22"></ion-input>
     </ion-item>
     <div class="row">
       <ion-col class="column">
         <ion-item>
-          <ion-input type="date" class="birthdate" formControlName="dateBirth" name="dateBirth" label="Date de naissance*" labelPlacement="floating"></ion-input>
+          <ion-input type="date" class="birthdate" formControlName="dateBirth" name="dateBirth" label="Birthdate*" labelPlacement="floating"></ion-input>
         </ion-item>
         @if(form.get('dateBirth')?.invalid && (form.get('dateBirth')?.dirty || form.get('dateBirth')?.touched)){
           <div>

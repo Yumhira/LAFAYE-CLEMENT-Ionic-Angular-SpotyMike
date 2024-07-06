@@ -40,7 +40,7 @@
   flex-direction: column;
   padding-left: 10%;
   padding-right: 10%;
-  padding-top: 22%;
+  padding-top: 24%;
 
   ion-label {
     color: #AAAAAA;
@@ -52,6 +52,12 @@
     color: black;
     border-bottom: 2px solid #AAAAAA;
     font-size: 16px;
+    margin-top: -7px;
+    margin-bottom: 3%;
+  }
+
+  ion-select {
+    margin-top: -7px;
     margin-bottom: 3%;
   }
 
@@ -62,13 +68,15 @@
       font-size: 16px;
       font-weight: 700;
       border-radius: 30px;
+      width: 80%;
+      margin-left: 10%;
     }
 
     .onEdit {
       display: flex;
       justify-content: space-evenly;
       flex-direction: row;
-
+      margin-top: -4px;  
       .valider {
         background-color: #15AB90;
         border-radius: 30px;

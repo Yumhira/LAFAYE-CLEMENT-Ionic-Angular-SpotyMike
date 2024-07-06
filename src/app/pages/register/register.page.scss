@@ -22,6 +22,12 @@ app-login{
       background: transparent;
     }
 
+    .passwordVisibility {
+      background-color: transparent;
+      font-size: 110%;
+      padding-top: 5%;
+    }
+
     .row {
         display: flex;
         flex-direction: row;

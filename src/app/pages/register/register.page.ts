@@ -26,7 +26,7 @@ import { AuthentificationService } from 'src/app/core/services/authentification.
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { alertOutline, checkmarkOutline } from 'ionicons/icons';
+import { alertOutline, checkmarkOutline, eyeOffOutline, eyeOutline } from 'ionicons/icons';
 import { FirestoreService } from 'src/app/core/services/firestore.service';
 import { IUser } from 'src/app/core/interfaces/user';
 
@@ -59,9 +59,9 @@ export class RegisterPage implements OnInit {
   error = '';
   submitForm = false;
   isUserCreated = false;
+  passwordFieldType: string = 'password';
 
   private router = inject(Router);
-  private serviceAuth = inject(AuthentificationService);
   private fireStoreService = inject(FirestoreService);
 
   form: FormGroup = new FormGroup({
@@ -86,7 +86,7 @@ export class RegisterPage implements OnInit {
     sexe: new FormControl('')
   });
   constructor() {
-    addIcons({alertOutline, checkmarkOutline});
+    addIcons({ eyeOutline, eyeOffOutline, alertOutline, checkmarkOutline });
   }
 
   ngOnInit() {}
@@ -116,5 +116,10 @@ export class RegisterPage implements OnInit {
       console.error('Error updating document:', error);
       this.isUserCreated = false;
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
