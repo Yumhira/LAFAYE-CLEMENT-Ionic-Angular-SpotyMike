@@ -7,6 +7,7 @@
         "password_minSize": "Taille mot de passe invalide",
         "firstname_required": "Prénom requis",
         "lastname_required": "Nom requis",
-        "birthdate_required": "Date de naissance requise"
+        "birthdate_required": "Date de naissance requise",
+        "tel_format": "Numéro de téléphone invalide"
     }
 }

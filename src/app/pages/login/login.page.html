@@ -33,7 +33,7 @@
       <p class="error">{{ 'auth.password_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('password')?.errors?.['pattern'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_format'|translate }}</p>
+      <p class="error">{{ 'auth.password_format'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('password')?.errors?.['minlength'] ){
       <p class="error">{{ 'auth.password_minSize'|translate }}<ion-icon name="alert-outline"></ion-icon></p>

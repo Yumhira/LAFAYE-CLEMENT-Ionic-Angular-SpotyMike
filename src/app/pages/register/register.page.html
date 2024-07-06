@@ -55,7 +55,7 @@
       <p class="error">{{ 'auth.password_required'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('password')?.errors?.['pattern'] ){
-      <p class="error"><ion-icon name="alert-outline"></ion-icon>{{ 'auth.password_format'|translate }}</p>
+      <p class="error">{{ 'auth.password_format'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
       }
       @else if(form.get('password')?.errors?.['minlength'] ){
       <p class="error">{{ 'auth.password_minSize'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
@@ -64,8 +64,15 @@
     }
     <ion-item>
       <ion-input type="tel" formControlName="tel" name="tel" label="Phone number" labelPlacement="floating"
-        placeholder="06 12 37 12 22"></ion-input>
+        placeholder="0600000000"></ion-input>
     </ion-item>
+    @if(form.get('tel')?.invalid && (form.get('tel')?.dirty || form.get('tel')?.touched)){
+      <div>
+        @if(form.get('tel')?.errors?.['pattern'] ){
+        <p class="error">{{ 'auth.tel_format'|translate }}<ion-icon name="alert-outline"></ion-icon></p>
+        }
+      </div>
+    }
     <div class="row">
       <ion-col class="column">
         <ion-item>

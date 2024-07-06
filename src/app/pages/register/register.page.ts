@@ -82,7 +82,9 @@ export class RegisterPage implements OnInit {
     dateBirth: new FormControl('', [
       Validators.required
     ]),
-    tel: new FormControl(''),
+    tel: new FormControl('', [
+      Validators.pattern('^0[1-9](\\d{2}){4}$'),
+    ]),
     sexe: new FormControl('')
   });
   constructor() {
