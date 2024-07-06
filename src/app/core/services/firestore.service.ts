@@ -133,6 +133,25 @@ export class FirestoreService {
     }
   }
 
+  //get playlist by like
+  async getPlaylistByLike(): Promise<IPlaylist[]> {
+    const playlistCol = collection(this.db, 'playlist');
+    const q = query(playlistCol, where('isLiked', '==', true));
+    const playlistSnapshot = await getDocs(q);
+    const playlistList: IPlaylist[] = playlistSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id, // Use the document ID as the ID
+        name: data['name'],
+        cover: data['cover'],
+        isLiked: data['isLiked'],
+        // Map other properties accordingly
+      } as IPlaylist;
+    });
+    console.log("Voici le getPlaylistByLike : ", playlistList);
+    return playlistList;
+  }
+
   //get playlist by id
   async getPlaylistById(playlistId: string) {
     const playlistCol = collection(this.db, 'playlist');
@@ -208,11 +227,36 @@ export class FirestoreService {
   }
 
   //get song
-  async getSong() {
+  async getSong(): Promise<ISong[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, 'song'));
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data() as ISong;
+        const id = doc.id;
+        return { ...data, id };
+      });
+    } catch (error) {
+      console.error('Error fetching songs:', error);
+      return [];
+    }
+  }
+
+  //get song by like
+  async getSongByLike(): Promise<ISong[]> {
     const songCol = collection(this.db, 'song');
-    const songSnapshot = await getDocs(songCol);
-    const songList = songSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getSong : ", songList);
+    const q = query(songCol, where('isLiked', '==', true));
+    const songSnapshot = await getDocs(q);
+    const songList: ISong[] = songSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id, // Use the document ID as the ID
+        title: data['title'],
+        cover: data['cover'],
+        isLiked: data['isLiked'],
+        // Map other properties accordingly
+      } as ISong;
+    });
+    console.log("Voici le getPlaylistByLike : ", songList);
     return songList;
   }
 
@@ -241,6 +285,11 @@ export class FirestoreService {
     const songList = songSnapshot.docs.map((doc) => doc.data());
     console.log("Voici le getSongByNbEcoute : ", songList);
     return songList;
+  }
+
+  async updateSong(songId: string, data: Partial<ISong>) {
+    const songDoc = doc(this.db, 'song', songId);
+    await updateDoc(songDoc, data);
   }
 
   //get artist by nbLikes

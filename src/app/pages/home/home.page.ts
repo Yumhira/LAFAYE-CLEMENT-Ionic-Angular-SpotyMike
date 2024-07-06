@@ -84,6 +84,7 @@ export class HomePage {
       artistId: '',
       albumId: [],
       genre: '',
+      isLiked: false,
       url: '',
       visibility: false
     };

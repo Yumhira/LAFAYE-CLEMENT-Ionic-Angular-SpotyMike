@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonIcon, IonButton, IonItem } from '@ionic/angular/standalone';
-import { Location } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { ModalController } from '@ionic/angular';
 import { chevronBack, ellipsisHorizontal } from 'ionicons/icons';
@@ -24,16 +23,12 @@ export class PlaylistPage implements OnInit {
   playlists: IPlaylist[] = [];
   isLiked: boolean = false;
 
-  constructor(private _location: Location, private router: Router) {
+  constructor(private router: Router) {
     addIcons({ chevronBack, ellipsisHorizontal })
   }
 
   ngOnInit() {
     this.getPlaylist();
-  }
-
-  backClicked() {
-    this._location.back();
   }
 
   async getPlaylist() {

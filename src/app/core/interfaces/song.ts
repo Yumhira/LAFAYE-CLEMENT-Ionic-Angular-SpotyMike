@@ -12,6 +12,7 @@ export interface ISong {
     url: string;
     featuring?: IArtist[];
     visibility: boolean;
+    isLiked: boolean;
     nbEcoutes?: number;
     dateEcoute?: Timestamp;
 }
