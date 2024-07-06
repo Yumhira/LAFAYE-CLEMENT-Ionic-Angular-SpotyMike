@@ -30,9 +30,9 @@ export class LikePage implements OnInit {
     addIcons({ chevronBack, ellipsisHorizontal })
   }
 
-  ngOnInit() {
-    this.getPlaylistByLike();
-    this.getSongByLike();
+  async ngOnInit() {
+    await this.getPlaylistByLike();
+    await this.getSongByLike();
   }
 
   async getPlaylistByLike() {
@@ -53,7 +53,7 @@ export class LikePage implements OnInit {
     return await modal.present();
   }
 
-  async onLike(songId: string) {
+  async onLikeSong(songId: string) {
     const song = this.songs.find(s => s.id === songId);
     if (song) {
       song.isLiked = !song.isLiked;
@@ -64,6 +64,21 @@ export class LikePage implements OnInit {
       } catch (error) {
         console.error('Error updating document:', error);
         song.isLiked = !song.isLiked;
+      }
+    }
+  }
+  
+  async onLikePlaylist(playlistId: string) {
+    const playlist = this.playlists.find(s => s.id === playlistId);
+    if (playlist) {
+      playlist.isLiked = !playlist.isLiked;
+      try {
+        await this.fireStoreService.updatePlaylist(playlistId, { isLiked: playlist.isLiked });
+        console.log('Successfully updated playlist in Firestore:', playlistId);
+        location.reload();
+      } catch (error) {
+        console.error('Error updating document:', error);
+        playlist.isLiked = !playlist.isLiked;
       }
     }
   }  

@@ -249,11 +249,10 @@ export class FirestoreService {
     const songList: ISong[] = songSnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
-        id: doc.id, // Use the document ID as the ID
+        id: doc.id,
         title: data['title'],
         cover: data['cover'],
         isLiked: data['isLiked'],
-        // Map other properties accordingly
       } as ISong;
     });
     console.log("Voici le getPlaylistByLike : ", songList);
@@ -264,10 +263,19 @@ export class FirestoreService {
   async getSongByTitle() {
     const songsCol = collection(this.db, 'song');
     const q = query(songsCol, where('title', '==', 'Ipséité'));
-    const albumsSnapshot = await getDocs(q);
-    const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getSongByTitle : ", albumsList);
-    return albumsList;
+    const songSnapshot = await getDocs(q);
+    const songList: ISong[] = songSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data['title'],
+        cover: data['cover'],
+        isLiked: data['isLiked'],
+        lyrics: data['lyrics'],
+      } as ISong;
+    });
+    console.log("Voici le getSongByTitle : ", songList);
+    return songList;
   }
 
   // GET SONG BY ARTIST

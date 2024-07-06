@@ -82,6 +82,7 @@ export class HomePage {
       title: 'edzedzd',
       cover: '',
       artistId: '',
+      lyrics: '',
       albumId: [],
       genre: '',
       isLiked: false,

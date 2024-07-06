@@ -161,7 +161,17 @@ export class PlayerPage implements OnInit, OnDestroy {
     return await modal.present();
   }
 
-  onLike() {
-    this.isLiked = !this.isLiked;
+  async onLike(songId: string) {
+    const song = this.song.find(s => s.id === songId);
+    if (song) {
+      song.isLiked = !song.isLiked;
+      try {
+        await this.fireStoreService.updateSong(songId, { isLiked: song.isLiked });
+        console.log('Successfully updated song in Firestore:', songId);
+      } catch (error) {
+        console.error('Error updating document:', error);
+        song.isLiked = !song.isLiked;
+      }
+    }
   }
 }

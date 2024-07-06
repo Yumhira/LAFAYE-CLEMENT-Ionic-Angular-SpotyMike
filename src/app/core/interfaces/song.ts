@@ -10,6 +10,7 @@ export interface ISong {
     albumId: IAlbum[];
     genre: string;
     url: string;
+    lyrics: string;
     featuring?: IArtist[];
     visibility: boolean;
     isLiked: boolean;

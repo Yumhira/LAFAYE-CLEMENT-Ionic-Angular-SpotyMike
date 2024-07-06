@@ -14,16 +14,20 @@
     <ion-row class="infoLike">
       <ion-col class="infoSong">
         <p class="nameSong">{{songs.title}}</p>
-        <p class="nameArtist">NameArtist</p>
+        <p class="nameArtist">Damso</p>
       </ion-col>
       <ion-col class="likeShare">
-        @if(!isLiked){
-          <img class="iconLike" src="assets/icon/like.svg" alt="like" (click)="onLike()">
-        }
-        @else(){
-          <img class="iconLiked" src="assets/icon/likeClicked.svg" alt="likeClick" (click)="onLike()">
-        }
-        <img class="iconShare" src="assets/icon/share.svg" alt="share" (click)="onShareModal()">
+        <ion-row class="buttons-song">
+          <a [style.color]="songs.isLiked ? 'blue' : 'transparent'">
+            <img class="iconLike" 
+            [src]="songs.isLiked ? 'assets/icon/likeClicked.svg' : 'assets/icon/like.svg'" 
+            [alt]="songs.isLiked ? 'Like Clicked' : 'Like Icon'" 
+            (click)="onLike(songs.id)">
+          </a>
+          <a color="transparent">
+            <img class="iconShare" src="assets/icon/share.svg" alt="Share Button" (click)="onShareModal()">
+          </a>
+        </ion-row>
       </ion-col>
     </ion-row>
 

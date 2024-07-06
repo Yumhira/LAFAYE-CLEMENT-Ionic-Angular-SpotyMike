@@ -20,7 +20,7 @@
               <img class="like-resize" 
                 [src]="song.isLiked ? 'assets/icon/likeClicked.svg' : 'assets/icon/like.svg'" 
                 [alt]="song.isLiked ? 'Like Clicked' : 'Like Icon'" 
-                (click)="onLike(song.id)">
+                (click)="onLikeSong(song.id)">
             </a>
             <a class="bt2" color="transparent">
               <img class="share-resize" src="assets/icon/share.svg" alt="Share Button" (click)="onShareModal()">
@@ -38,8 +38,7 @@
           <img class="cover-resize" src="{{playlist.cover}}" alt="Cover 1">
         </ion-col>
         <ion-col class="pad-text">
-            <p class="song-text" (click)="goToPlayer()">{{playlist.name}}</p>
-            <p class="light artist-text" (click)="goToPlayer()">Artist Name</p>
+            <p class="playlist-text">{{playlist.name}}</p>
         </ion-col>
         <ion-col class="btnLS">
           <ion-row class="buttons-song">
@@ -47,7 +46,7 @@
               <img class="like-resize" 
                 [src]="playlist.isLiked ? 'assets/icon/likeClicked.svg' : 'assets/icon/like.svg'" 
                 [alt]="playlist.isLiked ? 'Like Clicked' : 'Like Icon'" 
-                (click)="onLike(playlist.id)">
+                (click)="onLikePlaylist(playlist.id)">
             </a>
             <a class="bt2" color="transparent">
               <img class="share-resize" src="assets/icon/share.svg" alt="Share Button" (click)="onShareModal()">

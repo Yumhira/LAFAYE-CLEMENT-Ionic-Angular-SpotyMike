@@ -54,24 +54,15 @@ ion-content {
       }
     }
   .likeShare {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 5%;
     img{
+      width: 95%;
       margin-top: 20px;
-      width: 25%;
     }
-
-    .iconLike {
-      padding-right: 5%;
-    }
-
-    .iconLiked{
-      padding-right: 5%;
-    }
-
-    .iconShare {
-      padding-right: 5%;
+    .buttons-song{
+      display: flex;
+      justify-content: space-between;
+      width: 93%;
+      padding-left: 46%;
     }
   }
 }
