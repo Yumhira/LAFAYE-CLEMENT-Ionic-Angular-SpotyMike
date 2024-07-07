@@ -10,9 +10,9 @@ export const authGuard: CanActivateFn = async (route, state) => {
 
   // Vérifie si le token est un objet vide
   if (Object.keys(token).length === 0) {
-    router.navigate(['/auth/layoutLogin/login']); // Redirige vers la page de login
-    return false; // Retourne false pour bloquer l'accès
+    router.navigate(['/auth/layoutLogin/login']);
+    return false;
   } else {
-    return true; // Retourne true si le token n'est pas vide
+    return true;
   }
 };

@@ -67,6 +67,32 @@ export class FirestoreService {
     return userList;
   }
 
+  //get user by mail
+  async getUserByMail(email: string) {
+    const userCol = collection(this.db, 'user');
+    const q = query(
+      userCol,
+      where('email', '==', email)
+    );
+    const userSnapshot = await getDocs(q);
+    const userList: IUser[] = userSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        firstname: data['firstname'],
+        lastname: data['lastname'],
+        email: data['email'],
+        tel: data['tel'],
+        isArtist: data['isArtist'],
+        dateBirth: data['dateBirth'],
+        sexe: data['sexe'],
+        createdAt: data['createdAt'],
+      } as IUser;
+    });
+    console.log("Voici le getUserByMail : ", userList);
+    return userList;
+  }
+
   // GET ALBUM BY SONG TITLE
   async getAlbumBySongTitle() {
     const albumsCol = collection(this.db, 'albums');
@@ -155,7 +181,7 @@ export class FirestoreService {
       });
     } catch (error) {
       console.error('Error fetching playlists:', error);
-      return []; // Return empty array or handle error appropriately
+      return [];
     }
   }
 
@@ -167,11 +193,10 @@ export class FirestoreService {
     const playlistList: IPlaylist[] = playlistSnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
-        id: doc.id, // Use the document ID as the ID
+        id: doc.id,
         name: data['name'],
         cover: data['cover'],
         isLiked: data['isLiked'],
-        // Map other properties accordingly
       } as IPlaylist;
     });
     console.log("Voici le getPlaylistByLike : ", playlistList);

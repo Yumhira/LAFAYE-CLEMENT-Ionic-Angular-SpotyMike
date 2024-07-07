@@ -34,7 +34,6 @@ export class AudioService {
       this.duration$.next(this.audio.duration);
     });
 
-    // Example playlist data
     this.setPlaylist([
       { url: 'assets/audio/testSong.mp3', position: 0, status: false },
       { url: 'assets/audio/testSong2.mp3', position: 1, status: false },
@@ -75,7 +74,7 @@ export class AudioService {
     if (this.currentTrackIndex < this.playlist$.value.length - 1) {
       this.currentTrackIndex++;
     } else {
-      this.currentTrackIndex = 0; // Loop back to the start of the playlist
+      this.currentTrackIndex = 0;
     }
     this.loadCurrentTrack();
     this.play();
@@ -86,7 +85,7 @@ export class AudioService {
     if (this.currentTrackIndex > 0) {
       this.currentTrackIndex--;
     } else {
-      this.currentTrackIndex = this.playlist$.value.length - 1; // Loop to the end of the playlist
+      this.currentTrackIndex = this.playlist$.value.length - 1;
     }
     this.loadCurrentTrack();
     this.play();

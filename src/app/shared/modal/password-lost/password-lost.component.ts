@@ -20,6 +20,8 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { alertOutline, chevronBackOutline, chevronForwardOutline, eyeOffOutline, eyeOutline } from 'ionicons/icons';
+import { IUser } from 'src/app/core/interfaces/user';
+import { FirestoreService } from 'src/app/core/services/firestore.service';
 
 @Component({
   standalone: true,
@@ -47,11 +49,14 @@ export class PasswordLostComponent {
   error = '';
   submitForm = false;
   passwordFieldType: string = 'password';
+  isUserUpdated = false;
+  user: IUser[] = [];
 
   private localStore = inject (LocalStorageService);
   private router = inject(Router);
   private modalCtl = inject(ModalController);
   private serviceAuth = inject(AuthentificationService);
+  private fireStoreService = inject(FirestoreService);
   
   form: FormGroup = new FormGroup({
     email: new FormControl('', [
@@ -64,26 +69,48 @@ export class PasswordLostComponent {
     ]),
   });
 
-  onSubmit() {
-    this.error = '';
-    if (this.form.valid) {
-      this.submitForm = true;
-      // this.serviceAuth
-      //   .passwordLost(this.form.value.email, this.form.value.password)
-      //   .subscribe(async (data: any) => {
-      //     if (data?.error) {
-      //       // this.error = data?.message;
-      //     } else {
-      //       this.router.navigateByUrl('/auth/layoutLogin/login');
-      //     }
-      //     console.log(data);
-      //   });
-    }
-  }
-
   constructor() {
     addIcons({ eyeOutline, eyeOffOutline, alertOutline, chevronBackOutline, chevronForwardOutline });
   }
+  
+  async getUserByEmail(email: string): Promise<IUser | null> {
+    try {
+      const users = await this.fireStoreService.getUserByMail(email);
+      if (users && users.length > 0) {
+        return users[0];
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching user by email:', error);
+      return null;
+    }
+  }
+
+  async onClick() {  
+    if (this.form.invalid) {
+      console.error('Form is invalid');
+      return;
+    }
+    const email = this.form.get('email')?.value;
+    const getUser = await this.getUserByEmail(email);
+    if (getUser) {
+      getUser.password = this.form.get('password')?.value;
+      try {
+        await this.fireStoreService.updateUser(getUser.id, { password: getUser.password });
+        console.log('Successfully updated user in Firestore:', getUser.id);
+        this.isUserUpdated = true;
+        this.submitForm = true;
+        setTimeout(async () => {
+          await this.confirm();
+        }, 1000);
+      } catch (error) {
+        console.error('Error updating document:', error);
+        this.isUserUpdated = false;
+        this.submitForm = false;
+      }
+    }
+  }  
 
   async cancel() {
     await this.modalCtl.dismiss();

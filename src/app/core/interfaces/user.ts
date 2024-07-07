@@ -26,6 +26,10 @@ export interface IUser {
     createdAt: Timestamp;
 }
 
+export interface TokenVerificationResponse {
+    valid: boolean;
+}
+
 export interface IAccessToken {
     token: string;
     expires: string|Date;

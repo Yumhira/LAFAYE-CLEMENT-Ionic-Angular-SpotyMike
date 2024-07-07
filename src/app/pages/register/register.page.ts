@@ -111,8 +111,8 @@ export class RegisterPage implements OnInit {
       await this.fireStoreService.postUser(user);
       console.log('Successfully created user in Firestore!');
       this.isUserCreated = true;
-      setTimeout(() => {
-        this.router.navigate(['/auth/layoutLogin/login']);
+      setTimeout(async () => {
+        await this.redirectToLogin();
       }, 1000);
     } catch (error) {
       console.error('Error updating document:', error);
