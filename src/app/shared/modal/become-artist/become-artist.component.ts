@@ -119,6 +119,7 @@ export class BecomeArtistComponent implements OnInit {
 
   async onClick(userId: string) {
     const user = this.user.find(p => p.id === userId);
+    console.log(user, userId);
     if (user) {
       user.isArtist = !user.isArtist;
       try {

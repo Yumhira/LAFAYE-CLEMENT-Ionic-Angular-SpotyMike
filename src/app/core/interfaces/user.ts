@@ -16,7 +16,7 @@ export interface IUser {
     password: string;
     isEmailVerified: boolean;
     artistId?: IArtist[]; 
-    dateBirth: string;
+    dateBirth: Timestamp;
     tel?: string;
     isArtist: boolean;
     likedArtists?: IArtist[];

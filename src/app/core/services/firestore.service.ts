@@ -9,6 +9,7 @@ import { IArtist } from '../interfaces/artist';
 import { IPlaylist } from '../interfaces/playlist';
 import { IUser } from '../interfaces/user';
 import { IAlbum } from '../interfaces/album';
+import { da } from 'date-fns/locale';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +43,20 @@ export class FirestoreService {
       where('email', '==', 'utilisateurRandom@gmail.com')
     );
     const userSnapshot = await getDocs(q);
-    const userList = userSnapshot.docs.map((doc) => doc.data());
+    const userList: IUser[] = userSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        firstname: data['firstname'],
+        lastname: data['lastname'],
+        email: data['email'],
+        tel: data['tel'],
+        isArtist: data['isArtist'],
+        dateBirth: data['dateBirth'],
+        sexe: data['sexe'],
+        createdAt: data['createdAt'],
+      } as IUser;
+    });
     console.log("Voici le getUserByEmail : ", userList);
     return userList;
   }

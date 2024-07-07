@@ -26,7 +26,6 @@
     <ion-input [readonly]="!isEditMode" formControlName="dateBirth"></ion-input>
 
     <ion-label position="stacked">Sexe</ion-label>
-      
     <ion-select aria-label="Sexe" interface="popover"  formControlName="sexe" placeholder="Champ vide">
       <ion-select-option value="Homme">Homme</ion-select-option>
       <ion-select-option value="Femme">Femme</ion-select-option>
@@ -39,11 +38,11 @@
       </ion-button>
       }@else{
       <div class="onEdit">
-        <ion-button class="valider" color="transparent" (click)="toggleEditMode()">
+        <ion-button type="submit" class="valider" color="transparent" (click)="onEdit(users.id)">
           VALIDER
         </ion-button>
 
-        <ion-button class="annuler" color="transparent" (click)="toggleEditMode()">
+        <ion-button class="annuler" color="transparent" (click)="onCancel()">
           ANNULER
         </ion-button>
       </div>

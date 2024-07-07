@@ -7,8 +7,11 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
+import { IUser } from 'src/app/core/interfaces/user';
+import { Timestamp } from 'firebase/firestore/lite';
 
 @Component({
   selector: 'app-utilisateur',
@@ -30,15 +33,23 @@ import { format } from 'date-fns';
 export class UtilisateurComponent implements OnInit {
   private fireStoreService = inject(FirestoreService);
 
-  user: any[] = [];
+  user: IUser[] = [];
   isEditMode = false;
 
   form = new FormGroup({
-    email: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
+    email: new FormControl('', [
+      Validators.required
+    ]),
+    firstname: new FormControl('', [
+      Validators.required
+    ]),
+    lastname: new FormControl('', [
+      Validators.required
+    ]),
     tel: new FormControl(''),
-    dateBirth: new FormControl(''),
+    dateBirth: new FormControl('', [
+      Validators.required
+    ]),
     sexe: new FormControl(''),
   });
 
@@ -46,7 +57,9 @@ export class UtilisateurComponent implements OnInit {
 
   ngOnInit() {
     this.getUserByEmail();
+  }
 
+  getUserByEmail() {
     this.fireStoreService.getUserByEmail().then((data) => {
       this.user = data;
       this.form.patchValue({
@@ -60,10 +73,36 @@ export class UtilisateurComponent implements OnInit {
     });
   }
 
-  getUserByEmail() {
-    this.fireStoreService.getUserByEmail().then((data) => {
-      this.user = data;
+  async onEdit(userId: string) {
+    const user = this.user.find(p => p.id === userId);
+    if (user && this.form.valid) {
+      try {
+        user.firstname = this.form.get('firstname')!.value ?? user.firstname;
+        user.lastname = this.form.get('lastname')!.value ?? user.lastname;
+        user.sexe = this.form.get('sexe')?.value === 'Homme';
+        user.tel = this.form.get('tel')?.value || '';
+
+        await this.fireStoreService.updateUser(userId, { firstname: user.firstname, lastname: user.lastname, sexe: user.sexe, tel: user.tel });
+        console.log('Successfully updated user in Firestore:', userId);
+      } catch (error) {
+        console.error('Error updating document:', error);
+      }
+    } else {
+      console.error('Form is invalid or user not found');
+    }
+    this.toggleEditMode();
+  }
+
+  async onCancel() {
+    this.form.patchValue({
+      email: this.user[0].email,
+      firstname: this.user[0].firstname,
+      lastname: this.user[0].lastname,
+      tel: this.user[0].tel,
+      sexe: this.user[0].sexe ? 'Homme' : 'Femme',
     });
+
+    this.toggleEditMode();
   }
 
   toggleEditMode() {
