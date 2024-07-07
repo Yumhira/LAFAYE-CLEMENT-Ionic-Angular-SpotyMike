@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <div class="page">
+    <div class="background">
+      <div id="header">
+        <ion-row>
+          <ion-icon (click)="backClicked()" class="back" name="close-outline"></ion-icon>
+          <ion-searchbar
+            debounce="500"
+            placeholder="Search"
+            (ionInput)="applyFilter($event)">
+          </ion-searchbar>
+        </ion-row>
+      </div>
+    </div>
+
+    
+
+    @for(category of filteredItems; track category){
+    <ion-list>
+      <ion-list-header>{{ category.category }}</ion-list-header>
+      @for(item of category.items; track item){
+        <ion-item>
+          <ion-col class="img">
+            <img class="image" src={{getItemImage(category.category,item)}} alt="">
+            <ion-label>{{ getItemLabel(category.category, item) }}</ion-label>
+          </ion-col>
+        </ion-item>
+      }
+    </ion-list>
+    }
+  </div>
+</ion-content>

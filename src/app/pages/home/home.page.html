@@ -3,7 +3,7 @@
     @for (users of user; track users) {
       <img class="profile-picture" [src]="'https://ui-avatars.com/api/?name=' + users.firstname + ' ' + users.lastname">
     }
-    <ion-icon class="search" (click)="goToSearch()" name="search-outline"></ion-icon>
+    <ion-icon class="search" (click)="openSearchModal()" name="search-outline"></ion-icon>
   </div>
 
   <div class="first-container">

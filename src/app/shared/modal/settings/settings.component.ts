@@ -16,6 +16,7 @@
   import { format } from 'date-fns';
   import { addIcons } from 'ionicons';
   import { chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
+  import { Router } from '@angular/router';
 
   @Component({
     selector: 'app-settings',
@@ -29,7 +30,7 @@
     private fireStoreService = inject(FirestoreService);
     user: any[] = [];
     private _location: any;
-    constructor() {
+    constructor(private router: Router) {
       addIcons({ chevronBackOutline, chevronForwardOutline });
     }
 
@@ -45,6 +46,14 @@
       this.fireStoreService.getUserByEmail().then((data) => {
         this.user = data;
       });
+    }
+
+    async logOut() {
+      await localStorage.removeItem('token');
+      setTimeout(() => {
+        this.router.navigate(['/auth/layoutLogin/login']);
+      }, 1000);
+      this.modalCtl.dismiss();
     }
 
     backClicked() {

@@ -145,6 +145,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    ion-icon {
+      font-size: 125%;
+      width: 15%;
+    }
     .cover{
       width: 90px;
       height: 90px;

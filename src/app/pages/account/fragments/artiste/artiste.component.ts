@@ -16,8 +16,10 @@ import {
   IonButton,
   IonSegmentButton,
   IonSegment,
-  IonTextarea
+  IonTextarea,
+  IonIcon
 } from '@ionic/angular/standalone';
+import { ModalController } from '@ionic/angular';
 import {
   FormBuilder,
   FormControl,
@@ -27,6 +29,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ISong } from 'src/app/core/interfaces/song';
+import { addIcons } from 'ionicons';
+import { eyeOff, eye } from 'ionicons/icons';
+import { IArtist } from 'src/app/core/interfaces/artist';
+import { IAlbum } from 'src/app/core/interfaces/album';
+import { IUser } from 'src/app/core/interfaces/user';
+import { CreateSongPage } from 'src/app/shared/modal/createsong/createsong.page';
+import { CreateAlbumPage } from 'src/app/shared/modal/createalbum/createalbum.page';
 @Component({
   selector: 'app-artiste',
   templateUrl: './artiste.component.html',
@@ -51,16 +60,18 @@ import { ISong } from 'src/app/core/interfaces/song';
     FormsModule,
     ReactiveFormsModule,
     IonTextarea,
+    IonIcon
   ],
 })
 export class ArtisteComponent implements OnInit {
   private fireStoreService = inject(FirestoreService);
+  private modalCtl = inject(ModalController);
 
   isEditMode = false;
   artist: any[] = [];
-  song: any[] = [];
-  album: any[] = [];
-  user: any[] = [];
+  song: ISong[] = [];
+  album: IAlbum[] = [];
+  user: IUser[] = [];
   segmentArtist = 'Compte';
 
   form = new FormGroup({
@@ -69,7 +80,9 @@ export class ArtisteComponent implements OnInit {
     description: new FormControl(''),
   });
 
-  constructor() {}
+  constructor() {
+    addIcons({eye, eyeOff})
+  }
 
   ngOnInit() {
     this.getArtistByFullname();
@@ -112,7 +125,35 @@ export class ArtisteComponent implements OnInit {
     }
   }
 
+  async onClickVisibility(songId: string) {
+    const song = this.song.find(p => p.id === songId);
+    if (song) {
+      song.visibility = !song.visibility;
+      try {
+        await this.fireStoreService.updateSong(songId, { visibility: song.visibility });
+        console.log('Successfully updated song in Firestore:', songId);
+      } catch (error) {
+        console.error('Error updating document:', error);
+        song.visibility = !song.visibility;
+      }
+    }
+  }
+
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
+  }
+
+  async onAddSongModal() {
+    const modal = await this.modalCtl.create({
+      component: CreateSongPage,
+    });
+    modal.present();
+  }
+
+  async onAddAlbumModal() {
+    const modal = await this.modalCtl.create({
+      component: CreateAlbumPage,
+    });
+    modal.present();
   }
 }

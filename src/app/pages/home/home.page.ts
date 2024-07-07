@@ -28,6 +28,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { addSong, loadSong } from 'src/app/core/store/action/song.action';
 import { selectStoreList } from 'src/app/core/store/selector/song.selector';
+import { ModalController } from '@ionic/angular';
+import { SearchComponent } from 'src/app/shared/modal/search/search.component';
 
 @Component({
   selector: 'app-home',
@@ -93,7 +95,7 @@ export class HomePage {
     this.song$ = this.store.select(selectStoreList);
   }
 
-  constructor(private router: Router) {
+  constructor(private modalController: ModalController, private router: Router) {
     addIcons({ arrowForwardOutline, searchOutline, ellipsisHorizontal });
   }
 
@@ -157,5 +159,12 @@ export class HomePage {
     const artist = await this.fireStoreService.getArtistById(artistId);
     console.log(artist);
     return artist;
+  }
+
+  async openSearchModal() {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+    });
+    modal.present();
   }
 }

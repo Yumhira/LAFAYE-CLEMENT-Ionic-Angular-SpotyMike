@@ -19,12 +19,18 @@ export class FirestoreService {
   private db = getFirestore(this.app);
 
   // GET ALBUMS
-  async getAlbums() {
-    const albumsCol = collection(this.db, 'album');
-    const albumsSnapshot = await getDocs(albumsCol);
-    const albumsList = albumsSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getAlbums : ", albumsList);
-    return albumsList;
+  async getAlbums(): Promise<IAlbum[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, 'album'));
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data() as IAlbum;
+        const id = doc.id;
+        return { ...data, id };
+      });
+    } catch (error) {
+      console.error('Error fetching albums:', error);
+      return [];
+    }
   }
 
   // GET ALBUM BY ARTIST ID
@@ -124,12 +130,18 @@ export class FirestoreService {
   }
 
   //get artist
-  async getArtist() {
-    const artistCol = collection(this.db, 'artist');
-    const artistSnapshot = await getDocs(artistCol);
-    const artistList = artistSnapshot.docs.map((doc) => doc.data());
-    console.log("Voici le getArtist : ", artistList);
-    return artistList;
+  async getArtist(): Promise<IArtist[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.db, 'artist'));
+      return querySnapshot.docs.map(doc => {
+        const data = doc.data() as IArtist;
+        const id = doc.id;
+        return { ...data, id };
+      });
+    } catch (error) {
+      console.error('Error fetching artists:', error);
+      return [];
+    }
   }
 
   //get playlist
@@ -297,7 +309,19 @@ export class FirestoreService {
     const songsCol = collection(this.db, 'song');
     const q = query(songsCol, where('artistId', '==', artistId));
     const songsSnapshot = await getDocs(q);
-    return songsSnapshot.docs.map(doc => doc.data() as ISong);
+    const songList: ISong[] = songsSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data['title'],
+        cover: data['cover'],
+        isLiked: data['isLiked'],
+        lyrics: data['lyrics'],
+        visibility: data['visibility']
+      } as ISong;
+    });
+    console.log("Voici le getSongByTitle : ", songList);
+    return songList;
   }
 
   async getSongByNbEcoute() {

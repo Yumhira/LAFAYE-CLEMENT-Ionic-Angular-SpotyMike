@@ -63,15 +63,18 @@
     @for(songs of song; track songs){
       <div class="Songs">
           <div class="listSongs">
-              <img class="cover" src={{songs.cover}} alt="profile">
+            <img class="cover" src={{songs.cover}} alt="profile">
             <div class="infoSong">
               <p id="Title">{{ songs.title }}</p>
               <p id="Artist">{{ artists.fullname }}</p>
             </div>
-            <img class="visible" src="assets/icon/visible.svg" alt="profile">
+            <ion-icon
+              [name]="songs.visibility ? 'eye' : 'eye-off'"
+              (click)="onClickVisibility(songs.id)"
+            ></ion-icon>
           </div>
 
-          <img class="addSongs" src="assets/icon/add.svg" alt="profile">
+          <img class="addSongs" (click)="onAddSongModal()" src="assets/icon/add.svg" alt="profile">
       </div>
     }
   }
@@ -88,7 +91,7 @@
           }
         </div>
 
-        <img class="addAlbums" src="assets/icon/add.svg" alt="profile">
+        <img class="addAlbums" (click)="onAddAlbumModal()" src="assets/icon/add.svg" alt="profile">
       </div>
     }
 
